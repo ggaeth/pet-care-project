@@ -2,29 +2,27 @@ import React, { Component } from "react";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
-import { LoginBtn, CreateAcctBtn } from "../../components/Buttons";
+import { LoginBtn, CreateAcctBtn, OwnerBtn, CareBtn } from "../../components/Buttons";
+import { CardHead, CardBody } from "../../components/Card";
+import Create from "../Create";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import "./Landing.css";
 
 class Landing extends Component {
-  state = {
-    books: [],
-    title: "",
-    author: "",
-    synopsis: ""
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      modal: false
+    };
 
-  handleFormSubmit = event => {
-    event.preventDefault();
-    if (this.state.title && this.state.author) {
-      API.saveBook({
-        title: this.state.title,
-        author: this.state.author,
-        synopsis: this.state.synopsis
-      })
-        .then(res => this.loadBooks())
-        .catch(err => console.log(err));
-    }
-  };
+    this.toggle = this.toggle.bind(this);
+  }
+
+  toggle() {
+    this.setState({
+      modal: !this.state.modal
+    });
+  }
 
   render() {
     return (
@@ -55,16 +53,49 @@ class Landing extends Component {
         </div>
         <div className="row">
           <div className="col">
-            <Link to="/create" className="btn-link">
-              <CreateAcctBtn>
-                Create Account
-              </CreateAcctBtn>
-            </Link>
+              <Button className="btn btn-success" onClick={this.toggle}>Create Account</Button>
           </div>
         </div>
+
+        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+          <ModalHeader toggle={this.toggle}>Pick Account Type</ModalHeader>
+          <ModalBody>
+            <div className="row">
+              <div className="col-md-6">
+                <div className="card">
+                <CardHead
+                  value="Create Pet Owner Account"
+                />
+                <CardBody>
+                <Link to="/createowner" className="btn-link">
+                      <OwnerBtn>
+                        Owner
+                      </OwnerBtn>
+                    </Link>
+                  </CardBody>
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="card">
+                  <CardHead
+                    value="Create Care Giver Account"
+                  />
+                  <CardBody>
+                      <Link to="/createcare" className="btn-link">
+                        <CareBtn>
+                          Caregiver
+                        </CareBtn>
+                      </Link>
+                  </CardBody>
+                </div>
+              </div>
+            </div>
+          </ModalBody>
+        </Modal>
       </div>
     );
   }
+
 }
 
 export default Landing;
