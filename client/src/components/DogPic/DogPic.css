@@ -1,0 +1,8 @@
+
+.Dog {
+    height: 95vh;
+    background-image: url("../../assets/dogs.jpg");
+    background-size: cover;
+    background-position: top;
+    position: relative;
+  }
