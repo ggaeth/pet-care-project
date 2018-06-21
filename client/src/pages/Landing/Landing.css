@@ -1,3 +1,50 @@
 .btn-link:hover {
   text-decoration: none;
 }
+/* *{
+  background-color:#CAE4D8;
+} */
+h1{
+  color: white;
+  margin-top: 30px;
+  padding-top: 30px;
+  font-size: 80px;
+  margin-left: 70px;
+  text-shadow: 2px 4px 8px  black;
+}
+h2{
+  color: white;
+  margin-top: 100px;
+  padding-top: 10px;
+  font-size: 30px;
+  margin-left: 60px;
+}
+h3{
+  color: white;
+  margin-top: 70px;
+  padding-top: 90px;
+  font-size: 30px;
+  margin-left: 30px;
+}
+
+.background{
+  background-color: #CAE4D8;
+}
+
+.LoginBtn{
+  margin-top: 200px;
+  margin-left: 250px;
+  background-color:#DCAE1D;
+  color: black;
+}
+
+.CreateAcctBtn{
+  margin-left: 320px;
+  background-color:#DCAE1D;
+  color: black;
+  margin-top: -80px;
+}
+
+.CatPic{
+  text-align: left;
+}
