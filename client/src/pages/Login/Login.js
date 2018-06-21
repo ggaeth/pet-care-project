@@ -69,7 +69,7 @@ class Login extends Component {
                       value={this.state.ownerUserid}
                       onChange={this.handleInputChange}
                       name="ownerUserid"
-                      title="Owner User ID"
+                      title="Owner User Name"
                       for="ownerId"
                     />
                     <Input
@@ -100,7 +100,7 @@ class Login extends Component {
                     value={this.state.careUserid}
                     onChange={this.handleInputChange}
                     name="careUserid"
-                    title="Care Giver User ID"
+                    title="Care Giver User Name"
                     for="careId"
                   />
                   <Input
