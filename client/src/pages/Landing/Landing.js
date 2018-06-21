@@ -40,6 +40,7 @@ class Landing extends Component {
           <h1 className="title"> Welcome to Pet Purfect</h1>
           {/* <h2 className="description"></h2> */}
           <h3 className="description">Do you need a Caregiver for your pet?</h3>
+          
           <Link to="/login" className="btn-link btn-lg">
               <LoginBtn>
                 Login
@@ -84,19 +85,19 @@ class Landing extends Component {
             </div>
           </ModalBody>
         </Modal>
-      <div className="row">
+      <div className="row"> 
       <div className="col-6">
-      </div>
-      <InfoBox />
-      <div className="col-6">
-      <CatPic />
+      </div> 
+      <InfoBox /> 
+     <div className="col-6"> 
+     {/* <CatPic />  */}
       </div>
        
      
         
       </div>
-      </div>
-      </div>
+       </div>
+       </div>
       
     );
   }

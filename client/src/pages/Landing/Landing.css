@@ -34,7 +34,7 @@ h3{
 .LoginBtn{
   margin-top: 200px;
   margin-left: 250px;
-  background-color:#DCAE1D;
+  background-color:#7A9D96;
   color: black;
 }
 
@@ -45,6 +45,6 @@ h3{
   margin-top: -80px;
 }
 
-.CatPic{
-  text-align: left;
+.ModalHeader{
+  background-color:#00303F;
 }
