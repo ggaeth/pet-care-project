@@ -39,7 +39,7 @@ class Landing extends Component {
         
           <h1 className="title"> Welcome to Pet Purfect</h1>
           {/* <h2 className="description"></h2> */}
-          <h3 className="description">Do you need a Caregiver for your pet?</h3>
+          {/* <h3 className="description">Do you need a Caregiver for your pet?</h3> */}
           
           <Link to="/login" className="btn-link btn-lg">
               <LoginBtn>

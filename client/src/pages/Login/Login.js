@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Jumbotron from "../../components/Jumbotron";
+import Nav from "../../components/Nav";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { OwnerLoginBtn, CareLoginBtn } from "../../components/Buttons";
@@ -69,7 +70,7 @@ class Login extends Component {
                       value={this.state.ownerUserid}
                       onChange={this.handleInputChange}
                       name="ownerUserid"
-                      title="Owner User ID"
+                      title="Owner User Name"
                       for="ownerId"
                     />
                     <Input
@@ -100,7 +101,7 @@ class Login extends Component {
                     value={this.state.careUserid}
                     onChange={this.handleInputChange}
                     name="careUserid"
-                    title="Care Giver User ID"
+                    title="Care Giver User Name"
                     for="careId"
                   />
                   <Input
