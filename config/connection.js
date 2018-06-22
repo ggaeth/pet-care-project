@@ -1,11 +1,16 @@
 const mysql = require("mysql");
+var connection;
 
-const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "petperfect_db"
-});
+if (process.env.JAWSDB_URL) {
+  connection = mysql.createConnection(process.env.JAWSDB_URL);
+} else {
+  connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "petperfect_db"
+  });
+};
 
 connection.connect(err => {
   if (err) {
