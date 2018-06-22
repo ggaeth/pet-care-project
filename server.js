@@ -1,8 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const routes = require("./routes");
-const db = require("./models");
 const app = express();
+const routes = require("./routes");
+var db = require("./models");
+
 const PORT = process.env.PORT || 3001;
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -10,9 +11,7 @@ app.use(bodyParser.json());
 
 app.use(express.static("client/build"));
 
-app.use(routes);
-
-//const routes = require("./controllers/burgers_controller.js");
+app.use(routes);  
 
 db.sequelize.sync({ force: true }).then(function () {
   app.listen(PORT, function () {

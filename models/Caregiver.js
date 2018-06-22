@@ -2,35 +2,64 @@
 
 module.exports = (sequelize, DataTypes) => {
 
-  const Owner = sequelize.define("Caregiver", {
+  const Caregiver = sequelize.define("Caregiver", {
     caregiver_id: {
-      type: Sequelize.INTEGER,
-      primary_key: true,
+      type: DataTypes.INTEGER,
+      primaryKey: true,
       autoIncrement: true
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    address: DataTypes.STRING,
-    city: DataTypes.STRING,
-    state: DataTypes.STRING,
-    zip_code: DataTypes.INTEGER(5),
-    phone: DataTypes.INTEGER,
-    secondary_phone: DataTypes.INTEGER,
-    email: DataTypes.STRING,
-    username: DataTypes.STRING,
-    caregiver_image: DataTypes.STRING,
-    caregiver_info: {
-      type: Sequelize.TEXT("medium")
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
+    city: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    state: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    zip_code: {
+      type: DataTypes.INTEGER(5),
+      allowNull: false,
+    },
+    phone: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    secondary_phone: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    caregiver_info: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
+    caregiver_image: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    }
   }, {
       classMethods: {
         associate(models) {
           Caregiver.hasMany(models.Pet);
         }
       }
-    });
+    }, { underscored: true });
+
 
   return Caregiver;
 };
