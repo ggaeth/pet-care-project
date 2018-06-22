@@ -1,7 +1,7 @@
 CREATE DATABASE
-IF NOT EXISTS g2f267ekm9ozc9sv;
+IF NOT EXISTS petpurfect_db;
 
-USE g2f267ekm9ozc9sv;
+USE petpurfect_db;
 CREATE TABLE
 IF NOT EXISTS owners
 (
@@ -16,8 +16,7 @@ secondary_phone INT(11),
 email           VARCHAR(255),
 username        VARCHAR(20),
 owner_image     VARCHAR(200),
-owner_info      VARCHAR(1000),
-createdAt TIMESTAMP NOT NULL,     
+owner_info      VARCHAR(1000),     
 PRIMARY KEY
 (owner_id)
 );
