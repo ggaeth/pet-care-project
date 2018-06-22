@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import Jumbotron from "../../components/Jumbotron";
+import Nav from "../../components/Nav";
+import DogPic from "../../components/DogPic";
+import CatPic from "../../components/CatPic";
+import InfoBox from "../../components/InfoBox";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { LoginBtn, CreateAcctBtn, OwnerBtn, CareBtn } from "../../components/Buttons";
@@ -26,37 +30,26 @@ class Landing extends Component {
 
   render() {
     return (
+      <div className="background">
       <div className="container fluid">
         <div className="row">
-          <div className="col">
-            <Jumbotron>
-              <p>The Custom Pet Care (CPC) application gives pet owners the ability to provide custom 
-                care information to caregivers about their pet while they are away. This information enhances 
-                the care of their pets.  In addition, pet owners can specify special instructions for each pet 
-                and coordinate with the caregiver to complete the status of very important tasks. If the 
-                specified task has not completed with a specified time, the app can send a message to all 
-                parties informing them that an important task is overdue.</p>
-                <p>Caregivers can also benefit from this application by having a repository of information 
-                  about each pet that is in their care. And, they can earn a good reputation from pet owners 
-                  by following all care instructions. </p>
-            </Jumbotron>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col">
-            <Link to="/login" className="btn-link">
+          <div className="col-12">
+          
+        <DogPic>
+        
+          <h1 className="title"> Welcome to Pet Purfect</h1>
+          {/* <h2 className="description"></h2> */}
+          <h3 className="description">Do you need a Caregiver for your pet?</h3>
+          
+          <Link to="/login" className="btn-link btn-lg">
               <LoginBtn>
                 Login
               </LoginBtn>
             </Link>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col">
-              <Button className="btn btn-success" onClick={this.toggle}>Create Account</Button>
-          </div>
-        </div>
-
+            <Button className="CreateAcctBtn btn-lg" onClick={this.toggle}>Create Account</Button>
+        </DogPic>
+      </div>
+      </div>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Pick Account Type</ModalHeader>
           <ModalBody>
@@ -92,7 +85,20 @@ class Landing extends Component {
             </div>
           </ModalBody>
         </Modal>
+      <div className="row"> 
+      <div className="col-6">
+      </div> 
+      <InfoBox /> 
+     <div className="col-6"> 
+     {/* <CatPic />  */}
       </div>
+       
+     
+        
+      </div>
+       </div>
+       </div>
+      
     );
   }
 
