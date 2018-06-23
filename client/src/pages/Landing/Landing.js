@@ -42,11 +42,12 @@ class Landing extends Component {
           {/* <h3 className="description">Do you need a Caregiver for your pet?</h3> */}
           
           <Link to="/login" className="btn-link btn-lg">
-              <LoginBtn>
-                Login
-              </LoginBtn>
-            </Link>
-            <Button className="CreateAcctBtn btn-lg" onClick={this.toggle}>Create Account</Button>
+            <LoginBtn>
+              Login
+            </LoginBtn>
+          </Link>
+          <Button className="CreateAcctBtn btn-lg" onClick={this.toggle}>Create Account</Button>
+        {/* dog pic was here */}
         </DogPic>
       </div>
       </div>

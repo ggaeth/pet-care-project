@@ -1,0 +1,17 @@
+{
+  "development": {
+    "username": "root",
+    "password": null,
+    "database": "petpurfect_db",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "use_env_variable": "JAWSDB_URL",
+    "username": "wx72qj1a9x4r9fc1",
+    "password": "v9hvkcc5dcv77xm5",
+    "database": "g2f267ekm9ozc9sv",
+    "host": "q57yawiwmnaw13d2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "dialect": "mysql"
+  }
+}
