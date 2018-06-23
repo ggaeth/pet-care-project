@@ -40,14 +40,14 @@ class Landing extends Component {
           <h1 className="title"> Welcome to Pet Purfect</h1>
           {/* <h2 className="description"></h2> */}
           <h3 className="description">Do you need a Caregiver for your pet?</h3>
-          
+          </DogPic>
           <Link to="/login" className="btn-link btn-lg">
-              <LoginBtn>
-                Login
-              </LoginBtn>
-            </Link>
-            <Button className="CreateAcctBtn btn-lg" onClick={this.toggle}>Create Account</Button>
-        </DogPic>
+            <LoginBtn>
+              Login
+            </LoginBtn>
+          </Link>
+          <Button className="CreateAcctBtn btn-lg" onClick={this.toggle}>Create Account</Button>
+        {/* dog pic was here */}
       </div>
       </div>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
