@@ -14,7 +14,7 @@ const InfoBox = props => (
       <div className="row">
         <div className="col-8">
           <h3 className="info">
-          The Custom Pet Care (CPC) application gives pet owners the ability to provide custom 
+          HELLO! The Custom Pet Care (CPC) application gives pet owners the ability to provide custom 
                 care information to caregivers about their pet while they are away. This information enhances 
                 the care of their pets.  In addition, pet owners can specify special instructions for each pet 
                 and coordinate with the caregiver to complete the status of very important tasks. If the 
