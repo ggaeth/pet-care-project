@@ -31,74 +31,78 @@ class Landing extends Component {
   render() {
     return (
       <div className="background">
-      <div className="container fluid">
-        <div className="row">
-          <div className="col-12">
-          
-        <DogPic>
-        
-          <h1 className="title"> Welcome to Pet Purfect</h1>
-          {/* <h2 className="description"></h2> */}
-          <h3 className="description">Do you need a Caregiver for your pet?</h3>
-          </DogPic>
-          <Link to="/login" className="btn-link btn-lg">
-            <LoginBtn>
-              Login
-            </LoginBtn>
-          </Link>
-          <Button className="CreateAcctBtn btn-lg" onClick={this.toggle}>Create Account</Button>
-        {/* dog pic was here */}
-      </div>
-      </div>
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>Pick Account Type</ModalHeader>
-          <ModalBody>
-            <div className="row">
-              <div className="col-md-6">
-                <div className="card">
-                <CardHead
-                  value="Create Pet Owner Account"
-                />
-                <CardBody>
-                <Link to="/createowner" className="btn-link">
-                      <OwnerBtn>
-                        Owner
-                      </OwnerBtn>
+        <div className="container fluid">
+          <div className="row">
+            <div className="col-12">
+
+              <DogPic>
+
+                <h1 className="title"> Welcome to Pet Purfect</h1>
+                {/* <h2 className="description"></h2> */}
+                <h3 className="description">Do you need a Caregiver for your pet?</h3>
+                <div>
+                  
+                    <LoginBtn>
+                    <Link to="/login" className="btn-link btn-lg">
+                    Login
                     </Link>
-                  </CardBody>
+                </LoginBtn>
+                 
                 </div>
-              </div>
-              <div className="col-md-6">
-                <div className="card">
-                  <CardHead
-                    value="Create Care Giver Account"
-                  />
-                  <CardBody>
+                <Button className="CreateAcctBtn btn-lg" onClick={this.toggle}>Create Account</Button>
+                {/* dog pic was here */}
+              </DogPic>
+            </div>
+          </div>
+          <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+            <ModalHeader toggle={this.toggle}>Pick Account Type</ModalHeader>
+            <ModalBody>
+              <div className="row">
+                <div className="col-md-6">
+                  <div className="card">
+                    <CardHead
+                      value="Create Pet Owner Account"
+                    />
+                    <CardBody>
+                      <Link to="/createowner" className="btn-link">
+                        <OwnerBtn>
+                          Owner
+                      </OwnerBtn>
+                      </Link>
+                    </CardBody>
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="card">
+                    <CardHead
+                      value="Create Care Giver Account"
+                    />
+                    <CardBody>
                       <Link to="/createcare" className="btn-link">
                         <CareBtn>
                           Caregiver
                         </CareBtn>
                       </Link>
-                  </CardBody>
+                    </CardBody>
+                  </div>
                 </div>
               </div>
+            </ModalBody>
+          </Modal>
+          <div className="row">
+            <div className="col-6">
             </div>
-          </ModalBody>
-        </Modal>
-      <div className="row"> 
-      <div className="col-6">
-      </div> 
-      <InfoBox /> 
-     <div className="col-6"> 
-     {/* <CatPic />  */}
+            <InfoBox />
+            <div className="col-6">
+              {/* <CatPic />  */}
+            </div>
+
+
+
+          </div>
+        </div>
       </div>
-       
-     
-        
-      </div>
-       </div>
-       </div>
-      
+
     );
   }
 
