@@ -2,7 +2,7 @@ import React from "react";
 
 export const Input = props => (
   <div className="form-group">
-    <label htmlFor={props.for}>{props.title}</label>
-    <input className="form-control" id={props.htmlFor} {...props} />
+    <label htmlFor={props.forattribute}>{props.title}</label>
+    <input className="form-control" id={props.forattribute} {...props} />
   </div>
 );

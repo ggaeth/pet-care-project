@@ -1,10 +1,29 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
-import { Col, Row, Container } from "../../components/Grid";
-import { Input, TextArea, FormBtn } from "../../components/Form";
+import { Link } from "react-router-dom";
+import { OwnerLoginBtn, CareLoginBtn, CreateBtn } from "../../components/Buttons";
+import { Input, InputRow, TextArea } from "../../components/Form";
+import { CardHead, CardBody } from "../../components/Card";
 import "./CreateOwner.css";
 
 class CreateOwner extends Component {
+  // state = {
+  //   ownerUsername: "",
+  //   ownerPassword: "",
+  //   ownerName: "",
+  //   ownerAddress: "",
+  //   ownerCity: "",
+  //   ownerState: "",
+  //   ownerZipcode: "",
+  //   ownerPhone: "",
+  //   ownerSecPhone: "",
+  //   ownerEmail: "",
+  //   ownerInfo: "",
+  //   ownerImgFile: ""
+  // };
+
   state = {
     petOwner: {},
   };
@@ -24,167 +43,203 @@ class CreateOwner extends Component {
     event.preventDefault();
 
     const newOwner = {
-      "name": this.state.name,
-      "address": this.state.address,
-      "city": this.state.city,
-      "state": this.state.state,
-      "zip_code": this.state.zip_code,
-      "phone": this.state.phone,
-      "secondary_phone": this.state.secondary_phone,
-      "email": this.state.email,
-      "username": this.state.username,
-      "owner_info": this.state.owner_info,
-      "owner_image": this.state.owner_image
+      "name": this.state.ownerName,
+      "address": this.state.ownerAddress,
+      "city": this.state.ownerCity,
+      "state": this.state.ownerState,
+      "zip_code": this.state.ownerZipcode,
+      "phone": this.state.ownerPhone,
+      "secondary_phone": this.state.ownerSecPhone,
+      "email": this.state.ownerEmail,
+      "username": this.state.ownerUsername,
+      "owner_info": this.state.ownerInfo,
+      "owner_image": this.state.ownerImgFile
     };
     console.log("newOwner object that will be sent to server: ");
     console.log(JSON.stringify(newOwner, null, 2) + "\n");
 
     API.createOwner({ newOwner })
-      .then(res => console.log(res))
+      .then(res => console.log(res.data))
+      .then(res => console.log("history ", this.props.history), this.props.history.push("/createcare/", this.state.ownerUsername))
       .catch(err => console.log(err));
 
 //    console.log("newOwner object that will be sent to server: ");
 //    console.log(JSON.stringify(newOwner, null, 2) + "\n");
   };
 
-  //   NEW OWNER CREATE BUTTON  
-  // $(".create-owner").on("submit", function(event) {
-  //   event.preventDefault();
-  //   alert("you clicked new owner create button");
+  ownerIdFormSubmit = event => {
+    event.preventDefault();
 
-  //   var newOwner = {
-  //     name: $("#owner-name").val().trim(),
-  //     address: $("#owner-address").val().trim(),
-  //     city: $("#owner-city").val().trim(),
-  //     state: $("#owner-state").val().trim(),
-  //     zip_code: $("#owner-zipcode").val(),
-  //     phone: $("#owner-phone").val().trim(),
-  //     secondary_phone: $("#owner-sec-phone").val().trim(),
-  //     email: $("#owner-email").val().trim(),
-  //     username: $("#owner-username").val().trim(),
-  //     owner_info: $("#owner-info").val(),
-  //     owner_image: $("#owner-img-file").val()
-  //   };
+      API.createOwner({
+        user: this.state.ownerUserid,
+        password: this.state.ownerPassword
+      })
+        .then(res => this.createdOwner())
+        .catch(err => console.log(err));
 
-  //   console.log("JSON that was sent to server");
-  //   console.log(JSON.stringify(newOwner, null, 2) + "\n");
+  };
 
-  //   $.ajax("/api/owners", {
-  //     type: "POST",
-  //     data: newOwner
-  //   }).then(function (result) {
-  // if entered customer does not exist, insert entered burger and entered new customer. 
-  //     console.log("JSON that was received from server");
-  //     console.log(JSON.stringify(result, null, 2) + "\n");
-  //   });
-  //});
-
+  careFormSubmit = event => {
+    event.preventDefault();
+    if (this.state.careUserid && this.state.carePassword) {
+      API.ownerLogin({
+        user: this.state.careUserid,
+        password: this.state.carePassword
+      })
+        .then(res => this.careLoggedIn())
+        .catch(err => console.log(err));
+    }
+  };
 
   render() {
     return (
-      <div>
-        <Container fluid>
-          <h3 className="text-center mt-5">
-            Create Owner Test
-          </h3>
-          <Row>
-            <Container>
-              <Col size="col-6">
-                <form className="create-owner">
-                  <div className="form-group">
-                    <label htmlFor="owner-name">Name</label>
-                    <Input
-                      value={this.state.ownerName}
-                      onChange={this.handleInputChange}
-                      name="name"
-                    />
+      <div className="container fluid">
+        <div className="row">
+          <div className="col text-center">
+            <h1>Create New Account - Pet Owner</h1>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col">
+            <div className="card">
+              <CardBody>
+                <form>
+                  <InputRow
+                    value={this.state.ownerUsername}
+                    onChange={this.handleInputChange}
+                    name="ownerUsername"
+                    title="User Name:"
+                    forattribute="ownerId"
+                    collabel="col-md-2"
+                    coldiv="col-md-10"
+                  />
+                  <InputRow
+                    value={this.state.ownerPassword}
+                    onChange={this.handleInputChange}
+                    name="ownerPassword"
+                    title="Password:"
+                    forattribute="ownerPsswrd"
+                    collabel="col-md-2"
+                    coldiv="col-md-10"
+                  />
+                  <InputRow
+                    value={this.state.ownerName}
+                    onChange={this.handleInputChange}
+                    name="ownerName"
+                    title="Name:"
+                    forattribute="ownerNm"
+                    collabel="col-md-2"
+                    coldiv="col-md-10"
+                  />
+                  <InputRow
+                    value={this.state.ownerAddress}
+                    onChange={this.handleInputChange}
+                    name="ownerAddress"
+                    title="Address:"
+                    forattribute="ownerAdd"
+                    collabel="col-md-2"
+                    coldiv="col-md-10"
+                  />
+                  <div className="row">
+                    <div className="col-md-6">
+                      <InputRow
+                        value={this.state.ownerCity}
+                        onChange={this.handleInputChange}
+                        name="ownerCity"
+                        title="City:"
+                        forattribute="ownerCty"
+                        collabel="col-md-4"
+                        coldiv="col-md-8"
+                      />
                   </div>
-                  <div className="form-group">
-                    <label htmlFor="owner-address">Address</label>
-                    <Input
-                      value={this.state.ownerAddress}
-                      onChange={this.handleInputChange}
-                      name="address"
-                    />
+                    <div className="col-md-3">
+                      <InputRow
+                        value={this.state.ownerState}
+                        onChange={this.handleInputChange}
+                        name="ownerState"
+                        title="State:"
+                        forattribute="ownerState"
+                        collabel="col-md-4"
+                        coldiv="col-md-8"
+                      />
                   </div>
-                  <div className="form-group">
-                    <label htmlFor="owner-city">City</label>
-                    <Input
-                      value={this.state.ownerCity}
-                      onChange={this.handleInputChange}
-                      name="city"
-                    />
+                    <div className="col-md-3">
+                      <InputRow
+                        value={this.state.ownerZipcode}
+                        onChange={this.handleInputChange}
+                        name="ownerZipcode"
+                        title="Zip:"
+                        forattribute="ownerZp"
+                        collabel="col-md-3"
+                        coldiv="col-md-9"
+                      />
+                    </div>
                   </div>
-                  <div className="form-group">
-                    <label htmlFor="owner-state">State</label>
-                    <Input
-                      value={this.state.ownerState}
-                      onChange={this.handleInputChange}
-                      name="state"
-                    />
+                  <div className="row">
+                    <div className="col-md-6">
+                    <InputRow
+                        value={this.state.ownerPhone}
+                        onChange={this.handleInputChange}
+                        name="ownerPhone"
+                        title="Phone:"
+                        forattribute="ownerPh"
+                        collabel="col-md-4"
+                        coldiv="col-md-8"
+                      />
+                    </div>
+                    <div className="col-md-6">
+                      <InputRow
+                        value={this.state.ownerSecPhone}
+                        onChange={this.handleInputChange}
+                        name="ownerSecPhone"
+                        title="Secondary Phone:"
+                        forattribute="ownerPh2"
+                        collabel="col-md-4"
+                        coldiv="col-md-8"
+                      />
+                    </div>
                   </div>
-                  <div className="form-group">
-                    <label htmlFor="owner-zipcode">Zip</label>
-                    <Input
-                      value={this.state.ownerZipcode}
-                      onChange={this.handleInputChange}
-                      name="zip_code"
-                    />
+                  <div className="row">
+                    <div className="col-md-6">
+                    <InputRow
+                        value={this.state.ownerEmail}
+                        onChange={this.handleInputChange}
+                        name="ownerEmail"
+                        title="Email:"
+                        forattribute="ownerEml"
+                        collabel="col-md-4"
+                        coldiv="col-md-8"
+                      />
+                    </div>
+                    <div className="col-md-6">
+                  <InputRow
+                    value={this.state.ownerImgFile}
+                    onChange={this.handleInputChange}
+                    name="ownerImgFile"
+                    title="Image:"
+                    forattribute="ownerImg"
+                    collabel="col-md-4"
+                    coldiv="col-md-8"
+                  />
                   </div>
-                  <div className="form-group">
-                    <label htmlFor="owner-phone">Phone Number</label>
-                    <Input
-                      value={this.state.ownerPhone}
-                      onChange={this.handleInputChange}
-                      name="phone"
-                    />
                   </div>
-                  <div className="form-group">
-                    <label htmlFor="owner-sec-phone">Secondary Phone Number</label>
-                    <Input
-                      value={this.state.ownerSecPhone}
-                      onChange={this.handleInputChange}
-                      name="secondary_phone"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="owner-email">Email address</label>
-                    <Input
-                      value={this.state.ownerEmail}
-                      onChange={this.handleInputChange}
-                      name="email"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="owner-username">PetPurfect User Name</label>
-                    <Input
-                      value={this.state.ownerUsername}
-                      onChange={this.handleInputChange}
-                      name="username"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="owner-info">Owner Info</label>
-                    <TextArea rows="3"
-                      value={this.state.ownerInfo}
-                      onChange={this.handleInputChange}
-                      name="owner_info"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="owner-img-file">Your Photo</label>
-                    <Input
-                      value={this.state.ownerImgFile}
-                      onChange={this.handleInputChange}
-                      name="owner_image"
-                    />
-                  </div>
-                  <FormBtn onClick={this.handleFormSubmit}>Submit</FormBtn>
+                  <TextArea
+                    value={this.state.ownerInfo}
+                    onChange={this.handleInputChange}
+                    name="ownerInfo"
+                    title="About Me"
+                    forattribute="ownerAbt"
+                  />
+                  <CreateBtn
+                    onClick={this.handleFormSubmit}
+                  >
+                    Create Account
+                  </CreateBtn>
                 </form>
-              </Col>
-            </Container>
-          </Row>
-        </Container>
+              </CardBody>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
