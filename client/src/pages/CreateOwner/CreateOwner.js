@@ -59,8 +59,7 @@ class CreateOwner extends Component {
     console.log(JSON.stringify(newOwner, null, 2) + "\n");
 
     API.createOwner({ newOwner })
-      .then(res => console.log(res.data))
-      .then(res => console.log("history ", this.props.history), this.props.history.push("/createcare/", this.state.ownerUsername))
+      .then(res => this.props.history.push("/owner/", this.state.ownerUsername))
       .catch(err => console.log(err));
 
 //    console.log("newOwner object that will be sent to server: ");

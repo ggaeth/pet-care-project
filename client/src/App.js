@@ -5,7 +5,7 @@ import Login from "./pages/Login";
 import CreateOwner from "./pages/CreateOwner";
 import CreateCare from "./pages/CreateCare";
 // import CreateCare from "./pages/CreateCare";
-// import Owner from "./pages/Owner";
+import Owner from "./pages/Owner";
 // import OwnerCreate from "./pages/OwnerCreate";
 // import Care from "./pages/Care";
 // import CareCreate from "./pages/CareCreate";
@@ -21,10 +21,10 @@ const App = () => (
         <Route exact path="/createowner" component={CreateOwner} />
         <Route exact path="/createcare/" component={CreateCare} /> 
         {/* <Route exact path="/createcare" component={CreateCare} /> */}
-        {/* <Route exact path="/owner" component={Owner} />
-        <Route exact path="/ownercreate" component={OwnerCreate} />
-        <Route exact path="/care" component={Care} />
-        <Route exact path="/carecreate" component={CareCreate} /> */}
+        <Route exact path="/owner" component={Owner} />
+        {/*<Route exact path="/ownercreate" component={OwnerCreate} />
+        {/*<Route exact path="/care" component={Care} /> */}
+        {/*<Route exact path="/carecreate" component={CareCreate} /> */}
       </Switch>
     </div>
   </Router>
