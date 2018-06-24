@@ -6,6 +6,12 @@ USE petpurfect_db;
 CREATE TABLE IF NOT EXISTS pets
 (
 pet_id      INT(10)         NOT NULL AUTO_INCREMENT, 
+owner_id    INT(10)         NOT NULL,
+    INDEX petowner_idx (owner_id),
+    FOREIGN KEY (owner_id)
+        REFERENCES owners(owner_id)
+        ON DELETE CASCADE,
+caregiver_id INT(10),
 name        VARCHAR(100)    NOT NULL, 
 age         INT(2)          NOT NULL DEFAULT 0, 
 breed       VARCHAR(30)     NOT NULL,
@@ -21,7 +27,6 @@ pet_restrictions VARCHAR(1000),
 PRIMARY KEY
 (pet_id)
 );
-
 
 CREATE TABLE IF NOT EXISTS pet_todos
 (

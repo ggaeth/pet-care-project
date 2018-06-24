@@ -24,7 +24,12 @@ module.exports = (sequelize, DataTypes) => {
   }, {
       classMethods: {
         associate(models) {
-          PetTodo.belongsTo(models.Pet);
+          PetTodo.belongsTo(models.Pet,
+            {
+              foreignKey: "fk_pet_id",
+              targetKey: "pet_id"
+            }
+          );
         }
       }
     });
