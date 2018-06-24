@@ -9,10 +9,10 @@ router
 //  .get(ownersController.findAll)
   .post(ownersController.create);
 
-// Matches with "/api/owners/:id"
+// Matches with "/api/owners/:userName"
 router
-//  .route("/:id")
-//  .get(ownersController.findById)
+  .route("/:userName")
+  .get(ownersController.getOwner)
 //  .put(ownersController.update)
 //  .delete(ownersController.remove);
 
