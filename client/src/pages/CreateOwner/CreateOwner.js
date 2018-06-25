@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import Jumbotron from "../../components/Jumbotron";
+// import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { OwnerLoginBtn, CareLoginBtn, CreateBtn } from "../../components/Buttons";
@@ -92,12 +92,12 @@ class CreateOwner extends Component {
 
   render() {
     return (
-      <div className="container fluid">
-        <div className="row">
-          <div className="col text-center">
-            <h1>Create New Account - Pet Owner</h1>
-          </div>
-        </div>
+       <div className="container fluid">
+       <div className="row">
+         <div className="col text-center">
+           <h1>Create New Account - Pet Owner</h1>
+         </div>
+       </div>
         <div className="row">
           <div className="col">
             <div className="card">
@@ -240,6 +240,7 @@ class CreateOwner extends Component {
           </div>
         </div>
       </div>
+
     );
   }
 }

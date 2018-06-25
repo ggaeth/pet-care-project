@@ -48,12 +48,11 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="background">
       <div className="container fluid">
         <div className="row">
           <div className="col">
-            <Jumbotron>
-              {/* s<h3>Login Page</h3> */}
+          <Jumbotron>
+            Login
             </Jumbotron>
           </div>
         </div>
@@ -122,7 +121,7 @@ class Login extends Component {
           </div>
         </div>
       </div>
-      </div>
+     
     );
   }
 }

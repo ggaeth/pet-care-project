@@ -4,6 +4,7 @@ import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import CreateOwner from "./pages/CreateOwner";
 import CreateCare from "./pages/CreateCare";
+import CreatePet from "./pages/CreatePet";
 // import CreateCare from "./pages/CreateCare";
 import Owner from "./pages/Owner";
 // import OwnerCreate from "./pages/OwnerCreate";
@@ -20,6 +21,7 @@ const App = () => (
         <Route exact path="/login" component={Login} />
         <Route exact path="/createowner" component={CreateOwner} />
         <Route exact path="/createcare/" component={CreateCare} /> 
+        <Route exact path="/createpet/" component={CreatePet} /> 
         {/* <Route exact path="/createcare" component={CreateCare} /> */}
         <Route exact path="/owner" component={Owner} />
         {/*<Route exact path="/ownercreate" component={OwnerCreate} />

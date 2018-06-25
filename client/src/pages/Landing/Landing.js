@@ -41,19 +41,17 @@ class Landing extends Component {
                 {/* <h2 className="description"></h2> */}
                 <h3 className="description">Do you need a Caregiver for your pet?</h3>
                 <div>
-                  
-                    <LoginBtn>
-                    <Link to="/login" className="btn-link btn-lg">
-                    Login
-                    </Link>
-                </LoginBtn>
-                 
-                </div>
+                  <Link to="/login">
+                    <Button className="LoginBtn btn btn-lg">Login</Button>
+                    
+                 </Link>
+                 </div>
                 <Button className="CreateAcctBtn btn-lg" onClick={this.toggle}>Create Account</Button>
                 {/* dog pic was here */}
               </DogPic>
-            </div>
           </div>
+          </div>
+       
           <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
             <ModalHeader toggle={this.toggle}>Pick Account Type</ModalHeader>
             <ModalBody>
