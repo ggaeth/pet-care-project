@@ -5,3 +5,5 @@ export * from "./OwnerLoginBtn";
 export * from "./CareLoginBtn";
 export * from "./OwnerBtn";
 export * from "./CareBtn";
+export * from "./AddBtn";
+export * from "./DeleteBtn";
