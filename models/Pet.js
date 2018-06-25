@@ -59,7 +59,7 @@ module.exports = (sequelize, DataTypes) => {
     vet_zip_code: {
       type: DataTypes.INTEGER(5),
       allowNull: false,
-    }, 
+    },
     vet_phone: {
       type: DataTypes.STRING,
       allowNull: true
@@ -67,7 +67,7 @@ module.exports = (sequelize, DataTypes) => {
     pet_medications: {
       type: DataTypes.TEXT,
       allowNull: true
-    }, 
+    },
     pet_restrictions: {
       type: DataTypes.TEXT,
       allowNull: true
@@ -79,10 +79,22 @@ module.exports = (sequelize, DataTypes) => {
   }, {
       classMethods: {
         associate(models) {
-          Pet.hasMany(models.PetTodo);
+          Pet.belongsTo(models.Owner,
+            {
+              foreignKey: "fk_owner_id",
+              targetKey: "owner_id"
+            }
+          ),
+          Pet.hasMany(models.PetTodo,
+            {
+              foreignKey: "fk_pet_id",
+              sourceKey: "pet_id"
+            }
+          )
         }
       }
-    });
-    
+    }, { underscored: true }
+  );
+
   return Pet;
 };

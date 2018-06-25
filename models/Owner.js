@@ -55,7 +55,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
       classMethods: {
         associate(models) {
-          Owner.hasMany(models.Pet);
+          Owner.hasMany(models.Pet,
+            { foreignKey: "fk_owner_id",
+              sourceKey: "owner_id"
+             } 
+          )
         }
       }
     }, { underscored: true });
