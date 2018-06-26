@@ -9,33 +9,19 @@ import { CardHead, CardBody } from "../../components/Card";
 import "./CreateOwner.css";
 
 class CreateOwner extends Component {
-  // state = {
-  //   ownerUsername: "",
-  //   ownerPassword: "",
-  //   ownerName: "",
-  //   ownerAddress: "",
-  //   ownerCity: "",
-  //   ownerState: "",
-  //   ownerZipcode: "",
-  //   ownerPhone: "",
-  //   ownerSecPhone: "",
-  //   ownerEmail: "",
-  //   ownerInfo: "",
-  //   ownerImgFile: ""
-  // };
 
   state = {
     petOwner: {},
   };
 
   handleInputChange = event => {
-    console.log("handleInputChange for " + event.target.name + "  " + event.target.value);
+    // console.log("handleInputChange for " + event.target.name + "  " + event.target.value);
     const { name, value } = event.target;
     this.setState({
       [name]: value
     });
-    console.log("this.state is");
-    console.log(JSON.stringify(this.state, null, 2) + "\n");
+    // console.log("this.state is");
+    // console.log(JSON.stringify(this.state, null, 2) + "\n");
   };
 
 
@@ -59,22 +45,22 @@ class CreateOwner extends Component {
     console.log(JSON.stringify(newOwner, null, 2) + "\n");
 
     API.createOwner({ newOwner })
-      .then(res => this.props.history.push("/owner/", this.state.ownerUsername))
+      .then(res => this.props.history.push("/ownerview/", { username: this.state.ownerUsername, fromPage: "CreateOwner" }))
       .catch(err => console.log(err));
 
-//    console.log("newOwner object that will be sent to server: ");
-//    console.log(JSON.stringify(newOwner, null, 2) + "\n");
+    //    console.log("newOwner object that will be sent to server: ");
+    //    console.log(JSON.stringify(newOwner, null, 2) + "\n");
   };
 
   ownerIdFormSubmit = event => {
     event.preventDefault();
 
-      API.createOwner({
-        user: this.state.ownerUserid,
-        password: this.state.ownerPassword
-      })
-        .then(res => this.createdOwner())
-        .catch(err => console.log(err));
+    API.createOwner({
+      user: this.state.ownerUserid,
+      password: this.state.ownerPassword
+    })
+      .then(res => this.createdOwner())
+      .catch(err => console.log(err));
 
   };
 
@@ -92,12 +78,12 @@ class CreateOwner extends Component {
 
   render() {
     return (
-       <div className="container fluid">
-       <div className="row">
-         <div className="col text-center">
-           <h1>Create New Account - Pet Owner</h1>
-         </div>
-       </div>
+      <div className="container fluid">
+        <div className="row">
+          <div className="col text-center">
+            <h1>Create New Account - Pet Owner</h1>
+          </div>
+        </div>
         <div className="row">
           <div className="col">
             <div className="card">
@@ -150,7 +136,7 @@ class CreateOwner extends Component {
                         collabel="col-md-4"
                         coldiv="col-md-8"
                       />
-                  </div>
+                    </div>
                     <div className="col-md-3">
                       <InputRow
                         value={this.state.ownerState}
@@ -161,7 +147,7 @@ class CreateOwner extends Component {
                         collabel="col-md-4"
                         coldiv="col-md-8"
                       />
-                  </div>
+                    </div>
                     <div className="col-md-3">
                       <InputRow
                         value={this.state.ownerZipcode}
@@ -176,7 +162,7 @@ class CreateOwner extends Component {
                   </div>
                   <div className="row">
                     <div className="col-md-6">
-                    <InputRow
+                      <InputRow
                         value={this.state.ownerPhone}
                         onChange={this.handleInputChange}
                         name="ownerPhone"
@@ -200,7 +186,7 @@ class CreateOwner extends Component {
                   </div>
                   <div className="row">
                     <div className="col-md-6">
-                    <InputRow
+                      <InputRow
                         value={this.state.ownerEmail}
                         onChange={this.handleInputChange}
                         name="ownerEmail"
@@ -211,16 +197,16 @@ class CreateOwner extends Component {
                       />
                     </div>
                     <div className="col-md-6">
-                  <InputRow
-                    value={this.state.ownerImgFile}
-                    onChange={this.handleInputChange}
-                    name="ownerImgFile"
-                    title="Image:"
-                    forattribute="ownerImg"
-                    collabel="col-md-4"
-                    coldiv="col-md-8"
-                  />
-                  </div>
+                      <InputRow
+                        value={this.state.ownerImgFile}
+                        onChange={this.handleInputChange}
+                        name="ownerImgFile"
+                        title="Image:"
+                        forattribute="ownerImg"
+                        collabel="col-md-4"
+                        coldiv="col-md-8"
+                      />
+                    </div>
                   </div>
                   <TextArea
                     value={this.state.ownerInfo}

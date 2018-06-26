@@ -19,5 +19,10 @@ export default {
     console.log("inside createOwner");
     console.log(JSON.stringify(newOwner, null, 2) + "\n");
     return axios.post("/api/owners", newOwner);
+  },
+  createPet: function(newPet) {
+    console.log("inside createPet");
+    console.log(JSON.stringify(newPet, null, 2) + "\n");
+    return axios.post("/api/pets", newPet);
   }
 };
