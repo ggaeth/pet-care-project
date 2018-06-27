@@ -61,6 +61,8 @@ class CreateToDo extends Component {
         return (
             <div className="container fluid">
                 <div className="row">
+                <div className="col-md-6">
+            
                     <div className="col-md-6 text-center">
                         
                     </div>
@@ -80,8 +82,7 @@ class CreateToDo extends Component {
                                             name="timeToDo"
                                             placeholder="Time:"
                                             forattribute="timeToDo"
-                                            // collabel="col-md-4"
-                                            coldiv="col-md-8"
+                                            coldiv="col-md-12"
                                         />
                                     </div>
                                     <div className="col-md-7">
@@ -91,8 +92,7 @@ class CreateToDo extends Component {
                                             name="ToDo"
                                             placeholder="To Do:"
                                             forattribute="ToDo"
-                                            // collabel="col-md-2"
-                                            coldiv="col-md-8"
+                                            coldiv="col-md-12"
                                         />
                                     </div>
                             
@@ -114,6 +114,7 @@ class CreateToDo extends Component {
                 </div>
             </div>
             </div>
+          </div>
      
      
     );

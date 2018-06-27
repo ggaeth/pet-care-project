@@ -1,9 +1,10 @@
 {
-  "main.css": "static/css/main.d6b14d4d.css",
-  "main.css.map": "static/css/main.d6b14d4d.css.map",
-  "main.js": "static/js/main.71198853.js",
-  "main.js.map": "static/js/main.71198853.js.map",
-  "static\\media\\cat.jpeg": "static/media/cat.9a1e0352.jpeg",
-  "static\\media\\dogcat.jpg": "static/media/dogcat.688e32a2.jpg",
-  "static\\media\\dogs.jpg": "static/media/dogs.0b99d78f.jpg"
+  "main.css": "static/css/main.8988699d.css",
+  "main.css.map": "static/css/main.8988699d.css.map",
+  "main.js": "static/js/main.951b1f2b.js",
+  "main.js.map": "static/js/main.951b1f2b.js.map",
+  "static/media/cat.jpeg": "static/media/cat.9a1e0352.jpeg",
+  "static/media/dogcat.jpg": "static/media/dogcat.688e32a2.jpg",
+  "static/media/dogs.jpg": "static/media/dogs.0b99d78f.jpg",
+  "static/media/icon.jpg": "static/media/icon.52f48afa.jpg"
 }

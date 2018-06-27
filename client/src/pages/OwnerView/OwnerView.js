@@ -4,6 +4,7 @@ import Jumbotron from "../../components/Jumbotron";
 import Nav from "../../components/Nav";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
+import icon from "../../assets/icon.jpg";
 import { Card, CardTitle, CardBody, CardImg, CardSubtitle, CardText } from "reactstrap";
 // import Create from "../Create";
 import "./OwnerView.css";
@@ -17,15 +18,15 @@ class OwnerView extends Component {
 
 
 
-  componentDidMount() {
-    console.log("in mount Owner.js", this.props.location.state);
-    if (this.props.location.state.fromPage === "CreateOwner") {
-      this.getOwner(this.props.location.state.username);
-    } else {
-      this.getOwner(this.props.location.state.username);
-      this.getPets(this.props.location.state.petid);
-    }
-  };
+  // componentDidMount() {
+  //   console.log("in mount Owner.js", this.props.location.state);
+  //   if (this.props.location.state.fromPage === "CreateOwner") {
+  //     this.getOwner(this.props.location.state.username);
+  //   } else {
+  //     this.getOwner(this.props.location.state.username);
+  //     this.getPets(this.props.location.state.petid);
+  //   }
+  // };
 
   getOwner = userName => {
     console.log(userName);
@@ -71,14 +72,13 @@ class OwnerView extends Component {
 
             <div className="col-3">
 
-
-
-              <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"
+<Card>
+              <CardImg top width="100%" src={icon}
                 onClick={() => this.petPage(this.state.owner[0].owner_id, this.state.owner[0].username)} alt="Card image cap" />
               <CardBody>
-                <CardTitle>Pet Name</CardTitle>
+                <CardTitle>Create Pet</CardTitle>
               </CardBody>
-            </div>
+            </Card>
             <div className="col-3">
               {this.state.pets.length ? (
                 <Card>
@@ -101,6 +101,7 @@ class OwnerView extends Component {
             </div>
           </div>
         </div>
+      </div>
       </div>
 
 

@@ -3,5 +3,6 @@
     width: 300px;
     background-image: url("../../assets/cat.jpeg");
     background-size: cover;
+    float: right;
 
   }

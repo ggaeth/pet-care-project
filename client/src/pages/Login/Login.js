@@ -7,6 +7,7 @@ import { Input } from "../../components/Form";
 import { CardHead, CardBody } from "../../components/Card";
 import "./Login.css";
 
+
 class Login extends Component {
   state = {
     ownerUserid: "",
@@ -48,6 +49,7 @@ class Login extends Component {
 
   render() {
     return (
+      <div className="background">
       <div className="container fluid">
         <div className="row">
           <div className="col">
@@ -120,6 +122,7 @@ class Login extends Component {
             </div>
           </div>
         </div>
+      </div>
       </div>
      
     );

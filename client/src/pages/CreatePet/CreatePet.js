@@ -16,12 +16,12 @@ class CreatePet extends Component {
     petOwner: {}
   };
 
-  componentDidMount() {
-    console.log("in mount CreatePet state ", this.props.location.state);
-    console.log("in mount CreatePet id ", this.props.location.state.id);
-    console.log("in mount CreatePet username ", this.props.location.state.username);
-    this.setState({ passedOwnerId: this.props.location.state.id, ownerUserName: this.props.location.state.username })
-  };
+  // componentDidMount() {
+  //   console.log("in mount CreatePet state ", this.props.location.state);
+  //   console.log("in mount CreatePet id ", this.props.location.state.id);
+  //   console.log("in mount CreatePet username ", this.props.location.state.username);
+  //   this.setState({ passedOwnerId: this.props.location.state.id, ownerUserName: this.props.location.state.username })
+  // };
 
   handleInputChange = event => {
     // console.log("handleInputChange for " + event.target.name + "  " + event.target.value);
