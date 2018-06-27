@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Jumbotron from "../../components/Jumbotron";
+import Jumbotron2 from "../../components/Jumbotron2";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { OwnerLoginBtn, CareLoginBtn } from "../../components/Buttons";
@@ -53,9 +53,9 @@ class Login extends Component {
       <div className="container fluid">
         <div className="row">
           <div className="col">
-          <Jumbotron>
+          <Jumbotron2>
             Login
-            </Jumbotron>
+            </Jumbotron2>
           </div>
         </div>
         <div className="row">

@@ -10,27 +10,17 @@ import "./CreateCare.css";
 
 class CreateCare extends Component {
   state = {
-    careUserid: "",
-    carePassword: "",
-    careName: "",
-    careAddress: "",
-    careCity: "",
-    careSt: "",
-    careZip: "",
-    careEmail: "",
-    carePhone: "",
-    careImage: "",
-    careAbout: ""
+    careGiver: {},
   };
 
-  componentDidMount() {
-    console.log("in mount ", this.props.location.state);
-    this.getHistory(this.props.location.state);
-  }
+  // componentDidMount() {
+  //   console.log("in mount ", this.props.location.state);
+  //   this.getHistory(this.props.location.state);
+  // }
 
-  getHistory = id => {
-    console.log(id);
-  }
+  // getHistory = id => {
+  //   console.log(id);
+  // }
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -42,23 +32,30 @@ class CreateCare extends Component {
   careFormSubmit = event => {
     event.preventDefault();
 
-      API.createCare({
-        user: this.state.careUserid,
-        password: this.state.carePassword,
-        name: this.state.careName,
-        address: this.state.careAddress,
-        city: this.state.careCity,
-        state: this.state.careSt,
-        zip: this.state.careZip,
-        email: this.state.careEmail,
-        phone: this.state.carePhone,
-        image: this.state.careImage,
-        about: this.state.careAbout
-      })
-        .then(res => this.createdCare())
-        .catch(err => console.log(err));
-  };
+    const newCareGiver = {
+      "name": this.state.ownerName,
+      "address": this.state.ownerAddress,
+      "city": this.state.ownerCity,
+      "state": this.state.ownerState,
+      "zip_code": this.state.ownerZipcode,
+      "phone": this.state.ownerPhone,
+      "secondary_phone": this.state.ownerSecPhone,
+      "email": this.state.ownerEmail,
+      "username": this.state.ownerUsername,
+      "caregiver_info": this.state.ownerInfo,
+      "caregiver_image": this.state.ownerImgFile
+    };
+    console.log("newOwner object that will be sent to server: ");
+    console.log(JSON.stringify(newCareGiver, null, 2) + "\n");
 
+    API.createOwner({ newCareGiver })
+      .then(res => this.props.history.push("/caregiverview/", { username: this.state.CareGiverUsername, fromPage: "CreateCare" }))
+      .catch(err => console.log(err));
+
+    //    console.log("newOwner object that will be sent to server: ");
+    //    console.log(JSON.stringify(newOwner, null, 2) + "\n");
+  };
+  
   careFormSubmit = event => {
     event.preventDefault();
     if (this.state.careUserid && this.state.carePassword) {

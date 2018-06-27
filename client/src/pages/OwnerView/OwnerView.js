@@ -18,15 +18,15 @@ class OwnerView extends Component {
 
 
 
-  // componentDidMount() {
-  //   console.log("in mount Owner.js", this.props.location.state);
-  //   if (this.props.location.state.fromPage === "CreateOwner") {
-  //     this.getOwner(this.props.location.state.username);
-  //   } else {
-  //     this.getOwner(this.props.location.state.username);
-  //     this.getPets(this.props.location.state.petid);
-  //   }
-  // };
+  componentDidMount() {
+    console.log("in mount Owner.js", this.props.location.state);
+    if (this.props.location.state.fromPage === "CreateOwner") {
+      this.getOwner(this.props.location.state.username);
+    } else {
+      this.getOwner(this.props.location.state.username);
+      this.getPets(this.props.location.state.petid);
+    }
+  };
 
   getOwner = userName => {
     console.log(userName);

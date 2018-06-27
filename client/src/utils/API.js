@@ -24,10 +24,10 @@ export default {
     console.log("inside createPet");
     console.log(JSON.stringify(newPet, null, 2) + "\n");
     return axios.post("/api/pets", newPet);
+  },
+  createCaregiver: function(newCaregiver) {
+    console.log("inside createCaregiver");
+   console.log(JSON.stringify(newCaregiver, null, 2) + "\n");
+   return axios.post("/api/caregivers", newCaregiver);
   }
-  // createCaregiver: function(newCaregiver) {
-  //   console.log("inside createCaregiver");
-  //  console.log(JSON.stringify(newCaregiver, null, 2) + "\n");
-  //  return axios.post("/api/caregivers", newCaregiver);
-  // }
 };
