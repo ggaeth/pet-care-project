@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const petsController = require("../../controllers/pets_controller");
 
-console.log("inside api/createpet.js");
+console.log("inside api/pets.js");
 
 // Matches with "/api/owners"
 router
