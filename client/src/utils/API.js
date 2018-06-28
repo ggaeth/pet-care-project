@@ -10,6 +10,10 @@ export default {
     console.log("inside getOwner");
     return axios.get("/api/owners/" + userName);
   },
+  getPets: function (ownerId) {
+    console.log("inside getPets");
+    return axios.get("/api/pets/" + ownerId);
+  },
   // Deletes the owner with the given id
   //deleteBook: function(id) {
   //  return axios.delete("/api/owners/" + ownerId);
