@@ -21,7 +21,7 @@ class CreatePet extends Component {
     console.log("in mount CreatePet state ", this.props.location.state);
     console.log("in mount CreatePet id ", this.props.location.state.id);
     console.log("in mount CreatePet username ", this.props.location.state.username);
-    this.setState({ passedOwnerId: this.props.location.state.id, ownerUserName: this.props.location.state.username })
+    this.setState({ passedOwnerId: this.props.location.state.id, ownerUsername: this.props.location.state.username })
   };
 
   handleInputChange = event => {
@@ -59,7 +59,7 @@ class CreatePet extends Component {
     console.log(JSON.stringify(newPet, null, 2) + "\n");
 
     API.createPet({ newPet })
-      .then(res => console.log("res ", res), this.props.history.push("/ownerview/", { ownerid: this.state.passedOwnerId, fromPage: "CreatePet" }))
+      .then(res => console.log("res ", res), this.props.history.push("/ownerview/", { username: this.state.ownerUsername, ownerid: this.state.passedOwnerId, fromPage: "CreatePet" }))
       // .then(res => console.log("res ", res))
       .catch(err => console.log(err));
 

@@ -7,7 +7,7 @@ module.exports = {
     db.Pet
       .findAll({
         where: {
-          "$pet_id$": req.params.petId
+          "$owner_id$": req.params.ownerId
         },
         include: [{
           model: db.PetTodo

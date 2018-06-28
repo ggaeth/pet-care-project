@@ -9,6 +9,9 @@ router
 
 // Matches with "/api/pets/:id"
 router
+  .route("/:ownerId")
+  .get(petsController.getPet)
+
 //  .route("/:id")
 //  .get(petsController.findById)
 //  .put(petsController.update)

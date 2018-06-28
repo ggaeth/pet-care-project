@@ -21,11 +21,18 @@ class OwnerView extends Component {
   componentDidMount() {
     console.log("in mount Owner.js", this.props.location.state);
     this.getOwner(this.props.location.state.username);
-    if (this.props.location.state.fromPage === "CreatePet") {
-      console.log("add getPets");
-      // this.getPets(this.props.location.state.ownerid);
-    }
+    // if (this.props.location.state.fromPage === "CreatePet") {
+    //   console.log("add getPets");
+    //   this.getPets(this.props.location.state.ownerid);
+    // }
   };
+
+  hasPets() {
+    if (this.props.location.state.fromPage === "CreatePet") {
+      console.log("hasPets");
+      this.getPets(this.props.location.state.ownerid);
+    }
+  }
 
   getOwner = userName => {
     console.log(userName);
@@ -52,6 +59,22 @@ class OwnerView extends Component {
         )
       )
       .then(res => console.log("owner state ", this.state.owner))
+      .then(res => this.hasPets(this.props.location.state))
+      .catch(err => console.log(err))
+
+  };
+
+  getPets = ownerId => {
+    console.log(ownerId);
+
+    API.getPets(ownerId)
+      .then(res =>
+        this.setState(
+          { pets: res.data },
+          console.log("pets res.data in ownerview.js ", res)
+        )
+      )
+      .then(res => console.log("pets state ", this.pets.owner))
       .catch(err => console.log(err))
 
   };
@@ -59,6 +82,11 @@ class OwnerView extends Component {
   petPage = (id, username) => {
     this.props.history.push("/createpet/", { id: id, username: username })
   };
+
+  petView = (ownerId, petId) => {
+    this.props.history.push("/petview/", { ownerid: ownerId, petid: petId })
+  };
+
   // const OwnerView = (props) => {
   render() {
     return (
@@ -71,19 +99,20 @@ class OwnerView extends Component {
 
             <div className="col-3">
 
-<Card>
+            <Card>
               <CardImg top width="100%" src={icon}
                 onClick={() => this.petPage(this.state.owner[0].owner_id, this.state.owner[0].username)} alt="Card image cap" />
               <CardBody>
                 <CardTitle>Create Pet</CardTitle>
               </CardBody>
             </Card>
+            </div>
             <div className="col-3">
               {this.state.pets.length ? (
                 <Card>
                   {this.state.pets.map(pet => (
                     <div>
-                      <CardImg top width="100%" src={pet.pet_image} alt="Card image cap" onClick={() => this.petPage(pet.owner_id, pet.ownerUserName)} />
+                      <CardImg top width="100%" src={pet.pet_image} alt="Card image cap" id={pet.pet_id} onClick={() => this.petView(pet.owner_id, pet.pet_id)} />
 
                       <CardBody>
                         <CardTitle>
@@ -100,7 +129,6 @@ class OwnerView extends Component {
             </div>
           </div>
         </div>
-      </div>
       </div>
 
 
