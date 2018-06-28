@@ -13,15 +13,16 @@ class CreatePet extends Component {
   state = {
     passedOwnerId: "",
     ownerUsername: "",
-    petOwner: {}
+    petOwner: {},
+    pets: []
   };
 
-  // componentDidMount() {
-  //   console.log("in mount CreatePet state ", this.props.location.state);
-  //   console.log("in mount CreatePet id ", this.props.location.state.id);
-  //   console.log("in mount CreatePet username ", this.props.location.state.username);
-  //   this.setState({ passedOwnerId: this.props.location.state.id, ownerUserName: this.props.location.state.username })
-  // };
+  componentDidMount() {
+    console.log("in mount CreatePet state ", this.props.location.state);
+    console.log("in mount CreatePet id ", this.props.location.state.id);
+    console.log("in mount CreatePet username ", this.props.location.state.username);
+    this.setState({ passedOwnerId: this.props.location.state.id, ownerUserName: this.props.location.state.username })
+  };
 
   handleInputChange = event => {
     // console.log("handleInputChange for " + event.target.name + "  " + event.target.value);
@@ -58,8 +59,8 @@ class CreatePet extends Component {
     console.log(JSON.stringify(newPet, null, 2) + "\n");
 
     API.createPet({ newPet })
-      //   .then(res => console.log("res ", res), this.props.history.push("/ownerview/", { username: this.state.ownerUsername, petId: this.res.data }))
-      .then(res => console.log("res ", res))
+      .then(res => console.log("res ", res), this.props.history.push("/ownerview/", { ownerid: this.state.passedOwnerId, fromPage: "CreatePet" }))
+      // .then(res => console.log("res ", res))
       .catch(err => console.log(err));
 
     console.log("newOwner object that will be sent to server: ");
@@ -125,7 +126,7 @@ class CreatePet extends Component {
                   </div>
                   <div className="row">
                     <div className="col-md-6">
-                      <InputRow
+                      {/* <Radio
                         value={this.state.crate}
                         onChange={this.handleInputChange}
                         name="crate"
@@ -133,7 +134,16 @@ class CreatePet extends Component {
                         forattribute="petCrate"
                         collabel="col-md-4"
                         coldiv="col-md-3"
-                      />
+                      /> */}
+                      <label className="form-check-label col-md-4" htmlFor="crate-radio">Crate:</label>
+                      <div className="form-check form-check-inline" id="create-radio">
+                        <input className="form-check-input" type="radio" name="crate" id="inlineRadio1" value="true" checked={this.state.crate === "true"} onChange={this.handleInputChange} />
+                        <label className="form-check-label" htmlFor="inlineRadio1">Yes</label>
+                      </div>
+                      <div className="form-check form-check-inline" id="create-radio">
+                        <input className="form-check-input" type="radio" name="crate" id="inlineRadio2" value="false" checked={this.state.crate === "false"} onChange={this.handleInputChange} />
+                        <label className="form-check-label" htmlFor="inlineRadio2">No</label>
+                      </div>
                     </div>
                   </div>
                   <div className="row">
