@@ -1,4 +1,4 @@
-const db = require("../models");
+const db = require("../models/");
 
 module.exports = {
   getPet: function (req, res) {
@@ -18,8 +18,10 @@ module.exports = {
       .catch(err => console.log(JSON.stringify(err, null, 2) + "\n"));
   },
   create: function (req, res) {
+    console.log("pets req.body is")
+    console.log(JSON.stringify(req.body, null, 2))
     db.Pet
-      .create(req.body)
+      .create(req.body.newPet)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }

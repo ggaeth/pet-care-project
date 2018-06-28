@@ -20,11 +20,10 @@ class OwnerView extends Component {
 
   componentDidMount() {
     console.log("in mount Owner.js", this.props.location.state);
-    if (this.props.location.state.fromPage === "CreateOwner") {
-      this.getOwner(this.props.location.state.username);
-    } else {
-      this.getOwner(this.props.location.state.username);
-      this.getPets(this.props.location.state.petid);
+    this.getOwner(this.props.location.state.username);
+    if (this.props.location.state.fromPage === "CreatePet") {
+      console.log("add getPets");
+      // this.getPets(this.props.location.state.ownerid);
     }
   };
 
