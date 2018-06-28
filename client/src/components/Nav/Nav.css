@@ -1,3 +1,7 @@
 .navbar{
     background-color: #00303F;
 }
+
+.nav-link{
+    color: white;
+}

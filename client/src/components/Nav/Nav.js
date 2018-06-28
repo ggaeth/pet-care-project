@@ -3,8 +3,8 @@ import {NavLink} from "reactstrap"
 import "./Nav.css";
 
 const Nav = () => (
-  <nav className="navbar navbar-expand-lg navbar-dark">
-    <a className="navbar-brand" href="/">
+  <nav className="navbar navbar-expand-lg navbar-dark ">
+    <a className="navbar-brand mr-auto" href="/">
       Pet Purfect
     </a>
     <NavLink href="/about/">About</NavLink>
