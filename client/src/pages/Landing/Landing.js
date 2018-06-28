@@ -87,21 +87,13 @@ class Landing extends Component {
               </div>
             </ModalBody>
           </Modal>
-          <div className="container">
-          <div className="row">
-            <div className="col-md-6">
-          </div>
-            <InfoBox />
-            <div className="col-md-6">
-              <CatPic /> 
-            </div>
-            </div>
+          
 
 
          </div>
         
         </div>
-      </div>
+      
 
     );
   }

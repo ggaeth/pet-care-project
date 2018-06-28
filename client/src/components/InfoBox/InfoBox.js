@@ -1,18 +1,20 @@
 import React from "react";
 import Container from "../Container/Container";
+import Image from "../../assets/cat.jpeg";
 import "./InfoBox.css";
 
 const InfoBox = props => (
   <div>
     <div className="row">
       <div className="col-12">
-        {/* <h1 className="infoTitle">About Pet Purfect</h1> */}
+        <h1 className="infoTitle">About Pet Purfect</h1>
       </div>
     </div>
-
+    <div className="background">
     <Container>
+      
       <div className="row">
-        <div className="col-8">
+        <div className="col-6">
           <h3 className="info">
           The Custom Pet Care (CPC) application gives pet owners the ability to provide custom 
                 care information to caregivers about their pet while they are away. This information enhances 
@@ -25,9 +27,21 @@ const InfoBox = props => (
                   by following all care instructions.
           </h3>
         </div>
+        <div className="col-1" />
+        <div className="col-5">
+          <img
+            src={Image}
+            alt="cat"
+            className="catpic"
+          />
+        </div>
       </div>
+      
     </Container>
+    </div>
   </div>
 );
+
+
 
 export default InfoBox;

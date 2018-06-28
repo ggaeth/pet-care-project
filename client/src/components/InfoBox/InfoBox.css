@@ -13,4 +13,12 @@
     line-height: 2rem;
     font-size: 20px;
   }
+
+  .catpic{
+    height: 500px;
+    width: 400px;
+    margin-top: 120px;
+    border-style: solid;
+    border-color: white;
+  }
   
