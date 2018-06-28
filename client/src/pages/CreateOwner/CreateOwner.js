@@ -28,7 +28,7 @@ class CreateOwner extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
 
-    const newCareGiver = {
+    const newOwner = {
       "name": this.state.ownerName,
       "address": this.state.ownerAddress,
       "city": this.state.ownerCity,
@@ -42,10 +42,10 @@ class CreateOwner extends Component {
       "owner_image": this.state.ownerImgFile
     };
     console.log("newOwner object that will be sent to server: ");
-    console.log(JSON.stringify(newCareGiver, null, 2) + "\n");
+    console.log(JSON.stringify(newOwner, null, 2) + "\n");
 
-    API.createOwner({ newCareGiver })
-      .then(res => this.props.history.push("/CareGiverview/", { username: this.state.careGiverUsername, fromPage: "CreateOwner" }))
+    API.createOwner({ newOwner })
+      .then(res => this.props.history.push("/ownerview/", { username: this.state.ownerUsername, fromPage: "CreateOwner" }))
       .catch(err => console.log(err));
 
     //    console.log("newOwner object that will be sent to server: ");
