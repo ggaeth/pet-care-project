@@ -54,7 +54,8 @@ class Login extends Component {
         <div className="row">
           <div className="col">
           <Jumbotron2>
-            Login
+            <h4> Please Login</h4>
+           <h5> <i className="fas fa-paw"></i></h5>
             </Jumbotron2>
           </div>
         </div>
