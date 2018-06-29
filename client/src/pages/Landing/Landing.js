@@ -6,6 +6,7 @@ import CatPic from "../../components/CatPic";
 import InfoBox from "../../components/InfoBox";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
+import Footer from "../../components/Footer";
 import { LoginBtn, CreateAcctBtn, OwnerBtn, CareBtn } from "../../components/Buttons";
 import { CardHead, CardBody } from "../../components/Card";
 import Create from "../Create";
@@ -31,15 +32,16 @@ class Landing extends Component {
   render() {
     return (
       <div className="background">
-        <div className="container fluid">
+      
+        <div className="container">
           <div className="row">
             <div className="col-12">
-
+           
               <DogPic>
-
+              <div className="layer">
                 <h1 className="title"> Welcome to Pet Purfect</h1>
-                {/* <h2 className="description"></h2> */}
-                <h3 className="description">Do you need a Caregiver for your pet?</h3>
+                <h2 className="description">All Pets <i className="fas fa-paw"></i> All Care</h2>
+                {/* <h3 className="description">Do you need a Caregiver for your pet?</h3> */}
                 <div>
                   <Link to="/login">
                     <Button className="LoginBtn btn btn-lg">Login</Button>
@@ -48,7 +50,9 @@ class Landing extends Component {
                  </div>
                 <Button className="CreateAcctBtn btn-lg" onClick={this.toggle}>Create Account</Button>
                 {/* dog pic was here */}
+                </div>
               </DogPic>
+         
           </div>
           </div>
        
@@ -58,6 +62,7 @@ class Landing extends Component {
               <div className="row">
                 <div className="col-md-6">
                   <div className="card">
+                  
                     <CardHead
                       value="Create Pet Owner Account"
                     />
@@ -89,12 +94,10 @@ class Landing extends Component {
           </Modal>
           
 
-
          </div>
-        
+         <Footer />
         </div>
       
-
     );
   }
 

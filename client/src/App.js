@@ -19,6 +19,7 @@ const App = () => (
   <Router>
     <div>
       <Nav />
+      
       <Switch>
         <Route exact path="/" component={Landing} />
         <Route exact path="/login" component={Login} />
@@ -36,6 +37,7 @@ const App = () => (
         {/*<Route exact path="/carecreate" component={CareCreate} /> */}
       </Switch>
     </div>
+    
   </Router>
 );
 

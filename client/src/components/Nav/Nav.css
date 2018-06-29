@@ -1,5 +1,11 @@
 .navbar{
     background-color: #00303F;
+    border-bottom-style: solid;
+    border-color: white;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    
+
 }
 
 .nav-link{
