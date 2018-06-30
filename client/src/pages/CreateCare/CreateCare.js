@@ -4,6 +4,7 @@ import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { CreateBtn } from "../../components/Buttons";
+import Footer from "../../components/Footer";
 import { Input, InputRow, TextArea } from "../../components/Form";
 import { CardHead, CardBody } from "../../components/Card";
 import "./CreateCare.css";
@@ -70,15 +71,22 @@ class CreateCare extends Component {
 
   render() {
     return (
+      <div className="background">
       <div className="container fluid">
         <div className="row">
           <div className="col text-center">
-            <h1>Create New Account - Care Giver</h1>
+          <Jumbotron>
+           <div className="caregiver"><i className="fas fa-paw"></i> Create Caregiver Account</div>
+          
+          </Jumbotron>
           </div>
+        
         </div>
         <div className="row">
           <div className="col">
             <div className="card">
+            <CardHead> <div className="create2">Create Caregiver Account</div></CardHead>
+            <div className="background">
               <CardBody>
                 <form>
                   <InputRow
@@ -199,9 +207,12 @@ class CreateCare extends Component {
                   </CreateBtn>
                 </form>
               </CardBody>
+              </div>
+              </div>
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

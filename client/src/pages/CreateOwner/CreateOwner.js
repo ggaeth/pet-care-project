@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-// import Jumbotron from "../../components/Jumbotron";
+import Jumbotron from "../../components/Jumbotron";
+import Footer from "../../components/Footer";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { OwnerLoginBtn, CareLoginBtn, CreateBtn } from "../../components/Buttons";
@@ -78,15 +79,22 @@ class CreateOwner extends Component {
 
   render() {
     return (
+      <div className="background">
       <div className="container fluid">
         <div className="row">
           <div className="col text-center">
-            <h1>Create New Account - Pet Owner</h1>
+          <Jumbotron>
+           <div className="caregiver"><i className="fas fa-paw"></i> Create Owner Account</div>
+          
+          </Jumbotron>
+           
           </div>
         </div>
         <div className="row">
           <div className="col">
             <div className="card">
+            <CardHead> <div className="create2">Create Owner Account</div></CardHead>
+            <div className="background">
               <CardBody>
                 <form>
                   <InputRow
@@ -222,9 +230,12 @@ class CreateOwner extends Component {
                   </CreateBtn>
                 </form>
               </CardBody>
+              </div>
             </div>
           </div>
         </div>
+        </div>
+        <Footer />
       </div>
 
     );

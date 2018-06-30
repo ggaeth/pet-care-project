@@ -72,10 +72,24 @@ text-align: center;
 
 .account{
   font-size: 40px;
+  margin-left: 70px;
 }
 
 .ownerbtn{
   background-color:#DCAE1D;
+}
+
+.caregiverbtn{
+  background-color: #DCAE1D;
+}
+
+.modal-header {
+  background-color: #00303F;
+  color: white;
+}
+
+.modal-body{
+  background-color: #CAE4DB;
 }
 
 
