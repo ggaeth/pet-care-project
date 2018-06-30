@@ -16,11 +16,12 @@
 }
 
 .create{
-    font-size: 55px;
+    font-size: 37px;
     color: white;
-    margin-top: 63px;
+    margin-top: 83px;
     text-shadow: 6px 6px 8px black;
     text-align: center;
+    margin-left: -20px;
     
 }
 
@@ -30,7 +31,7 @@
 
 .create3{
     border-style: solid;
-  border-color: white;
+  border-color: #00303F;
   border-width: 0px 6px 6px 6px;
 }
 

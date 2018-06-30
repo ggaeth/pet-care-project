@@ -85,7 +85,7 @@ class CreatePet extends Component {
         <div className="row">
           <div className="col">
             <div className="card">
-            <CardHead> <div className="create2">Create New Pet</div></CardHead>
+            <CardHead> <div className="create2"><i className="fas fa-paw"></i>Create New Pet</div></CardHead>
             <div className="background">
               <CardBody>
                 <form>

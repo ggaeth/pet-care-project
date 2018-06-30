@@ -338,6 +338,16 @@ class CreateToDo extends Component {
                 <CardBody>
                   <form>
                     <div className="row">
+                    <div className="col-md-3">
+                        <InputRow
+                          value={this.state.timeToDo}
+                          onChange={this.handleInputChange}
+                          name="dateToDo"
+                          placeholder="Date:"
+                          forattribute="DateToDo"
+                          coldiv="col-md-12"
+                        />
+                      </div>
                       <div className="col-md-3">
                         <InputRow
                           value={this.state.timeToDo}
@@ -379,6 +389,9 @@ class CreateToDo extends Component {
                     <CardBody>
                       <form>
                         <div className="row">
+                        {/* <div className="col-md-3">
+                            <p>{todos.todo_date}</p> */}
+                          {/* </div> */}
                           <div className="col-md-3">
                             <p>{todos.todo_time}</p>
                           </div>
