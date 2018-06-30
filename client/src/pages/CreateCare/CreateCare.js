@@ -34,39 +34,37 @@ class CreateCare extends Component {
     event.preventDefault();
 
     const newCareGiver = {
-      "name": this.state.ownerName,
-      "address": this.state.ownerAddress,
-      "city": this.state.ownerCity,
-      "state": this.state.ownerState,
-      "zip_code": this.state.ownerZipcode,
-      "phone": this.state.ownerPhone,
-      "secondary_phone": this.state.ownerSecPhone,
-      "email": this.state.ownerEmail,
-      "username": this.state.ownerUsername,
-      "caregiver_info": this.state.ownerInfo,
-      "caregiver_image": this.state.ownerImgFile
+      "name": this.state.careName,
+      "address": this.state.careAddress,
+      "city": this.state.careCity,
+      "state": this.state.careState,
+      "zip_code": this.state.careZipcode,
+      "phone": this.state.carePhone,
+      "secondary_phone": this.state.careSecPhone,
+      "email": this.state.careEmail,
+      "username": this.state.careUsername,
+      "caregiver_info": this.state.careAbout,
+      "caregiver_image": this.state.careImage
     };
     console.log("newOwner object that will be sent to server: ");
     console.log(JSON.stringify(newCareGiver, null, 2) + "\n");
 
-    API.createOwner({ newCareGiver })
-      .then(res => this.props.history.push("/caregiverview/", { username: this.state.CareGiverUsername, fromPage: "CreateCare" }))
+    API.createCaregiver({ newCareGiver })
+      .then(res => this.props.history.push("/caregiverview/", { username: this.state.careUsername, fromPage: "CreateCare" }))
       .catch(err => console.log(err));
 
     //    console.log("newOwner object that will be sent to server: ");
     //    console.log(JSON.stringify(newOwner, null, 2) + "\n");
   };
   
-  careFormSubmit = event => {
+  userFormSubmit = event => {
     event.preventDefault();
-    if (this.state.careUserid && this.state.carePassword) {
       API.careLogin({
-        user: this.state.careUserid,
+        user: this.state.careUsername,
         password: this.state.carePassword
       })
-        .then(res => this.careLoggedIn())
+        .then(res => this.careFormSubmit())
         .catch(err => console.log(err));
-    }
   };
 
   render() {
@@ -90,10 +88,10 @@ class CreateCare extends Component {
               <CardBody>
                 <form>
                   <InputRow
-                    value={this.state.careUserid}
+                    value={this.state.careUsername}
                     onChange={this.handleInputChange}
-                    name="careUserid"
-                    title="User ID:"
+                    name="careUsername"
+                    title="User Name:"
                     forattribute="careId"
                     collabel="col-md-2"
                     coldiv="col-md-10"
@@ -139,9 +137,9 @@ class CreateCare extends Component {
                     </div>
                     <div className="col-md-3">
                       <InputRow
-                        value={this.state.careSt}
+                        value={this.state.careState}
                         onChange={this.handleInputChange}
-                        name="careSt"
+                        name="careState"
                         title="State:"
                         forattribute="careState"
                         collabel="col-md-4"
@@ -150,13 +148,37 @@ class CreateCare extends Component {
                     </div>
                     <div className="col-md-3">
                       <InputRow
-                        value={this.state.careZip}
+                        value={this.state.careZipcode}
                         onChange={this.handleInputChange}
-                        name="careZip"
+                        name="careZipcode"
                         title="Zip:"
                         forattribute="careZp"
                         collabel="col-md-3"
                         coldiv="col-md-9"
+                      />
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-md-6">
+                      <InputRow
+                        value={this.state.carePhone}
+                        onChange={this.handleInputChange}
+                        name="carePhone"
+                        title="Phone:"
+                        forattribute="carePh"
+                        collabel="col-md-4"
+                        coldiv="col-md-8"
+                      />
+                    </div>
+                    <div className="col-md-6">
+                      <InputRow
+                        value={this.state.careSecPhone}
+                        onChange={this.handleInputChange}
+                        name="careSecPhone"
+                        title="Secondary Phone:"
+                        forattribute="carePh2"
+                        collabel="col-md-4"
+                        coldiv="col-md-8"
                       />
                     </div>
                   </div>
@@ -173,26 +195,17 @@ class CreateCare extends Component {
                       />
                     </div>
                     <div className="col-md-6">
-                      <InputRow
-                        value={this.state.carePhone}
-                        onChange={this.handleInputChange}
-                        name="carePhone"
-                        title="Phone:"
-                        forattribute="carePh"
-                        collabel="col-md-2"
-                        coldiv="col-md-10"
-                      />
-                    </div>
-                  </div>
                   <InputRow
                     value={this.state.careImage}
                     onChange={this.handleInputChange}
                     name="careImage"
                     title="Image:"
                     forattribute="careImg"
-                    collabel="col-md-2"
-                    coldiv="col-md-10"
+                    collabel="col-md-4"
+                    coldiv="col-md-8"
                   />
+                  </div>
+                  </div>
                   <TextArea
                     value={this.state.careAbout}
                     onChange={this.handleInputChange}
@@ -201,6 +214,7 @@ class CreateCare extends Component {
                     forattribute="careAbt"
                   />
                   <CreateBtn
+                  // need to change function to this.careFormSubmit when we use authentication
                     onClick={this.careFormSubmit}
                   >
                     Create Account

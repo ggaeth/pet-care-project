@@ -53,14 +53,14 @@ class CreateOwner extends Component {
     //    console.log(JSON.stringify(newOwner, null, 2) + "\n");
   };
 
-  ownerIdFormSubmit = event => {
+  userFormSubmit = event => {
     event.preventDefault();
 
-    API.createOwner({
-      user: this.state.ownerUserid,
+    API.createUser({
+      user: this.state.ownerUsername,
       password: this.state.ownerPassword
     })
-      .then(res => this.createdOwner())
+      .then(res => this.handleFormSubmit())
       .catch(err => console.log(err));
 
   };
@@ -224,6 +224,7 @@ class CreateOwner extends Component {
                     forattribute="ownerAbt"
                   />
                   <CreateBtn
+                    // need to change function to this.userFormSubmit when we use authentication
                     onClick={this.handleFormSubmit}
                   >
                     Create Account
