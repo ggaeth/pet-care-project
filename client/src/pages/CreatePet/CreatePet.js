@@ -54,18 +54,16 @@ class CreatePet extends Component {
       "vet_phone": this.state.vet_phone,
       "pet_medications": this.state.pet_medications,
       "pet_restrictions": this.state.pet_restrictions,
-      "pet_image": this.state.pet_image
+      "pet_image": this.state.pet_image,
+      "fk_owner_id": this.state.passedOwnerId
     };
-    console.log("newOwner object that will be sent to server: ");
+    console.log("newPet object that will be sent to server: ");
     console.log(JSON.stringify(newPet, null, 2) + "\n");
 
     API.createPet({ newPet })
       .then(res => console.log("res ", res), this.props.history.push("/ownerview/", { username: this.state.ownerUsername, ownerid: this.state.passedOwnerId, fromPage: "CreatePet" }))
       // .then(res => console.log("res ", res))
       .catch(err => console.log(err));
-
-    console.log("newOwner object that will be sent to server: ");
-    console.log(JSON.stringify(newPet, null, 2) + "\n");
   };
 
   render() {

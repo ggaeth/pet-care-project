@@ -10,7 +10,8 @@ module.exports = {
           "$username$": req.params.userName 
         },
         include: [{
-          model: db.Pet
+          model: db.Pet,
+//          where: { owner_id: "owners.owner_id"}
           }]
       })  
       .then(dbOwner => res.json(dbOwner))

@@ -6,7 +6,6 @@ import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import icon from "../../assets/icon.jpg";
 import { Card, CardTitle, CardBody, CardImg, CardSubtitle, CardText } from "reactstrap";
-// import Create from "../Create";
 import "./OwnerView.css";
 
 class OwnerView extends Component {
@@ -16,55 +15,35 @@ class OwnerView extends Component {
     pets: []
   }
 
-
-
   componentDidMount() {
     console.log("in mount Owner.js", this.props.location.state);
     this.getOwner(this.props.location.state.username);
-    // if (this.props.location.state.fromPage === "CreatePet") {
-    //   console.log("add getPets");
-    //   this.getPets(this.props.location.state.ownerid);
-    // }
-  };
 
-  hasPets() {
     if (this.props.location.state.fromPage === "CreatePet") {
-      console.log("hasPets");
+      console.log("location fromPage CreatePet");
       this.getPets(this.props.location.state.ownerid);
     }
-  }
+  };
 
   getOwner = userName => {
+    console.log("inside getOwner function of OwnerView Page")
     console.log(userName);
 
     API.getOwner(userName)
       .then(res =>
+        //        console.log(res.data[0])
         this.setState(
           { owner: res.data },
-          // { owner_id: res.data[0].owner_id,
-          //   name: res.data[0].name,
-          //   address: res.data[0].address,
-          //   city: res.data[0].city,
-          //   state: res.data[0].state,
-          //   zip_code: res.data[0].zip_code,
-          //   phone: res.data[0].phone,
-          //   secondary_phone: res.data[0].secondary_phone,
-          //   email: res.data[0].email,
-          //   username: res.data[0].username,
-          //   owner_info: res.data[0].owner_info,
-          //   owner_image: res.data[0].owner_image
-          //  },
-          // () => console.log("this.state is now " + JSON.stringify(this.state, null, 2) + "\n")
-          console.log("res.data in ownerview.js ", res)
+          () => console.log(this.state)
         )
       )
       .then(res => console.log("owner state ", this.state.owner))
       .then(res => this.hasPets(this.props.location.state))
       .catch(err => console.log(err))
-
   };
 
   getPets = ownerId => {
+    console.log("inside getPets function of OwnerView Page")
     console.log(ownerId);
 
     API.getPets(ownerId)
@@ -74,11 +53,16 @@ class OwnerView extends Component {
           console.log("pets res.data in ownerview.js ", res)
         )
       )
-      .then(res => console.log("pets state ", this.pets.owner))
+      .then(res => console.log("pets state ", this.state.pets))
       .catch(err => console.log(err))
-
   };
 
+  hasPets() {
+    if (this.props.location.state.fromPage === "CreatePet") {
+      console.log("hasPets");
+      this.getPets(this.props.location.state.ownerid);
+    }
+  }
   petPage = (id, username) => {
     this.props.history.push("/createpet/", { id: id, username: username })
   };
@@ -99,33 +83,34 @@ class OwnerView extends Component {
 
             <div className="col-3">
 
-            <Card onClick={() => this.petPage(this.state.owner[0].owner_id, this.state.owner[0].username)} >
-              <CardImg top width="100%" src={icon}
-                alt="Card image cap" />
-              <CardBody>
-                <CardTitle>Create Pet</CardTitle>
-              </CardBody>
-            </Card>
+              <Card onClick={() => this.petPage(this.state.owner[0].owner_id, this.state.owner[0].username)} >
+                <CardImg top width="100%" src={icon}
+                  alt="Card image cap" />
+                <CardBody>
+                  <CardTitle>Create Pet</CardTitle>
+                </CardBody>
+              </Card>
             </div>
             <div className="col-3">
               {this.state.pets.length ? (
                 <div>
-                {this.state.pets.map(pet => (
-                <Card onClick={() => this.petView(pet.owner_id, pet.pet_id)} >
-                  
-                    <div>
-                      <CardImg top width="100%" src={pet.pet_image} alt="Card image cap" id={pet.pet_id} />
-
-                      <CardBody>
-                        <CardTitle>
-                          {pet.name}
-                        </CardTitle>
-                      </CardBody>
-                    </div>
-                  
-                </Card>
+                  {this.state.pets.map(pet => (
+                    <Card onClick={() => this.petView(pet.owner_id, pet.pet_id)} >
+                      <div>
+                        <CardImg top width="100%"
+                          src={pet.pet_image}
+                          alt="Card image cap"
+                          id={pet.pet_id}
+                        />
+                        <CardBody>
+                          <CardTitle>
+                            {pet.name}
+                          </CardTitle>
+                        </CardBody>
+                      </div>
+                    </Card>
                   ))}
-                  </div>
+                </div>
               ) : (
                   <h3>No Results to Display</h3>
                 )}

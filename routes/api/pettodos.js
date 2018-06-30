@@ -1,16 +1,18 @@
 const router = require("express").Router();
 const pettodosController = require("../../controllers/pettodos_controller");
 
+console.log("inside api/pettodos.js");
+
 // Matches with "/api/pettodos"
 router
   .route("/")
 //  .get(pettodosController.findAll)
   .post(pettodosController.create);
 
-// Matches with "/api/pettodos/:id"
+// Matches with "/api/pettodos/:petId"
 router
-//  .route("/:id")
-//  .get(pettodosController.findById)
+  .route("/:petId")
+  .get(pettodosController.getTodosByPetId)
 //  .put(pettodosController.update)
 //  .delete(pettodosController.remove);
 
