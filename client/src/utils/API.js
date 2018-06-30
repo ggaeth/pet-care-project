@@ -1,5 +1,8 @@
 import axios from "axios";
 
+
+console.log("inside utils/API.js");
+
 export default {
   // 
   getLogin: function () {
@@ -12,7 +15,15 @@ export default {
   },
   getPets: function (ownerId) {
     console.log("inside getPets");
-    return axios.get("/api/pets/" + ownerId);
+    return axios.get("/api/pets/byOwnerId/" + ownerId);
+  },
+  getOnePet: function (petId) {
+    console.log("inside getOnePet axios call");
+    return axios.get("/api/pets/byPetId/" + petId);
+  },
+  getTodosByPetId: function (petId) {
+    console.log("inside getTodosByPetId axios call");
+    return axios.get("/api/pettodos/" + petId);
   },
   // Deletes the owner with the given id
   //deleteBook: function(id) {
@@ -28,6 +39,11 @@ export default {
     console.log("inside createPet");
     console.log(JSON.stringify(newPet, null, 2) + "\n");
     return axios.post("/api/pets", newPet);
+  },
+  createTodo: function (newTodo) {
+    console.log("inside createTodo");
+    console.log(JSON.stringify(newTodo, null, 2) + "\n");
+    return axios.post("/api/pettodos", newTodo);
   },
   createCaregiver: function(newCaregiver) {
     console.log("inside createCaregiver");

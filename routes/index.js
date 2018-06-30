@@ -2,6 +2,9 @@ const path = require("path");
 const router = require("express").Router();
 const apiRoutes = require("./api");
 
+
+console.log("inside routes/index.js");
+
 // API Routes
 router.use("/api", apiRoutes);
 

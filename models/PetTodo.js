@@ -17,6 +17,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    todo_time: {
+      type: DataTypes.INTEGER(4),
+      allowNull: true,
+    },
     todo_item: {
       type: DataTypes.TEXT,
       allowNull: false,
