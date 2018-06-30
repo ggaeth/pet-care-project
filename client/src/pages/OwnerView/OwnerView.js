@@ -99,9 +99,9 @@ class OwnerView extends Component {
 
             <div className="col-3">
 
-            <Card>
+            <Card onClick={() => this.petPage(this.state.owner[0].owner_id, this.state.owner[0].username)} >
               <CardImg top width="100%" src={icon}
-                onClick={() => this.petPage(this.state.owner[0].owner_id, this.state.owner[0].username)} alt="Card image cap" />
+                alt="Card image cap" />
               <CardBody>
                 <CardTitle>Create Pet</CardTitle>
               </CardBody>
@@ -109,10 +109,12 @@ class OwnerView extends Component {
             </div>
             <div className="col-3">
               {this.state.pets.length ? (
-                <Card>
-                  {this.state.pets.map(pet => (
+                <div>
+                {this.state.pets.map(pet => (
+                <Card onClick={() => this.petView(pet.owner_id, pet.pet_id)} >
+                  
                     <div>
-                      <CardImg top width="100%" src={pet.pet_image} alt="Card image cap" id={pet.pet_id} onClick={() => this.petView(pet.owner_id, pet.pet_id)} />
+                      <CardImg top width="100%" src={pet.pet_image} alt="Card image cap" id={pet.pet_id} />
 
                       <CardBody>
                         <CardTitle>
@@ -120,9 +122,10 @@ class OwnerView extends Component {
                         </CardTitle>
                       </CardBody>
                     </div>
-                  ))}
+                  
                 </Card>
-
+                  ))}
+                  </div>
               ) : (
                   <h3>No Results to Display</h3>
                 )}
