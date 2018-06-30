@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-// import Jumbotron from "../../components/Jumbotron";
+import Jumbotron from "../../components/Jumbotron";
+import Footer from "../../components/Footer";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { OwnerLoginBtn, CareLoginBtn, CreateBtn } from "../../components/Buttons";
@@ -18,10 +19,10 @@ class CreatePet extends Component {
   };
 
   componentDidMount() {
-    console.log("in mount CreatePet state ", this.props.location.state);
-    console.log("in mount CreatePet id ", this.props.location.state.id);
-    console.log("in mount CreatePet username ", this.props.location.state.username);
-    this.setState({ passedOwnerId: this.props.location.state.id, ownerUsername: this.props.location.state.username })
+    // console.log("in mount CreatePet state ", this.props.location.state);
+    // console.log("in mount CreatePet id ", this.props.location.state.id);
+    // console.log("in mount CreatePet username ", this.props.location.state.username);
+    // this.setState({ passedOwnerId: this.props.location.state.id, ownerUsername: this.props.location.state.username })
   };
 
   handleInputChange = event => {
@@ -69,26 +70,33 @@ class CreatePet extends Component {
 
   render() {
     return (
-      <div className="container fluid">
+      <div className="background">
+      <div className="container-fluid">
         <div className="row">
-          <div className="col text-center">
-            <h1>Create New Pet</h1>
+          <div className="col-md-12 text-center">
+          <Jumbotron>
+           <div className="create"><i className="fas fa-paw"></i> Create New Pet</div>
+          
+         
+          </Jumbotron>
           </div>
-
         </div>
 
         <div className="row">
           <div className="col">
             <div className="card">
+            <CardHead> <div className="create2">Create New Pet</div></CardHead>
+            <div className="background">
               <CardBody>
                 <form>
+                
                   <InputRow
                     value={this.state.name}
                     onChange={this.handleInputChange}
                     name="name"
                     title="Name:"
                     forattribute="petNm"
-                    collabel="col-md-2"
+                    collable="col-md-2" 
                     coldiv="col-md-6"
                   />
                   <InputRow
@@ -255,8 +263,13 @@ class CreatePet extends Component {
                 </form>
               </CardBody>
             </div>
+
           </div>
         </div>
+      </div>
+      </div>
+      <Footer />
+                   
       </div>
 
 

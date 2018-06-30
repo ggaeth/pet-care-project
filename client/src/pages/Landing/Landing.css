@@ -24,7 +24,7 @@ h2{
 }
 
 .LoginBtn{
-  margin-top: 100px;
+  margin-top: 150px;
   margin-left: 205px;
   background-color:#DCAE1D;
   color: black;
@@ -47,22 +47,35 @@ color: #DCAE1D;
 text-align: center;
 }
 
+.container-fluid {
+  background-size: 100% 100%;
+  background-attachment: fixed;
+  width: 1170px;
+  margin: 0 auto;
+}
+
 .Dog {
   background-image: url("../../assets/cat5.png");
   background-size: cover;
   background-position: top;
-  position: relative;
-  border-style: solid;
-  border-color: white; 
-  border-width: 2px 2px 2px 2px;
-  max-width: 100%;
-  margin-top: 20px;
-  /* margin-bottom: 20px; */
-  max-width: 100%;
-  width: 100%;
-  min-width: 400px;
-  height: 570px;
+  margin-top: 40px;
+  min-width: 800px;
+  height: 660px;
   
+}
+.container-fluid {
+  background-size: 100% 100%;
+  background-attachment: fixed;
+  width: 1170px;
+  margin: 0 auto;
+}
+
+.account{
+  font-size: 40px;
+}
+
+.ownerbtn{
+  background-color:#DCAE1D;
 }
 
 

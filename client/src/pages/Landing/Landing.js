@@ -33,7 +33,7 @@ class Landing extends Component {
     return (
       <div className="background">
       
-        <div className="container">
+        <div className="container-fluid">
           <div className="row">
             <div className="col-12">
            
@@ -57,7 +57,7 @@ class Landing extends Component {
           </div>
        
           <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-            <ModalHeader toggle={this.toggle}>Pick Account Type</ModalHeader>
+            <ModalHeader toggle={this.toggle}><div className="account">Pick Account Type</div></ModalHeader>
             <ModalBody>
               <div className="row">
                 <div className="col-md-6">

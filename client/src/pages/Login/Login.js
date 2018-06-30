@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { OwnerLoginBtn, CareLoginBtn } from "../../components/Buttons";
 import { Input } from "../../components/Form";
 import { CardHead, CardBody } from "../../components/Card";
+import Footer from "../../components/Footer";
 import "./Login.css";
 
 
@@ -55,7 +56,7 @@ class Login extends Component {
           <div className="col">
           <Jumbotron2>
             <h4> Please Login</h4>
-           <h5> <i className="fas fa-paw"></i></h5>
+           <div className="paw"> <i className="fas fa-paw"></i></div>
             </Jumbotron2>
           </div>
         </div>
@@ -123,7 +124,9 @@ class Login extends Component {
             </div>
           </div>
         </div>
+        
       </div>
+      <Footer />
       </div>
      
     );
