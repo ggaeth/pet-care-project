@@ -9,6 +9,7 @@ import OwnerView from "./pages/OwnerView";
 import PetView from "./pages/PetView";
 import About from "./pages/About";
 import CareGiverView from "./pages/CareGiverView";
+import CarePetView from "./pages/CarePetView";
 import Owner from "./pages/Owner";
 // import OwnerCreate from "./pages/OwnerCreate";
 // import Care from "./pages/Care";
@@ -30,6 +31,7 @@ const App = () => (
         <Route exact path="/petview/" component={PetView} />
         <Route exact path="/about/" component={About} />
         <Route exact path="/caregiverview/" component={CareGiverView} />
+        <Route exact path="/caregiverpetview/" component={CarePetView} />
         {/* <Route exact path="/createcare" component={CreateCare} /> */}
         <Route exact path="/owner" component={Owner} />
         {/*<Route exact path="/ownercreate" component={OwnerCreate} />

@@ -81,14 +81,33 @@ class CreatePet extends Component {
             </div>
           </div>
 
-          <div className="row">
-            <div className="col">
-              <div className="card">
-                <CardHead> <div className="create2">Create New Pet</div></CardHead>
-                <div className="background">
-                  <CardBody>
-                    <form>
-
+        <div className="row">
+          <div className="col">
+            <div className="card">
+            <CardHead> <div className="create2"><i className="fas fa-paw"></i>Create New Pet</div></CardHead>
+            <div className="background">
+              <CardBody>
+                <form>
+                  <InputRow
+                    value={this.state.name}
+                    onChange={this.handleInputChange}
+                    name="name"
+                    title="Name:"
+                    forattribute="petNm"
+                    collable="col-md-2" 
+                    coldiv="col-md-6"
+                  />
+                  <InputRow
+                    value={this.state.age}
+                    onChange={this.handleInputChange}
+                    name="age"
+                    title="Age:"
+                    forattribute="petAge"
+                    collabel="col-md-2"
+                    coldiv="col-md-2"
+                  />
+                  <div className="row">
+                    <div className="col-md-6">
                       <InputRow
                         value={this.state.name}
                         onChange={this.handleInputChange}

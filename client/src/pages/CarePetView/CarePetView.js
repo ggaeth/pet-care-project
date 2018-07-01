@@ -4,7 +4,7 @@ import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { OwnerBtn, CareBtn } from "../../components/Buttons";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import "./Create.css";
+import "./CarePetView.css";
 
 class CarePetView extends Component {
     state = {
