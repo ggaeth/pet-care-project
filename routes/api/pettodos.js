@@ -7,13 +7,19 @@ console.log("inside api/pettodos.js");
 router
   .route("/")
 //  .get(pettodosController.findAll)
-  .post(pettodosController.create);
+  .post(pettodosController.create)
 
 // Matches with "/api/pettodos/:petId"
 router
   .route("/:petId")
   .get(pettodosController.getTodosByPetId)
 //  .put(pettodosController.update)
-//  .delete(pettodosController.remove);
+//  .delete(pettodosController.destroy)
+
+// Matches with "/api/pettodos/:petTodoId"
+router
+  .route("/:petTodoId")
+  .delete(pettodosController.destroy)
+  .put(pettodosController.updateTodoCompleted)
 
 module.exports = router;

@@ -11,7 +11,6 @@ module.exports = {
         },
         include: [{
           model: db.Pet,
-//          where: { owner_id: "owners.owner_id"}
           }]
       })  
       .then(dbOwner => res.json(dbOwner))

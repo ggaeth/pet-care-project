@@ -25,11 +25,12 @@ export default {
     console.log("inside getTodosByPetId axios call");
     return axios.get("/api/pettodos/" + petId);
   },
-  // Deletes the owner with the given id
-  //deleteBook: function(id) {
-  //  return axios.delete("/api/owners/" + ownerId);
-  //},
-  // Saves a pet owner to the database
+    updateTodoCompleted: function (petTodoId) {
+    return axios.put("/api/pettodos/" + petTodoId);
+  },
+  deleteTodo: function(petTodoId) {
+  return axios.delete("/api/pettodos/" + petTodoId);
+  },
   createOwner: function (newOwner) {
     console.log("inside createOwner");
     console.log(JSON.stringify(newOwner, null, 2) + "\n");

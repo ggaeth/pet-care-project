@@ -10,18 +10,39 @@ module.exports = {
         where: {
           pet_id: req.params.petId
         }
-      // we may want a sort order here
+        // we may want a sort order here
       })
-      .then(dbPetTodos => 
-          res.json(dbPetTodos))
-      //.catch(err => res.status(422).json(err));
-      .catch(err => console.log(JSON.stringify(err, null, 2) + "\n"));
+      .then(dbPetTodos =>
+        res.json(dbPetTodos))
+      .catch(err => res.status(422).json(err));
+    //.catch(err => console.log(JSON.stringify(err, null, 2) + "\n"));
   },
-    create: function (req, res) {
+  create: function (req, res) {
     console.log("inside pettodos_controller create function")
     console.log(req.body)
     db.PetTodo
       .create(req.body.newTodo)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  destroy: function (req, res) {
+    console.log("inside pettodos_controller destroy function")
+    console.log(req.params.petTodoId)
+    db.PetTodo
+      .destroy({
+        where: { pet_todo_id: req.params.petTodoId }
+      })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  updateTodoCompleted: function (req, res) {
+    console.log("inside updateTodoCompleted function")
+    console.log(req.params.petTodoId)
+    db.PetTodo
+      .update(
+        { todo_completed: "Y" },
+        { where: { pet_todo_id: req.params.petTodoId }
+      })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }

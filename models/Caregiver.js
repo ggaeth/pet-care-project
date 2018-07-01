@@ -44,6 +44,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
+    care_location: {
+      type: DataTypes.STRING(20),
+      allowNull: false
+    },
     caregiver_info: {
       type: DataTypes.TEXT,
       allowNull: true
@@ -58,8 +62,10 @@ module.exports = (sequelize, DataTypes) => {
           Caregiver.hasMany(models.Pet);
         }
       }
-    }, { underscored: true });
-
+    },
+    { underscored: true,
+      paranoid: true }
+  );
 
   return Caregiver;
 };

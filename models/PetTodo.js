@@ -17,12 +17,20 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    todo_date: {
+      type: DataTypes.DATEONLY,
+      allowNull: true,
+    },
     todo_time: {
       type: DataTypes.INTEGER(4),
       allowNull: true,
     },
     todo_item: {
       type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    todo_completed: {
+      type: DataTypes.STRING(1),
       allowNull: false,
     },
   }, {
@@ -33,10 +41,13 @@ module.exports = (sequelize, DataTypes) => {
               foreignKey: "fk_pet_id",
               targetKey: "pet_id"
             }
-          );
+          )
         }
       }
-    });
+    }, 
+    { underscored: true,
+      paranoid: true }
+  );
 
   return PetTodo;
 };

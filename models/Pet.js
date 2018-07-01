@@ -32,17 +32,16 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     gender: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(1),
       allowNull: false
     },
-    // crate: {
-    //   type: DataTypes.BOOLEAN,
-    //   allowNull: false,
-    //   defaultValue: false
-    // },
     crate: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.STRING(5),
+      allowNull: false
+    },
+    care_location: {
+      type: DataTypes.STRING(20),
+      allowNull: false
     },
     vet_name: {
       type: DataTypes.STRING,
@@ -54,15 +53,15 @@ module.exports = (sequelize, DataTypes) => {
     },
     vet_city: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     vet_state: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     vet_zip_code: {
       type: DataTypes.INTEGER(5),
-      allowNull: false,
+      allowNull: false
     },
     vet_phone: {
       type: DataTypes.STRING,
@@ -89,15 +88,17 @@ module.exports = (sequelize, DataTypes) => {
               targetKey: "owner_id"
             }
           ),
-          Pet.hasMany(models.PetTodo,
-            {
-              foreignKey: "fk_pet_id",
-              sourceKey: "pet_id"
-            }
-          )
+            Pet.hasMany(models.PetTodo,
+              {
+                foreignKey: "fk_pet_id",
+                sourceKey: "pet_id"
+              }
+            )
         }
       }
-    }, { underscored: true }
+    },
+    { underscored: true,
+      paranoid: true }
   );
 
   return Pet;

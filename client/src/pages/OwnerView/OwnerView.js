@@ -16,12 +16,17 @@ class OwnerView extends Component {
   }
 
   componentDidMount() {
-    console.log("in mount Owner.js", this.props.location.state);
+    console.log("in mount Owner.js", this.props.location);
+
     this.getOwner(this.props.location.state.username);
 
     if (this.props.location.state.fromPage === "CreatePet") {
       console.log("location fromPage CreatePet");
       this.getPets(this.props.location.state.ownerid);
+    }
+    if (this.props.location.state.pathName === "/petview/") {
+      console.log("location pathName petview");
+      this.getPets(this.props.location.state.ownerId);
     }
   };
 
