@@ -5,7 +5,8 @@ import Nav from "../../components/Nav";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import icon from "../../assets/icon.jpg";
-import { Card, CardTitle, CardBody, CardImg, CardSubtitle, CardText } from "reactstrap";
+import { DeleteBtn } from "../../components/Buttons";
+import { Card, CardTitle, CardBody, CardFooter, CardImg, CardSubtitle, CardText } from "reactstrap";
 import "./OwnerView.css";
 
 class OwnerView extends Component {
@@ -62,6 +63,22 @@ class OwnerView extends Component {
       .catch(err => console.log(err))
   };
 
+  deletePet = event => {
+    event.preventDefault();
+    console.log("inside deletePet function of OwnerView Page")
+
+    console.log("event.target.value is" + event.target.value);
+
+    const petId = event.target.value;
+    console.log("petId is " + petId);
+
+    API.deletePet(petId)
+      .then(res =>
+        this.getPets(this.state.owner[0].owner_id)
+      )
+      .catch(err => console.log(err))
+  };
+
   hasPets() {
     if (this.props.location.state.fromPage === "CreatePet") {
       console.log("hasPets");
@@ -106,12 +123,25 @@ class OwnerView extends Component {
                           src={pet.pet_image}
                           alt="Card image cap"
                           id={pet.pet_id}
+                          key={pet.pet_id}
+                          onClick={() => this.petView(pet.owner_id, pet.pet_id)}
                         />
-                        <CardBody>
+                        <CardBody onClick={() => this.petView(pet.owner_id, pet.pet_id)} >
                           <CardTitle>
                             {pet.name}
                           </CardTitle>
                         </CardBody>
+                        <CardFooter>
+                          <button
+                            className="btn btn-lg float-left"
+                          >Edit
+                            </button>
+                          <DeleteBtn
+                            onClick={this.deletePet}
+                            name="pet_id"
+                            value={pet.pet_id} >Delete
+                            </DeleteBtn>
+                        </CardFooter>
                       </div>
                     </Card>
                   ))}

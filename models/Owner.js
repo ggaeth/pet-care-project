@@ -58,14 +58,14 @@ module.exports = (sequelize, DataTypes) => {
           Owner.hasMany(models.Pet,
             {
               foreignKey: "fk_owner_id",
-              sourceKey: "owner_id"
+              sourceKey: "owner_id",
+              onDelete: "cascade"
             }
           )
         }
       }
     },
-    { underscored: true,
-      paranoid: true} 
+    { underscored: true }
   );
 
   return Owner;

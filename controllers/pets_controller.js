@@ -43,5 +43,16 @@ module.exports = {
       .create(req.body.newPet)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  }
+  },
+  destroy: function (req, res) {
+    console.log("inside pets_controller destroy function")
+    console.log(req.params.petId)
+    db.Pet
+      .destroy({
+        where: { pet_id: req.params.petId }
+      },
+        { force: true })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
 };

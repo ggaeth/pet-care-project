@@ -16,6 +16,8 @@ router
 router
   .route("/byPetId/:petId")
   .get(petsController.getOnePet)
+  .delete(petsController.destroy)
+
 
 // Matches with "/api/pets/byOwnerId/:ownerId"
 // ==================================================================================== //

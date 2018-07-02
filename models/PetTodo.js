@@ -39,14 +39,14 @@ module.exports = (sequelize, DataTypes) => {
           PetTodo.belongsTo(models.Pet,
             {
               foreignKey: "fk_pet_id",
-              targetKey: "pet_id"
+              targetKey: "pet_id",
+              onDelete: "cascade"
             }
           )
         }
       }
     }, 
-    { underscored: true,
-      paranoid: true }
+    { underscored: true }
   );
 
   return PetTodo;

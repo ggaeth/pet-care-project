@@ -85,20 +85,28 @@ module.exports = (sequelize, DataTypes) => {
           Pet.belongsTo(models.Owner,
             {
               foreignKey: "fk_owner_id",
-              targetKey: "owner_id"
+              targetKey: "owner_id",
+              onDelete: "cascade"
             }
           ),
-            Pet.hasMany(models.PetTodo,
-              {
-                foreignKey: "fk_pet_id",
-                sourceKey: "pet_id"
-              }
-            )
+          Pet.hasMany(models.PetTodo,
+            {
+              foreignKey: "fk_pet_id",
+              sourceKey: "pet_id",
+              onDelete: "cascade"
+            }
+          ),
+          Pet.belongsTo(models.Caregiver,
+            {
+              foreignKey: "fk_caregiver_id",
+              targetKey: "caregiver_id",
+              onDelete: "cascade"
+            }
+          )
         }
       }
     },
-    { underscored: true,
-      paranoid: true }
+    { underscored: true }
   );
 
   return Pet;

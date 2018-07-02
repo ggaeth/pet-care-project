@@ -59,12 +59,17 @@ module.exports = (sequelize, DataTypes) => {
   }, {
       classMethods: {
         associate(models) {
-          Caregiver.hasMany(models.Pet);
+          Caregiver.hasMany(models.Pet,
+            {
+              foreignKey: "fk_caregiver_id",
+              sourceKey: "caregiver_id",
+              onDelete: "cascade"
+            }
+          );
         }
       }
     },
-    { underscored: true,
-      paranoid: true }
+    { underscored: true }
   );
 
   return Caregiver;

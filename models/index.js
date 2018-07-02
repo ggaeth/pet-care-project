@@ -35,9 +35,11 @@ db.Sequelize = Sequelize;
 
 //defining foreignkeys here because associate method not working in models.  
 
-db.Owner.hasMany(db.Pet, { foreignKey: 'fk_owner_id', sourceKey: 'owner_id' });
-db.Pet.belongsTo(db.Owner, { foreignKey: 'fk_owner_id', targetKey: 'owner_id' });
-db.Pet.hasMany(db.PetTodo, { foreignKey: 'fk_pet_id', sourceKey: 'pet_id' });
-db.PetTodo.belongsTo(db.Pet, { foreignKey: 'fk_pet_id', targetKey: 'pet_id' });
+db.Owner.hasMany(db.Pet, { foreignKey: 'fk_owner_id', sourceKey: 'owner_id', onDelete: 'cascade' });
+db.Pet.belongsTo(db.Owner, { foreignKey: 'fk_owner_id', targetKey: 'owner_id', onDelete: 'cascade'});
+db.Caregiver.hasMany(db.Pet, { foreignKey: 'fk_caregiver_id', sourceKey: 'caregiver_id', onDelete: 'cascade' });
+db.Pet.belongsTo(db.Caregiver, { foreignKey: 'fk_caregiver_id', targetKey: 'caregiver_id', onDelete: 'cascade' });
+db.Pet.hasMany(db.PetTodo, { foreignKey: 'fk_pet_id', sourceKey: 'pet_id', onDelete: 'cascade' });
+db.PetTodo.belongsTo(db.Pet, { foreignKey: 'fk_pet_id', targetKey: 'pet_id', onDelete: 'cascade' });
 
 module.exports = db;
