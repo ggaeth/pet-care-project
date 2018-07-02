@@ -75,237 +75,218 @@ class CreatePet extends Component {
             <div className="col-md-12 text-center">
               <Jumbotron>
                 <div className="create"><i className="fas fa-paw"></i> Create New Pet</div>
-
-
               </Jumbotron>
             </div>
           </div>
+        </div>
 
         <div className="row">
           <div className="col">
             <div className="card">
-            <CardHead> <div className="create2"><i className="fas fa-paw"></i>Create New Pet</div></CardHead>
-            <div className="background">
-              <CardBody>
-                <form>
-                  <InputRow
-                    value={this.state.name}
-                    onChange={this.handleInputChange}
-                    name="name"
-                    title="Name:"
-                    forattribute="petNm"
-                    collable="col-md-2" 
-                    coldiv="col-md-6"
-                  />
-                  <InputRow
-                    value={this.state.age}
-                    onChange={this.handleInputChange}
-                    name="age"
-                    title="Age:"
-                    forattribute="petAge"
-                    collabel="col-md-2"
-                    coldiv="col-md-2"
-                  />
-                  <div className="row">
-                    <div className="col-md-6">
-                      <InputRow
-                        value={this.state.name}
-                        onChange={this.handleInputChange}
-                        name="name"
-                        title="Name:"
-                        forattribute="petNm"
-                        collable="col-md-2"
-                        coldiv="col-md-6"
-                      />
-                      <InputRow
-                        value={this.state.age}
-                        onChange={this.handleInputChange}
-                        name="age"
-                        title="Age:"
-                        forattribute="petAge"
-                        collabel="col-md-2"
-                        coldiv="col-md-2"
-                      />
-                      <div className="row">
-                        <div className="col-md-6">
-                          <InputRow
-                            value={this.state.breed}
-                            onChange={this.handleInputChange}
-                            name="breed"
-                            title="Breed:"
-                            forattribute="petBreed"
-                            collabel="col-md-4"
-                            coldiv="col-md-8"
-                          />
+              <CardHead> <div className="create2"><i className="fas fa-paw"></i>Create New Pet</div></CardHead>
+              <div className="background">
+                <CardBody>
+                  <form>
+                    <InputRow
+                      value={this.state.name}
+                      onChange={this.handleInputChange}
+                      name="name"
+                      title="Name:"
+                      forattribute="petNm"
+                      collable="col-md-2"
+                      coldiv="col-md-6"
+                    />
+                    <InputRow
+                      value={this.state.age}
+                      onChange={this.handleInputChange}
+                      name="age"
+                      title="Age:"
+                      forattribute="petAge"
+                      collabel="col-md-2"
+                      coldiv="col-md-2"
+                    />
+                    <div className="row">
+                      <div className="col-md-6">
+                        <InputRow
+                          value={this.state.breed}
+                          onChange={this.handleInputChange}
+                          name="breed"
+                          title="Breed:"
+                          forattribute="petBreed"
+                          collabel="col-md-4"
+                          coldiv="col-md-8"
+                        />
+                      </div>
+                      <div className="col-md-3">
+                        <InputRow
+                          value={this.state.gender}
+                          onChange={this.handleInputChange}
+                          name="gender"
+                          title="Gender:"
+                          forattribute="petGender"
+                          collabel="col-md-4"
+                          coldiv="col-md-8"
+                        />
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-6">
+                        {/* <Radio
+                                  value={this.state.crate}
+                                  onChange={this.handleInputChange}
+                                  name="crate"
+                                  title="Crate Trained:"
+                                  forattribute="petCrate"
+                                  collabel="col-md-4"
+                                  coldiv="col-md-3"
+                                />
+                            */}
+                        <label className="form-check-label col-md-4" htmlFor="crate-radio">Crate:</label>
+                        <div className="form-check form-check-inline" id="create-radio">
+                          <input className="form-check-input" type="radio" name="crate" id="inlineRadio1" value="true" checked={this.state.crate === "true"} onChange={this.handleInputChange} />
+                          <label className="form-check-label" htmlFor="inlineRadio1">Yes</label>
                         </div>
-                        <div className="col-md-3">
-                          <InputRow
-                            value={this.state.gender}
-                            onChange={this.handleInputChange}
-                            name="gender"
-                            title="Gender:"
-                            forattribute="petGender"
-                            collabel="col-md-4"
-                            coldiv="col-md-8"
-                          />
+                        <div className="form-check form-check-inline" id="create-radio">
+                          <input className="form-check-input" type="radio" name="crate" id="inlineRadio2" value="false" checked={this.state.crate === "false"} onChange={this.handleInputChange} />
+                          <label className="form-check-label" htmlFor="inlineRadio2">No</label>
                         </div>
                       </div>
-                      <div className="row">
-                        <div className="col-md-6">
-                          {/* <Radio
-                        value={this.state.crate}
-                        onChange={this.handleInputChange}
-                        name="crate"
-                        title="Crate Trained:"
-                        forattribute="petCrate"
-                        collabel="col-md-4"
-                        coldiv="col-md-3"
-                      /> */}
-                          <label className="form-check-label col-md-4" htmlFor="crate-radio">Crate:</label>
-                          <div className="form-check form-check-inline" id="create-radio">
-                            <input className="form-check-input" type="radio" name="crate" id="inlineRadio1" value="true" checked={this.state.crate === "true"} onChange={this.handleInputChange} />
-                            <label className="form-check-label" htmlFor="inlineRadio1">Yes</label>
-                          </div>
-                          <div className="form-check form-check-inline" id="create-radio">
-                            <input className="form-check-input" type="radio" name="crate" id="inlineRadio2" value="false" checked={this.state.crate === "false"} onChange={this.handleInputChange} />
-                            <label className="form-check-label" htmlFor="inlineRadio2">No</label>
-                          </div>
-                        </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-6 mt-2">
+                        <InputRow
+                          value={this.state.care_location}
+                          onChange={this.handleInputChange}
+                          name="care_location"
+                          title="Location for care:"
+                          forattribute="careLocation"
+                          collabel="col-md-4"
+                          coldiv="col-md-8"
+                        />
                       </div>
-                      <div className="row">
-                        <div className="col-md-6 mt-2">
-                          <InputRow
-                            value={this.state.care_location}
-                            onChange={this.handleInputChange}
-                            name="care_location"
-                            title="Location for care:"
-                            forattribute="careLocation"
-                            collabel="col-md-4"
-                            coldiv="col-md-8"
-                          />
-                        </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-6">
+                        <InputRow
+                          value={this.state.vet_name}
+                          onChange={this.handleInputChange}
+                          name="vet_name"
+                          title="Vet Name:"
+                          forattribute="petVetNm"
+                          collabel="col-md-4"
+                          coldiv="col-md-8"
+                        />
                       </div>
-                      <div className="row">
-                        <div className="col-md-6">
-                          <InputRow
-                            value={this.state.vet_name}
-                            onChange={this.handleInputChange}
-                            name="vet_name"
-                            title="Vet Name:"
-                            forattribute="petVetNm"
-                            collabel="col-md-4"
-                            coldiv="col-md-8"
-                          />
-                        </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-6">
+                        <InputRow
+                          value={this.state.vet_phone}
+                          onChange={this.handleInputChange}
+                          name="vet_phone"
+                          title="Vet Phone:"
+                          forattribute="petVetPhone"
+                          collabel="col-md-4"
+                          coldiv="col-md-8"
+                        />
                       </div>
-                      <div className="row">
-                        <div className="col-md-6">
-                          <InputRow
-                            value={this.state.vet_phone}
-                            onChange={this.handleInputChange}
-                            name="vet_phone"
-                            title="Vet Phone:"
-                            forattribute="petVetPhone"
-                            collabel="col-md-4"
-                            coldiv="col-md-8"
-                          />
-                        </div>
+                    </div>
+                    <div className="row">
+                      <div className="col">
+                        <InputRow
+                          value={this.state.vet_address}
+                          onChange={this.handleInputChange}
+                          name="vet_address"
+                          title="Vet Address:"
+                          forattribute="petVetAdd"
+                          collabel="col-md-2"
+                          coldiv="col-md-10"
+                        />
                       </div>
-                      <div className="row">
-                        <div className="col">
-                          <InputRow
-                            value={this.state.vet_address}
-                            onChange={this.handleInputChange}
-                            name="vet_address"
-                            title="Vet Address:"
-                            forattribute="petVetAdd"
-                            collabel="col-md-2"
-                            coldiv="col-md-10"
-                          />
-                        </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-6">
+                        <InputRow
+                          value={this.state.vet_city}
+                          onChange={this.handleInputChange}
+                          name="vet_city"
+                          title="Vet City:"
+                          forattribute="vetCty"
+                          collabel="col-md-4"
+                          coldiv="col-md-8"
+                        />
                       </div>
-                      <div className="row">
-                        <div className="col-md-6">
-                          <InputRow
-                            value={this.state.vet_city}
-                            onChange={this.handleInputChange}
-                            name="vet_city"
-                            title="Vet City:"
-                            forattribute="vetCty"
-                            collabel="col-md-4"
-                            coldiv="col-md-8"
-                          />
-                        </div>
-                        <div className="col-md-3">
-                          <InputRow
-                            value={this.state.vet_state}
-                            onChange={this.handleInputChange}
-                            name="vet_state"
-                            title="Vet State:"
-                            forattribute="vetState"
-                            collabel="col-md-4"
-                            coldiv="col-md-8"
-                          />
-                        </div>
-                        <div className="col-md-3">
-                          <InputRow
-                            value={this.state.vet_zip_code}
-                            onChange={this.handleInputChange}
-                            name="vet_zip_code"
-                            title="Vet Zip:"
-                            forattribute="vetZp"
-                            collabel="col-md-3"
-                            coldiv="col-md-9"
-                          />
-                        </div>
+                      <div className="col-md-3">
+                        <InputRow
+                          value={this.state.vet_state}
+                          onChange={this.handleInputChange}
+                          name="vet_state"
+                          title="Vet State:"
+                          forattribute="vetState"
+                          collabel="col-md-4"
+                          coldiv="col-md-8"
+                        />
                       </div>
-                      <div className="row">
-                        <div className="col">
-                          <InputRow
-                            value={this.state.pet_image}
-                            onChange={this.handleInputChange}
-                            name="pet_image"
-                            title="Image:"
-                            forattribute="petImg"
-                            collabel="col-md-2"
-                            coldiv="col-md-10"
-                          />
-                        </div>
+                      <div className="col-md-3">
+                        <InputRow
+                          value={this.state.vet_zip_code}
+                          onChange={this.handleInputChange}
+                          name="vet_zip_code"
+                          title="Vet Zip:"
+                          forattribute="vetZp"
+                          collabel="col-md-3"
+                          coldiv="col-md-9"
+                        />
                       </div>
-                      <TextArea
-                        value={this.state.pet_medications}
-                        onChange={this.handleInputChange}
-                        name="pet_medications"
-                        title="Medications"
-                        forattribute="petMeds"
-                      />
-                      <TextArea
-                        value={this.state.pet_restrictions}
-                        onChange={this.handleInputChange}
-                        name="pet_restrictions"
-                        title="Retrictions"
-                        forattribute="petRetict"
-                      />
-                      <CreateBtn
-                        onClick={this.createPet}
-                      >
-                        Add New Pet
-                  </CreateBtn>
-                    </form>
-                  </CardBody>
-                </div>
-
+                    </div>
+                    <div className="row">
+                      <div className="col">
+                        <InputRow
+                          value={this.state.pet_image}
+                          onChange={this.handleInputChange}
+                          name="pet_image"
+                          title="Image:"
+                          forattribute="petImg"
+                          collabel="col-md-2"
+                          coldiv="col-md-10"
+                        />
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col">
+                        <TextArea
+                          value={this.state.pet_medications}
+                          onChange={this.handleInputChange}
+                          name="pet_medications"
+                          title="Medications"
+                          forattribute="petMeds"
+                        />
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col">
+                        <TextArea
+                          value={this.state.pet_restrictions}
+                          onChange={this.handleInputChange}
+                          name="pet_restrictions"
+                          title="Retrictions"
+                          forattribute="petRetict"
+                        />
+                      </div>
+                    </div>
+                    <CreateBtn
+                      onClick={this.createPet}>Add New Pet
+                    </CreateBtn>
+                  </form>
+                </CardBody>
+              </div>
               </div>
             </div>
           </div>
+
         </div>
-        <Footer />
-
-      </div>
-
-
-    );
-  }
-}
-
+        );
+     }
+   }
+   
 export default CreatePet;
