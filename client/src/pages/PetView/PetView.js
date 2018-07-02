@@ -136,8 +136,10 @@ class PetView extends Component {
 
   };
 
-  ownerPage = (ownerId, pathName) => {
-    this.props.history.push("/ownerview/", { ownerId: ownerId, pathName: "/petview/" })
+  ownerPage = (ownerId, username) => {
+    console.log("petview.js ownerPage ownerId ", ownerId)
+    console.log("petview.js ownerPage state pet owner_id ", this.state.pet.owner_id)
+    this.props.history.push("/ownerview/", { ownerId: ownerId, pathName: "/petview/", username: username })
   };
 
 
@@ -153,7 +155,7 @@ class PetView extends Component {
         </div>
         <div className="row">
           <Container>
-            <button className="btn btn-lg" onClick={() => this.ownerPage(this.state.pet.owner_id)}>
+            <button className="btn btn-lg" onClick={() =>  this.ownerPage(this.state.pet.owner_id, this.props.location.state.username)} >
               Go Back
             </button>
             {this.state.pet ? (
