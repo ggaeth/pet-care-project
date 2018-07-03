@@ -9,7 +9,8 @@ console.log("inside routes/api/pets.js");
 router
   .route("/")
 //  .get(petsController.findAll)
-  .post(petsController.create);
+  .post(petsController.create)
+  .put(petsController.update)
 
 // Matches with "/api/pets/byPetId/:petId"
 // ==================================================================================== //
@@ -17,6 +18,8 @@ router
   .route("/byPetId/:petId")
   .get(petsController.getOnePet)
   .delete(petsController.destroy)
+ 
+
 
 
 // Matches with "/api/pets/byOwnerId/:ownerId"

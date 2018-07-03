@@ -44,6 +44,19 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  update: function (req, res) {
+    console.log("inside update function of pets_controller.js")
+    console.log("pets req.body is")
+    console.log(JSON.stringify(req.body, null, 2))
+    db.Pet
+      .update(
+        req.body.updatedPetObj,
+        {where: {pet_id: req.body.updatedPetObj.pet_id} 
+        } 
+      )
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   destroy: function (req, res) {
     console.log("inside pets_controller destroy function")
     console.log(req.params.petId)

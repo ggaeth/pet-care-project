@@ -12,7 +12,8 @@ import "./PetView.css";
 class PetView extends Component {
   state = {
     pet: {},
-    petTodos: []
+    petTodos: [],
+    editPet: "N"
   };
 
   componentDidMount() {
@@ -74,6 +75,9 @@ class PetView extends Component {
     event.preventDefault();
     console.log("inside createTodoItem function in PetView.js");
 
+    const petId = this.state.pet.pet_id;
+    console.log("petOd is " + petId);
+
     const newTodo = {
       "pet_id": this.state.pet.pet_id,
       "name": this.state.pet.name,
@@ -119,6 +123,59 @@ class PetView extends Component {
       .catch(err => console.log(err))
   };
 
+  editPet = event => {
+    event.preventDefault();
+    console.log("inside editPet function of PetView Page");
+
+    console.log("this.state is ");
+    console.log(this.state);
+      
+    const petId = this.state.pet.pet_id;
+    console.log("petId is " + petId);
+
+    this.setState(
+      { editPet: "Y" },
+      console.log("editPet state", this.state.editPet)
+    )
+  };
+
+  updatePet = (event) => {
+    event.preventDefault();
+    console.log("inside updatePet function of PetView Page");
+
+    const petId = this.state.pet.pet_id;
+    console.log("petId is " + petId);
+
+    const updatedPetObj = {
+        "pet_id": this.state.pet.pet_id,
+        "name": this.state.pet.name,
+        "age": this.state.pet.age,
+        "pet_medications": this.state.pet.pet_medications,
+        "pet_restrictions": this.state.pet.pet_restrictions
+    }; 
+    if (this.state.pet.age !== this.state.age) {
+      updatedPetObj.age = this.state.age;
+    };
+    if(this.state.pet.pet_medications !== this.state.pet_medications) {
+      updatedPetObj.pet_medications = this.state.pet_medications;
+    };
+    if (this.state.pet.pet_restrictions !== this.state.pet_restrictions) {
+      updatedPetObj.pet_restrictions = this.state.pet_restrictions;
+    };
+ 
+    API.updatePet({updatedPetObj})
+      .then(res =>
+//        console.log(res)
+        this.getOnePet(this.state.pet.pet_id)
+      )
+      .then(this.setState(
+        { editPet: "N" },
+        console.log("editPet state", this.state.editPet)
+      ))
+      .catch(err => console.log(err))
+
+  };
+
   updateTodoCompleted = event => {
     event.preventDefault();
     console.log("inside updateTodoCompleted function of PetView Page")
@@ -155,13 +212,81 @@ class PetView extends Component {
         </div>
         <div className="row">
           <Container>
+            {this.state.pet ? (
+              <div className="container">
+                <div className="row">
+                  <p>Pet Name: {this.state.pet.name}</p>
+                </div>
+                <div className="row">
+                  <p>Pet Age: {this.state.pet.age}</p>
+                </div>
+                <div className="row">
+                  <p>Pet Medications: {this.state.pet.pet_medications}</p>
+                </div>
+                <div className="row">
+                  <p>Pet Restrictions: {this.state.pet.pet_restrictions}</p>
+                </div>
+              </div>
+            ) : (
+                <p>Pet data was not found</p>
+              )
+            }
             <button className="btn btn-lg" onClick={() =>  this.ownerPage(this.state.pet.owner_id, this.props.location.state.username)} >
               Go Back
             </button>
-            {this.state.pet ? (
-                <p>Pet Name: {this.state.pet.name}</p>
-              ) : (
-                <p>Pet data was not found</p>
+            <button className="btn btn-lg float-right" onClick={this.editPet} >
+              Edit Pet
+            </button>
+            {this.state.editPet === "Y" ? (
+              <div className="row">
+                <form>
+                  <InputRow
+                    value={this.state.pet.name}
+                    onChange={this.handleInputChange}
+                    name="name"
+                    title="Name:"
+                    forattribute="petNm"
+                    collable="col-md-2"
+                    coldiv="col-md-6"
+                  />
+                  <InputRow
+                    value={this.state.pet.age}
+                    onChange={this.handleInputChange}
+                    name="age"
+                    title="Age:"
+                    forattribute="petAge"
+                    collabel="col-md-2"
+                    coldiv="col-md-2"
+                  />
+                  <div className="row">
+                    <div className="col">
+                      <TextArea
+                        value={this.state.pet_medications}
+                        onChange={this.handleInputChange}
+                        name="pet_medications"
+                        title="Medications"
+                        forattribute="petMeds"
+                      />
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col">
+                      <TextArea
+                        value={this.state.pet_restrictions}
+                        onChange={this.handleInputChange}
+                        name="pet_restrictions"
+                        title="Retrictions"
+                        forattribute="petRetict"
+                      />
+                    </div>
+                  </div>
+                  <CreateBtn
+                    onClick={this.updatePet}>Save Changes
+                  </CreateBtn>
+                </form>
+              </div>
+            ) : (
+                <p></p>
               )
             }
           </Container>

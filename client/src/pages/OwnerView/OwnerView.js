@@ -74,7 +74,8 @@ class OwnerView extends Component {
 
     API.deletePet(petId)
       .then(res =>
-        this.getPets(this.state.owner[0].owner_id)
+        console.log("res ", res), this.props.history.push("/ownerview/", { username: this.state.owner.username, ownerid: this.state.owner.owner_id, fromPage: "/petview/" })
+//        this.getPets(this.state.owner[0].owner_id)
       )
       .catch(err => console.log(err))
   };
@@ -132,10 +133,6 @@ class OwnerView extends Component {
                           </CardTitle>
                         </CardBody>
                         <CardFooter>
-                          <button
-                            className="btn btn-lg float-left"
-                          >Edit
-                            </button>
                           <DeleteBtn
                             onClick={this.deletePet}
                             name="pet_id"

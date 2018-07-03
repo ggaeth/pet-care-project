@@ -25,11 +25,18 @@ export default {
     console.log("inside getTodosByPetId axios call");
     return axios.get("/api/pettodos/" + petId);
   },
-    updateTodoCompleted: function (petTodoId) {
+  updateTodoCompleted: function (petTodoId) {
     return axios.put("/api/pettodos/" + petTodoId);
   },
+  updatePet: function (updatedPetObj) {
+    console.log("inside updatePet axios call");
+    return axios.put("/api/pets", updatedPetObj);
+  },
+  deletePet: function (petId) {
+    return axios.delete("/api/pets/byPetId/" + petId);
+  },
   deleteTodo: function(petTodoId) {
-  return axios.delete("/api/pettodos/" + petTodoId);
+    return axios.delete("/api/pettodos/" + petTodoId);
   },
   createOwner: function (newOwner) {
     console.log("inside createOwner");
@@ -48,7 +55,7 @@ export default {
   },
   createCaregiver: function(newCaregiver) {
     console.log("inside createCaregiver");
-   console.log(JSON.stringify(newCaregiver, null, 2) + "\n");
-   return axios.post("/api/caregivers", newCaregiver);
+    console.log(JSON.stringify(newCaregiver, null, 2) + "\n");
+    return axios.post("/api/caregivers", newCaregiver);
   }
 };
