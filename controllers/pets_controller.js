@@ -19,6 +19,23 @@ module.exports = {
       //.catch(err => res.status(422).json(err));
       .catch(err => console.log(JSON.stringify(err, null, 2) + "\n"));
   },
+    //for Cg routes
+  getPetCg: function (req, res) {
+    console.log("req.params is")
+    console.log(JSON.stringify(req.params, null, 2))
+    db.Pet
+      .findAll({
+        where: {
+          "$caregiver_id$": req.params.caregiver_id
+        },
+        include: [{
+          model: db.PetTodo
+        }]
+      })
+      .then(dbPet => res.json(dbPet))
+      //.catch(err => res.status(422).json(err));
+      .catch(err => console.log(JSON.stringify(err, null, 2) + "\n"));
+  },
   getOnePet: function (req, res) {
     console.log("inside getOnePet in pets_controller.js")
     console.log("req.params is")

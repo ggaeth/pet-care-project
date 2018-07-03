@@ -9,8 +9,8 @@ router
 
 // Matches with "/api/caregivers/:id"
 router
-//  .route("/:id")
-//  .get(cgController.findById)
+  .route("/:userName")
+  .get(cgController.getCg)
 //  .put(cgController.update)
 //  .delete(cgController.remove);
 

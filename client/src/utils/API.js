@@ -13,6 +13,11 @@ export default {
     console.log("inside getOwner");
     return axios.get("/api/owners/" + userName);
   },
+    //================ caregiver get route ==================
+  getPetsCg: function (caregiver_id) {
+    console.log("Inside getPetsCg");
+    return axios.get("/api/pets/byCgId/" + caregiver_id)
+  },
   getPets: function (ownerId) {
     console.log("inside getPets");
     return axios.get("/api/pets/byOwnerId/" + ownerId);

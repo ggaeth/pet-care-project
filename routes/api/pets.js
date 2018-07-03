@@ -32,6 +32,12 @@ router
 //  .put(petsController.update)
 //  .delete(petsController.remove);
 
+// Matches with "/api/pets/byCgId/:CgId"
+// ==================================================================================== //
+router
+  .route("/byCgId/:caregiver_id")
+  .get(petsController.getPetCg)
+
 console.log("leaving routes/api/pets.js");
 
 module.exports = router;

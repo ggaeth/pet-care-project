@@ -14,14 +14,14 @@ class CreateCare extends Component {
     careGiver: {},
   };
 
-  componentDidMount() {
-    console.log("in mount ", this.props.location.state);
-    this.getHistory(this.props.location.state);
-  }
+  //componentDidMount() {
+  //  console.log("in mount ", this.props.location.state);
+  //  this.getHistory(this.props.location.state);
+  //}
 
-  getHistory = id => {
-    console.log(id);
-  }
+  //getHistory = id => {
+  //  console.log(id);
+  //}
 
   handleInputChange = event => {
     const { name, value } = event.target;

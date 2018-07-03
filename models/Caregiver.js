@@ -44,10 +44,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    care_location: {
-      type: DataTypes.STRING(20),
-      allowNull: false
-    },
     caregiver_info: {
       type: DataTypes.TEXT,
       allowNull: true
@@ -60,17 +56,16 @@ module.exports = (sequelize, DataTypes) => {
       classMethods: {
         associate(models) {
           Caregiver.hasMany(models.Pet,
-            {
-              foreignKey: "fk_caregiver_id",
-              sourceKey: "caregiver_id",
-              onDelete: "cascade"
-            }
-          );
+          {
+            foreignKey: "fk_caregiver_id",
+            sourceKey: "caregiver_id",
+            onDelete: "cascade"
+          }
+        )
         }
       }
-    },
-    { underscored: true }
-  );
+    }, { underscored: true });
+
 
   return Caregiver;
 };
