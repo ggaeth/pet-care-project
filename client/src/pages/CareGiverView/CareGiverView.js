@@ -69,8 +69,8 @@ class CareGiverView extends Component {
       .catch(err => console.log(err))
   };
 
-  petView = (CgId, petId) => {
-    this.props.history.push("/petview/", { CgId: CgId, petid: petId })
+  careGiverPetView = (ownerId, petId, CgId) => {
+    this.props.history.push("/caregiverpetview/", { ownerId: ownerId, CgId: CgId, petid: petId })
   };
 
   render() {

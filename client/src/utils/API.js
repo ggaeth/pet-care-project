@@ -30,6 +30,10 @@ export default {
     console.log("inside getOnePet axios call");
     return axios.get("/api/pets/byPetId/" + petId);
   },
+  getOwnById: function (ownerId) {
+    console.log("inside getOwnById axios call");
+    return axios.get("/api/owners/ownById/" + ownerId);
+  },
   getTodosByPetId: function (petId) {
     console.log("inside getTodosByPetId axios call");
     return axios.get("/api/pettodos/" + petId);

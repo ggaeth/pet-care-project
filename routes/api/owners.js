@@ -9,6 +9,11 @@ router
 //  .get(ownersController.findAll)
   .post(ownersController.create);
 
+// Matches with "/api/owners/:ownerId"
+router
+  .route("/ownById/:ownerId")
+  .get(ownersController.getOwnById)
+
 // Matches with "/api/owners/:userName"
 router
   .route("/:userName")
