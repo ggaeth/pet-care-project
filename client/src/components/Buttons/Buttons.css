@@ -5,4 +5,24 @@
     background-color: #DCAE1D;
 }
 
+.todo-btn {
+  background-color:#DCAE1D;
+  color: black;
+}
+
+.todo-del-btn {
+  background-color:#DCAE1D;
+  color: black;
+  float: right;
+}
+
+.pet-view-btn {
+  background-color:#DCAE1D;
+  color: black;
+}
+
+.pet-view-btn-margin {
+  margin-top: 20px;
+}
+
 
