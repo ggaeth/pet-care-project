@@ -1,3 +1,31 @@
 .AddBtn{
     margin-right: 40px;
 }
+
+.label{
+  font-weight: bold;
+}
+
+.cardFooter {
+  font-weight: bold;
+  font-size: 25px;
+  background-color: #00303F;
+  color: white;
+}
+
+.no-padding {
+  padding: 0px;
+}
+
+.todo-row {
+  margin: 20px 0px;
+}
+
+.bottom-border {
+  border-bottom: 1px solid #00303F;
+  padding-top: 5px;
+}
+
+.red {
+  color: red;
+}
