@@ -18,7 +18,8 @@ class PetView extends Component {
       modal2: false,
       overdue: false,
       pet: {},
-      petTodos: []
+      petTodos: [],
+      caregivers: []
     };
 
     this.toggle = this.toggle.bind(this);
@@ -32,10 +33,22 @@ class PetView extends Component {
   }
 
   toggle2() {
+    console.log("inside toggle2 function of PetView Page")
+
+    API.getAllCgs()
+      .then(res =>
+        this.setState(
+          { caregivers: res.data },
+          console.log("caregivers res.data in petview.js ", res)
+        )
+      )
+      .then(res => console.log("caregivers state ", this.state.caregivers))
+      .catch(err => console.log(err))
+
     this.setState({
       modal2: !this.state.modal2
     });
-  }
+  };
 
   componentDidMount() {
     console.log("in mount PetView.js", this.props.location.state);
@@ -245,7 +258,7 @@ class PetView extends Component {
         pet_medications: "",
         pet_restrictions: "",
         pet_image: ""
-  }))
+      }))
       .catch(err => console.log(err))
 
   };
@@ -264,6 +277,45 @@ class PetView extends Component {
         this.getTodosByPetId(this.state.pet.pet_id)
       )
       .catch(err => console.log(err))
+
+  };
+
+  updPetCg = (event) => {
+    event.preventDefault();
+    console.log("inside updPetCg function of PetView Page")
+    
+    const cgId = event.target.value;
+    const cgObj = {
+      caregiver_id: cgId
+    }
+    console.log("cgObj is");
+    console.log(cgObj);
+    
+
+
+
+    API.updPetCg(this.state.pet.pet_id, {cgObj})
+      .then(res =>
+          console.log(res)
+//            this.setState({ 
+//              pet.caregiver_id: cgId },
+//                console.log("pet state", this.state)
+ //           )
+      )
+      //     .then(res => console.log("petTodos state ", this.state))
+      .catch(err => console.log(err))
+
+    let petObj = {};
+    petObj = this.state.pet;
+    console.log("petObj is");
+    console.log(petObj);
+    petObj.caregiver_id = cgId;
+    console.log("petObj.caregiver_id is " + petObj.caregiver_id);
+    
+    this.setState({ 
+      pet: petObj },
+        console.log("pet state", this.state)
+    )
 
   };
 
@@ -688,36 +740,39 @@ class PetView extends Component {
                     <thead>
                       <tr>
                         <th>Name</th>
-                        <th>Address</th>
-                        <th>City</th>
-                        <th>State</th>
-                        <th>Zip</th>
-                        <th>Phone</th>
                         <th>Email</th>
+                        <th>Phone</th>
                         <th>Info</th>
                         <th>Select</th>
                       </tr>
                     </thead>
-
-                      <tbody>
-                      <tr>
-                        <td>Name Here</td>
-                        <td>Address</td>
-                        <td>City</td>
-                        <td>State</td>
-                        <td>Zip</td>
-                        <td>Phone</td>
-                        <td>Email</td>
-                        <td>Info goes here</td>
-                        <td>
-                          <TodoDelBtn
-                            onClick={this.deleteTodo}
-                            name="pet_todo_id"
-                            value=""
-                            >Select
-                          </TodoDelBtn>
-                        </td>
-                      </tr>
+                    <tbody>
+                      {this.state.caregivers.length ? (
+                        <div>
+                          {this.state.caregivers.map(cg => (
+                            <tr>
+                              <td>{cg.name}</td>
+                              <td>{cg.email}</td>
+                              <td>{cg.phone}</td>
+                              <td>{cg.caregiver_info}</td>
+                              <td><button 
+                                onClick={this.updPetCg}
+                                value={cg.caregiver_id}
+                                >Select</button></td>
+                            </tr>
+                          ))}
+                        </div>
+                      ) : (
+                        <div>
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                          </tr>
+                        </div>
+                      )}
                     </tbody>
                   </table>
                 </div>

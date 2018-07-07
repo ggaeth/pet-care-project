@@ -15,6 +15,7 @@ import Owner from "./pages/Owner";
 // import Care from "./pages/Care";
 // import CareCreate from "./pages/CareCreate";
 import Nav from "./components/Nav";
+import firebase from "./firebase.js";
 
 const App = () => (
   <Router>

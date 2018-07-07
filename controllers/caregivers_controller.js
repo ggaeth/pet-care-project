@@ -1,6 +1,14 @@
 var db = require("../models");
 
 module.exports = {
+  getAllCgs: function (req, res) {
+    console.log("inside getAllCgs in caregivers_controller")
+    db.Caregiver
+      .findAll()
+      .then(dbCg => res.json(dbCg))
+      //.catch(err => res.status(422).json(err));
+      .catch(err => console.log(JSON.stringify(err, null, 2) + "\n"));
+  },
   getCg: function (req, res) {
     console.log("req.params is")
     console.log(JSON.stringify(req.params, null, 2))
@@ -14,7 +22,6 @@ module.exports = {
       //.catch(err => res.status(422).json(err));
       .catch(err => console.log(JSON.stringify(err, null, 2) + "\n"));
   },
-
   create: function (req, res) {
     console.log("caregivers controller req.body is")
     console.log(JSON.stringify(req.body, null, 2))

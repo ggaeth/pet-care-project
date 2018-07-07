@@ -14,11 +14,15 @@ export default {
     return axios.get("/api/owners/" + userName);
   },
     //================ caregiver get route ==================
+  getAllCgs: function () {
+    console.log("inside getAllCgs");
+    return axios.get("/api/caregivers/");
+  },
   getCg: function (userName) {
     console.log("inside getCg");
     return axios.get("/api/caregivers/" + userName);
   },
-    getPetsCg: function (caregiver_id) {
+  getPetsCg: function (caregiver_id) {
     console.log("Inside getPetsCg");
     return axios.get("/api/pets/byCgId/" + caregiver_id)
   },
@@ -44,6 +48,10 @@ export default {
   updatePet: function (updatedPetObj) {
     console.log("inside updatePet axios call");
     return axios.put("/api/pets", updatedPetObj);
+  },
+  updPetCg: function (petId, cgObj) {
+    console.log("inside updPetCg axios call");
+    return axios.put("/api/pets/byPetId/" + petId, cgObj);
   },
   deletePet: function (petId) {
     return axios.delete("/api/pets/byPetId/" + petId);

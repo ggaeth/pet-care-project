@@ -7,12 +7,19 @@ import { Link } from "react-router-dom";
 import { OwnerLoginBtn, CareLoginBtn, CreateBtn } from "../../components/Buttons";
 import { Input, InputRow, TextArea } from "../../components/Form";
 import { CardHead, CardBody } from "../../components/Card";
+import firebase from "firebase";
+import FileUploader from "react-firebase-file-uploader";
+import Image from "react-image-resizer";
 import "./CreateOwner.css";
 
 class CreateOwner extends Component {
 
   state = {
     petOwner: {},
+    image: "",
+    isUploading: false,
+    progress: 0,
+    imageURL: ""
   };
 
   handleInputChange = event => {
@@ -25,6 +32,26 @@ class CreateOwner extends Component {
     // console.log(JSON.stringify(this.state, null, 2) + "\n");
   };
 
+  handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
+
+  handleProgress = progress => this.setState({ progress });
+
+  handleUploadError = error => {
+    this.setState({ isUploading: false });
+    console.error(error);
+  };
+
+  handleUploadSuccess = filename => {
+    this.setState({ image: filename, progress: 100, isUploading: false });
+    firebase
+      .storage()
+      .ref("owner")
+      .child(filename)
+      .getDownloadURL()
+      .then(url =>
+        this.setState({ imageURL: url })
+      );
+  };
 
   handleFormSubmit = event => {
     event.preventDefault();
@@ -40,7 +67,7 @@ class CreateOwner extends Component {
       "email": this.state.ownerEmail,
       "username": this.state.ownerUsername,
       "owner_info": this.state.ownerInfo,
-      "owner_image": this.state.ownerImgFile
+      "owner_image": this.state.imageURL
     };
     console.log("newOwner object that will be sent to server: ");
     console.log(JSON.stringify(newOwner, null, 2) + "\n");
@@ -204,16 +231,35 @@ class CreateOwner extends Component {
                         coldiv="col-md-8"
                       />
                     </div>
-                    <div className="col-md-6">
-                      <InputRow
-                        value={this.state.ownerImgFile}
-                        onChange={this.handleInputChange}
-                        name="ownerImgFile"
-                        title="Image:"
-                        forattribute="ownerImg"
-                        collabel="col-md-4"
-                        coldiv="col-md-8"
-                      />
+                  </div>
+                  <div className="row">
+                    <div className="col-md-12">
+                      <div className="row">
+                        <div className="col-md-5">
+                          <p>Upload your photo: </p>
+                          <FileUploader
+                            accept="image/*"
+                            name="image"
+                            randomizeFilename
+                            storageRef={firebase.storage().ref("owner")}
+                            onUploadStart={this.handleUploadStart}
+                            onProgress={this.handleProgress}
+                            onUploadError={this.handleUploadError}
+                            onUploadSuccess={this.handleUploadSuccess}
+                          />
+                        </div>
+                        <div className="col-md-3">
+                          <p>Upload Progress:</p>
+                        </div>
+                        <div className="col-md-4">
+                          <progress value={this.state.progress} max="100" id="uploader">0%</progress>
+                          <Image
+                            src={this.state.imageURL}
+                            width={100}
+                            height={100}
+                          />
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <TextArea

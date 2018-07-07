@@ -7,6 +7,9 @@ import { Link } from "react-router-dom";
 import { OwnerLoginBtn, CareLoginBtn, CreateBtn } from "../../components/Buttons";
 import { Input, InputRow, TextArea } from "../../components/Form";
 import { CardHead, CardBody } from "../../components/Card";
+import firebase from "firebase";
+import FileUploader from "react-firebase-file-uploader";
+import Image from "react-image-resizer";
 import "./CreatePet.css";
 
 class CreatePet extends Component {
@@ -15,7 +18,11 @@ class CreatePet extends Component {
     passedOwnerId: "",
     ownerUsername: "",
     petOwner: {},
-    pets: []
+    pets: [],
+    image: "",
+    isUploading: false,
+    progress: 0,
+    imageURL: ""
   };
 
   componentDidMount() {
@@ -35,6 +42,26 @@ class CreatePet extends Component {
     // console.log(JSON.stringify(this.state, null, 2) + "\n");
   };
 
+  handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
+
+  handleProgress = progress => this.setState({ progress });
+
+  handleUploadError = error => {
+    this.setState({ isUploading: false });
+    console.error(error);
+  };
+
+  handleUploadSuccess = filename => {
+    this.setState({ image: filename, progress: 100, isUploading: false });
+    firebase
+      .storage()
+      .ref("pet")
+      .child(filename)
+      .getDownloadURL()
+      .then(url =>
+        this.setState({ imageURL: url })
+      );
+  };
 
   createPet = event => {
     event.preventDefault();
@@ -55,7 +82,7 @@ class CreatePet extends Component {
       "vet_phone": this.state.vet_phone,
       "pet_medications": this.state.pet_medications,
       "pet_restrictions": this.state.pet_restrictions,
-      "pet_image": this.state.pet_image,
+      "pet_image": this.state.imageURL,
       "fk_owner_id": this.state.passedOwnerId
     };
     console.log("newPet object that will be sent to server: ");
@@ -240,16 +267,33 @@ class CreatePet extends Component {
                       </div>
                     </div>
                     <div className="row">
-                      <div className="col">
-                        <InputRow
-                          value={this.state.pet_image}
-                          onChange={this.handleInputChange}
-                          name="pet_image"
-                          title="Image:"
-                          forattribute="petImg"
-                          collabel="col-md-2"
-                          coldiv="col-md-10"
-                        />
+                      <div className="col-md-12">
+                        <div className="row">
+                          <div className="col-md-5">
+                            <p>Upload your photo: </p>
+                            <FileUploader
+                              accept="image/*"
+                              name="image"
+                              randomizeFilename
+                              storageRef={firebase.storage().ref("pet")}
+                              onUploadStart={this.handleUploadStart}
+                              onProgress={this.handleProgress}
+                              onUploadError={this.handleUploadError}
+                              onUploadSuccess={this.handleUploadSuccess}
+                            />
+                          </div>
+                          <div className="col-md-3">
+                            <p>Upload Progress:</p>
+                          </div>
+                          <div className="col-md-4">
+                            <progress value={this.state.progress} max="100" id="uploader">0%</progress>
+                            <Image
+                              src={this.state.imageURL}
+                              width={100}
+                              height={100}
+                            />
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div className="row">
@@ -280,11 +324,10 @@ class CreatePet extends Component {
                   </form>
                 </CardBody>
               </div>
-              </div>
             </div>
           </div>
-
         </div>
+      </div>
         );
      }
    }
