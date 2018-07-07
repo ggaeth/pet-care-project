@@ -114,10 +114,13 @@ class OwnerView extends Component {
                 </CardBody>
               </Card>
             </div>
-            <div className="col-3">
-              {this.state.pets.length ? (
-                <div>
+            {this.state.pets.length ? (
+              
+              <div className="col-9">
                   {this.state.pets.map(pet => (
+                    
+                      <div className="col-4 float-left">
+              
                     <Card onClick={() => this.petView(pet.owner_id, pet.pet_id, this.state.owner[0].username)} >
                       <div>
                         <CardImg top width="100%"
@@ -141,12 +144,14 @@ class OwnerView extends Component {
                         </CardFooter>
                       </div>
                     </Card>
+                    </div>
                   ))}
                 </div>
+                
               ) : (
                   <h3>No Results to Display</h3>
                 )}
-            </div>
+            
           </div>
         </div>
       </div>
