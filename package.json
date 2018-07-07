@@ -23,15 +23,16 @@
   "dependencies": {
     "@rbtdev/node-cmd-bcrypt": "^1.2.12",
     "body-parser": "^1.18.3",
+    "concurrently": "^3.5.0",
+    "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "mysql": "^2.15.0",
     "mysql2": "^1.5.3",
+    "nodemon": "^1.17.5",
     "passport": "^0.4.0",
     "passport-strategy": "^1.0.0",
-    "sequelize": "^4.37.10",
-    "concurrently": "^3.5.0",
-    "nodemon": "^1.17.5"
+    "sequelize": "^4.37.10"
   },
   "bugs": {
     "url": "https://github.com/ggaeth/pet-care-project/issues"
