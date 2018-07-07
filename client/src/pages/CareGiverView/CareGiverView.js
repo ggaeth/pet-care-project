@@ -69,8 +69,8 @@ class CareGiverView extends Component {
       .catch(err => console.log(err))
   };
 
-  careGiverPetView = (ownerId, petId, CgId) => {
-    this.props.history.push("/caregiverpetview/", { ownerId: ownerId, CgId: CgId, petid: petId })
+  careGiverPetView = (ownerId, petId, CgId, cguserName) => {
+    this.props.history.push("/caregiverpetview/", { ownerId: ownerId, CgId: CgId, petid: petId, cgUserName: cguserName })
   };
 
   render() {
@@ -85,7 +85,7 @@ class CareGiverView extends Component {
               {this.state.pets.length ? (
                 <div>
                 {this.state.pets.map(pet => (
-                <Card onClick={() => this.careGiverPetView(pet.owner_id, pet.pet_id,pet.caregiver_id)} >
+                <Card onClick={() => this.careGiverPetView(pet.owner_id, pet.pet_id,pet.caregiver_id, this.state.caregiver.username)} >
                   
                     <div>
                       <CardImg top width="100%" src={pet.pet_image} alt="Card image cap" id={pet.pet_id} />
