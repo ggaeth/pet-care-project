@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
-import { AddBtn, DeleteBtn, TodoBtn, TodoDelBtn, CareBtn, PetViewBtn } from "../../components/Buttons";
+import { AddBtn, DeleteBtn, TodoBtn, TodoDelBtn, CareBtn, PetViewBtn, OwnPetModalCloseBtn } from "../../components/Buttons";
 import { Input, InputBox, InputRow, TextArea } from "../../components/Form";
 import { CardHead } from "../../components/Card";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Card, CardTitle, CardBody, CardFooter, CardImg, CardSubtitle, CardText } from "reactstrap";
@@ -24,11 +24,18 @@ class PetView extends Component {
 
     this.toggle = this.toggle.bind(this);
     this.toggle2 = this.toggle2.bind(this);
+    this.toggle5 = this.toggle5.bind(this);
   }
 
   toggle() {
     this.setState({
       modal: !this.state.modal
+    });
+  }
+
+  toggle5() {
+    this.setState({
+      modal5: !this.state.modal5
     });
   }
 
@@ -61,6 +68,7 @@ class PetView extends Component {
     //    }
     console.log("running getTodosByPetId from componentDidMount");
     this.getTodosByPetId(this.props.location.state.petid);
+    this.loadCareGivers();
   };
 
   handleInputChange = event => {
@@ -73,6 +81,19 @@ class PetView extends Component {
     console.log("this.state is");
     console.log(JSON.stringify(this.state, null, 2) + "\n");
   };
+
+  loadCareGivers = () => {
+    API.getAllCgs()
+      .then(res =>
+        this.setState(
+          { caregivers: res.data },
+          console.log("caregivers res.data in petview.js ", res)
+        )
+      )
+      .then(res => console.log("caregivers state ", this.state.caregivers))
+      .catch(err => console.log(err))
+
+  }
 
   getOnePet = petId => {
     console.log("inside getOnePet function of PetView Page")
@@ -296,7 +317,8 @@ class PetView extends Component {
 
     API.updPetCg(this.state.pet.pet_id, {cgObj})
       .then(res =>
-          console.log(res)
+          console.log(res),
+          this.toggle2()
 //            this.setState({ 
 //              pet.caregiver_id: cgId },
 //                console.log("pet state", this.state)
@@ -324,6 +346,9 @@ class PetView extends Component {
     console.log("petview.js ownerPage state pet owner_id ", this.state.pet.owner_id)
     this.props.history.push("/ownerview/", { ownerId: ownerId, pathName: "/petview/", username: username })
   };
+
+  
+// cg() {return this.state.caregivers.filter(cg => cg.caregiver_id === this.state.pet.caregiver_id);}
 
 
   render() {
@@ -365,6 +390,23 @@ class PetView extends Component {
                   <p>Pet data was not found</p>
                 )
               }
+
+              {this.state.caregivers.filter(cg => cg.caregiver_id == this.state.pet.caregiver_id).map(cg => (
+                <Card className="cg-card" onClick={this.toggle5}>
+                  <div>
+                    <CardImg top width="100%"
+                      src={cg.caregiver_image}
+                      alt="Card image cap"
+                      id={cg.caregiver_id}
+                      key={cg.caregiver_id}
+                    />
+                    <CardFooter className="cardFooter">
+                      <p>Care Giver {cg.name} Details</p>
+                    </CardFooter>
+                  </div>
+                </Card>
+                ))}
+
               <PetViewBtn
                 coldiv="col-md-4"
                 type="submit"
@@ -716,11 +758,13 @@ class PetView extends Component {
                     />
                   </div>
                 </div>
-
-                <CareBtn
+                <div className="row">
+                <OwnPetModalCloseBtn
                   toggle={this.toggle}
                   onClick={this.updatePet}>Save Changes
-                      </CareBtn>
+                </OwnPetModalCloseBtn>
+                <Button className="modal-close" onClick={this.toggle}>Close</Button>
+                </div>
               </CardBody>
             </div>
           </ModalBody>
@@ -747,36 +791,81 @@ class PetView extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                      {this.state.caregivers.length ? (
-                        <div>
-                          {this.state.caregivers.map(cg => (
-                            <tr>
-                              <td>{cg.name}</td>
-                              <td>{cg.email}</td>
-                              <td>{cg.phone}</td>
-                              <td>{cg.caregiver_info}</td>
-                              <td><button 
-                                onClick={this.updPetCg}
-                                value={cg.caregiver_id}
-                                >Select</button></td>
-                            </tr>
-                          ))}
-                        </div>
-                      ) : (
-                        <div>
-                          <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                          </tr>
-                        </div>
-                      )}
+                      {this.state.caregivers.map(cg => (
+                        <tr>
+                          <td>{cg.name}</td>
+                          <td>{cg.email}</td>
+                          <td>{cg.phone}</td>
+                          <td>{cg.caregiver_info}</td>
+                          <td><button 
+                            onClick={this.updPetCg}
+                            value={cg.caregiver_id}
+                            >Select</button></td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
+                <div className="row">
+                  <Button className="modal-close-2" onClick={this.toggle2}>Close</Button>
+                </div>
               </CardBody>
+            </div>
+          </ModalBody>
+        </Modal>
+
+        <Modal isOpen={this.state.modal5} toggle={this.toggle5} className={this.props.className} size="lg" backdrop="static" >
+          <ModalHeader toggle={this.toggle5}><div className="account">View Care Giver Details</div></ModalHeader>
+          <ModalBody>
+            <div className="card">
+
+              <CardHead
+                value="Care Giver Details"
+              />
+              {this.state.caregivers.filter(cg => cg.caregiver_id == this.state.pet.caregiver_id).map(cg => (
+              <CardBody>
+                <div className="row">
+                  <div className="col">
+                    <p><span className="label">Name: </span> {cg.name}</p>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col">
+                    <p><span className="label">Address: </span> {cg.address}</p>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-6">
+                    <p><span className="label">City: </span> {cg.city}</p>
+                  </div>
+                  <div className="col-3">
+                    <p><span className="label">State: </span> {cg.state}</p>
+                  </div>
+                  <div className="col-3">
+                    <p><span className="label">Zip Code: </span> {cg.zip_code}</p>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-6">
+                    <p><span className="label">Phone: </span> {cg.phone}</p>
+                  </div>
+                  <div className="col-6">
+                    <p><span className="label">Secondary Phone: </span> {cg.secondary_phone}</p>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col">
+                    <p><span className="label">Email: </span> {cg.email}</p>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col">
+                    <p><span className="label">Care Giver Info: </span> {cg.caregiver_info}</p>
+                  </div>
+                </div>
+                <Button className="modal-btn" onClick={this.toggle5}>Close</Button>
+              </CardBody>
+              ))}
             </div>
           </ModalBody>
         </Modal>

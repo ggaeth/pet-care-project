@@ -10,3 +10,4 @@ export * from "./DeleteBtn";
 export * from "./TodoBtn";
 export * from "./TodoDelBtn";
 export * from "./PetViewBtn";
+export * from "./OwnPetModalCloseBtn";
