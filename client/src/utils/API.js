@@ -8,6 +8,24 @@ export default {
   getLogin: function () {
     return axios.get("/login");
   },
+  getOwnLogin: function (userName) {
+    console.log("inside getOwnLogin");
+    console.log("userName is " + userName);
+    return axios.get("api/users/owner/" + userName);
+  },
+  getCareLogin: function (userName) {
+    console.log("inside getCareLogin");
+    console.log("userName is " + userName);
+    return axios.get("api/users/caregiver/" + userName);
+  },
+  createOwnLogin: function (ownLogObj) {
+    console.log("inside ownerLogin");
+    return axios.post("/api/users/owner", ownLogObj);
+  },
+  createCareLogin: function (careLogObj) {
+    console.log("inside createCareLogin");
+    return axios.post("/api/users/caregiver", careLogObj);
+  },
   // Gets the owner with the given userName
   getOwner: function (userName) {
     console.log("inside getOwner");

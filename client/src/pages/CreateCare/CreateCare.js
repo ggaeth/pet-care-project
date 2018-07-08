@@ -74,7 +74,7 @@ class CreateCare extends Component {
       "caregiver_info": this.state.careAbout,
       "caregiver_image": this.state.imageURL
     };
-    console.log("newOwner object that will be sent to server: ");
+    console.log("newCareGiver object that will be sent to server: ");
     console.log(JSON.stringify(newCareGiver, null, 2) + "\n");
 
     API.createCaregiver({ newCareGiver })
@@ -87,12 +87,25 @@ class CreateCare extends Component {
 
   userFormSubmit = event => {
     event.preventDefault();
-    API.careLogin({
-      user: this.state.careUsername,
-      password: this.state.carePassword
-    })
-      .then(res => this.careFormSubmit())
-      .catch(err => console.log(err));
+
+    if (this.state.careUsername && this.state.carePassword) {
+
+      const careLogObj = {
+        username: this.state.careUsername,
+        password: this.state.carePassword,
+        role: "caregiver"
+      }
+      console.log("careLogObj is ")
+      console.log(JSON.stringify(careLogObj, null, 2) + "\n");
+
+      API.createCareLogin({ careLogObj })
+        .then(res => this.careFormSubmit(event)
+          //       .then(res =>
+          //        console.log(res)
+        )
+        .catch(err => console.log(err));
+    }
+  
   };
 
   render() {
@@ -262,7 +275,7 @@ class CreateCare extends Component {
                       />
                       <CreateBtn
                         // need to change function to this.careFormSubmit when we use authentication
-                        onClick={this.careFormSubmit}
+                        onClick={this.userFormSubmit}
                       >Create Account
                       </CreateBtn>
                     </form>

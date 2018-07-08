@@ -82,14 +82,24 @@ class CreateOwner extends Component {
 
   userFormSubmit = event => {
     event.preventDefault();
+    
+    if (this.state.ownerUsername && this.state.ownerPassword) {
 
-    API.createUser({
-      user: this.state.ownerUsername,
-      password: this.state.ownerPassword
-    })
-      .then(res => this.handleFormSubmit())
-      .catch(err => console.log(err));
+      const ownLogObj = {
+        username: this.state.ownerUsername,
+        password: this.state.ownerPassword,
+        role: "owner"
+      }
+      console.log("ownLogObj is ")
+      console.log(JSON.stringify(ownLogObj, null, 2) + "\n");
 
+      API.createOwnLogin({ ownLogObj })
+        .then(res => this.handleFormSubmit(event)
+ //       .then(res =>
+  //        console.log(res)
+        )
+        .catch(err => console.log(err));
+    }
   };
 
   careFormSubmit = event => {
@@ -271,7 +281,7 @@ class CreateOwner extends Component {
                   />
                   <CreateBtn
                     // need to change function to this.userFormSubmit when we use authentication
-                    onClick={this.handleFormSubmit}
+                    onClick={this.userFormSubmit}
                   >
                     Create Account
                   </CreateBtn>
