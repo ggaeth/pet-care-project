@@ -74,8 +74,8 @@ class OwnerView extends Component {
 
     API.deletePet(petId)
       .then(res =>
-        console.log("res ", res), this.props.history.push("/ownerview/", { username: this.state.owner.username, ownerid: this.state.owner.owner_id, fromPage: "/petview/" })
-//        this.getPets(this.state.owner[0].owner_id)
+        console.log("res ", res), 
+        this.getPets(this.props.location.state.ownerId)
       )
       .catch(err => console.log(err))
   };
@@ -121,16 +121,16 @@ class OwnerView extends Component {
                     
                       <div className="col-4 float-left">
               
-                    <Card onClick={() => this.petView(pet.owner_id, pet.pet_id, this.state.owner[0].username)} >
+                    <Card>
                       <div>
                         <CardImg top width="100%"
                           src={pet.pet_image}
                           alt="Card image cap"
                           id={pet.pet_id}
                           key={pet.pet_id}
-                          onClick={() => this.petView(pet.owner_id, pet.pet_id)}
+                          onClick={() => this.petView(pet.owner_id, pet.pet_id, this.state.owner[0].username)}
                         />
-                        <CardBody onClick={() => this.petView(pet.owner_id, pet.pet_id)} >
+                        <CardBody onClick={() => this.petView(pet.owner_id, pet.pet_id, this.state.owner[0].username)} >
                           <CardTitle>
                             {pet.name}
                           </CardTitle>

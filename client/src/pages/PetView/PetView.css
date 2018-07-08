@@ -29,3 +29,18 @@
 .red {
   color: red;
 }
+
+.modal-close-2 {
+  background-color:#DCAE1D;
+  color: black;
+}
+
+.modal-close {
+  background-color:#DCAE1D;
+  color: black;
+  margin-left: 15px;
+}
+
+.cg-card {
+  margin-top: 20px;
+}
