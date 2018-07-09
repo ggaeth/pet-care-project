@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import Jumbotron from "../../components/Jumbotron";
 import Nav from "../../components/Nav";
+import Footer from "../../components/Footer";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import icon from "../../assets/icon.jpg";
-import { DeleteBtn } from "../../components/Buttons";
+import { DeleteBtn, CreatePetBtn } from "../../components/Buttons";
 import { Card, CardTitle, CardBody, CardFooter, CardImg, CardSubtitle, CardText } from "reactstrap";
 import "./OwnerView.css";
 
@@ -100,48 +101,51 @@ class OwnerView extends Component {
       <div className="background">
         <div className="container fluid">
           <Jumbotron>
-            Owner View
+            <div className="owner"><i className="fas fa-paw"></i>Owner View</div>
+            
             </Jumbotron>
           <div className="row">
 
-            <div className="col-3">
+            <div className=" pet-card col-2">
 
-              <Card onClick={() => this.petPage(this.state.owner[0].owner_id, this.state.owner[0].username)} >
-                <CardImg top width="100%" src={icon}
-                  alt="Card image cap" />
-                <CardBody>
-                  <CardTitle>Create Pet</CardTitle>
-                </CardBody>
-              </Card>
+              <CreatePetBtn  onClick={() => this.petPage(this.state.owner[0].owner_id, this.state.owner[0].username)} >
+              <div className="pet"><i className=" paw2 fas fa-paw"></i>Create Pet</div> 
+              </CreatePetBtn>
             </div>
             {this.state.pets.length ? (
               
               <div className="col-9">
                   {this.state.pets.map(pet => (
                     
-                      <div className="col-4 float-left">
+                      <div className="col-4 pet-card2">
               
-                    <Card>
+                    <Card onClick={() => this.petView(pet.owner_id, pet.pet_id, this.state.owner[0].username)} >
                       <div>
-                        <CardImg top width="100%"
+                        <CardImg div className="pet-img" top width="100%"
                           src={pet.pet_image}
                           alt="Card image cap"
                           id={pet.pet_id}
                           key={pet.pet_id}
-                          onClick={() => this.petView(pet.owner_id, pet.pet_id, this.state.owner[0].username)}
+                          onClick={() => this.petView(pet.owner_id, pet.pet_id)}
                         />
-                        <CardBody onClick={() => this.petView(pet.owner_id, pet.pet_id, this.state.owner[0].username)} >
-                          <CardTitle>
+                        <CardBody div className="pet-body" onClick={() => this.petView(pet.owner_id, pet.pet_id)} >
+                          <CardTitle><div className="pet2"><i className="fas fa-paw"></i>
                             {pet.name}
-                          </CardTitle>
-                        </CardBody>
-                        <CardFooter>
-                          <DeleteBtn
+                            <DeleteBtn
                             onClick={this.deletePet}
                             name="pet_id"
                             value={pet.pet_id} >Delete
                             </DeleteBtn>
-                        </CardFooter>
+                            </div>
+                          </CardTitle>
+                        </CardBody>
+                        {/* <CardFooter> */}
+                          {/* <DeleteBtn
+                            onClick={this.deletePet}
+                            name="pet_id"
+                            value={pet.pet_id} >Delete
+                            </DeleteBtn> */}
+                        {/* </CardFooter> */}
                       </div>
                     </Card>
                     </div>
@@ -149,11 +153,14 @@ class OwnerView extends Component {
                 </div>
                 
               ) : (
-                  <h3>No Results to Display</h3>
+                  
+                  <div className="no-pet"><i className="fas fa-paw"></i>Please Create a Pet! </div>
                 )}
             
           </div>
+          
         </div>
+        <Footer />
       </div>
 
 

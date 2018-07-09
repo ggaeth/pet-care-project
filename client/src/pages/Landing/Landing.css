@@ -47,13 +47,6 @@ color: #DCAE1D;
 text-align: center;
 }
 
-.container-fluid {
-  background-size: 100% 100%;
-  background-attachment: fixed;
-  width: 1170px;
-  margin: 0 auto;
-}
-
 .Dog {
   background-image: url("../../assets/cat5.png");
   background-size: cover;

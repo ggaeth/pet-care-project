@@ -1,0 +1,15 @@
+.Dog {
+    background-image: url("../../assets/cat5.png");
+    background-size: cover;
+    /*  background-position: top; */
+    margin-top: 40px;
+    min-width: 800px;
+    height: 660px;
+    
+  }
+  .container-fluid {
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    width: 1170px;
+    margin: 0 auto;
+  }

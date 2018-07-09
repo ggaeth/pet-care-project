@@ -1,3 +1,70 @@
 .float-left {
   float: left;
+  margin-left: 20px;
+  margin-top: 60px;
 }
+
+.pet{
+  /* margin-left: 3px; */
+  font-size: 25px;
+ 
+}
+
+.pet2{
+  font-size: 30px;
+  
+}
+
+.pet-body{
+  background-color: #00303F;
+  color: white;
+}
+
+.owner{
+  font-size: 37px;
+  color:white;
+  margin-top: 80px;
+  margin-left: -15px;
+  
+}
+
+.pet-card{
+  margin-top: 60px;
+  margin-bottom: 100px;
+  float:left;
+}
+
+.pet-card2{
+  margin-top: 60px;
+  margin-bottom: 100px;
+  float:left;
+  font-size: 40px;
+}
+
+.DeleteBtn{
+  margin-top: 30px;
+  margin-left:50px;
+}
+
+.paw2{
+  color: #00303F;
+}
+
+.createpetbtn{
+  background-color: #DCAE1D;
+  color: #00303F;
+  margin-top: -10px;
+  margin-left: 10px;
+}
+
+.no-pet{
+  font-size: 50px;
+  margin-left: 140px;
+  margin-top: 40px;
+}
+
+/* .pet-img{
+  height: 200px;
+  width: 200px;
+  position: center;
+} */

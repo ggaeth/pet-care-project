@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import Footer from "../../components/Footer";
 import { LoginBtn, CreateAcctBtn, OwnerBtn, CareBtn } from "../../components/Buttons";
 import { CardHead, CardBody } from "../../components/Card";
-import Create from "../Create";
+// import Create from "../Create";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import "./Landing.css";
 
