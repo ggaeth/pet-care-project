@@ -321,6 +321,7 @@ class CreatePet extends Component {
           </div>
         </div>
       </div>
+      <Footer />
       </div>
         );
      }
