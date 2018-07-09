@@ -14,30 +14,22 @@ const InfoBox = props => (
     <Container>
       
       <div className="row">
-        <div className="col-8">
-          <h3 className="info">
-          <p>All Pets<i className="fas fa-paw"></i> All Care </p>
-          <p>We care about Pets just as much as you do!! </p>
-          We provide pet owners the ability to provide custom care information to caregivers about 
+        <div className="col-7">
+          <div className="info">
+          <div className="all">All Pets<i className="fas fa-paw"></i> All Care </div>
+          <div className="all2">We care about your Pets just as much as you do! </div>
+         <div className="all3"> We provide pet owners the ability to provide custom care information to caregivers about 
           their pet while they are away. This information enhances the care of their pets.  
           In addition, pet owners can specify special instructions for each pet and coordinate with the 
           caregiver to complete the status of very important tasks. If the specified task has not completed 
           with a specified time, our app can send a message to all parties informing them that an important 
-          task is overdue.Caregivers can also benefit from this application by having a repository of information 
+          task is overdue. Caregivers can also benefit from this application by having a repository of information 
           about each pet that is in their care. And, they can earn a good reputation from pet owners 
           by following all care instructions.
-          </h3>
+          </div>
         </div>
-        {/* <div className="col-1" />
-        <div className="col-5">
-          <img
-            src={Image}
-            alt="cat"
-            className="catpic"
-          /> */}
-        {/* </div> */}
       </div>
-      
+      </div>
     </Container>
     </div>
   // </div>

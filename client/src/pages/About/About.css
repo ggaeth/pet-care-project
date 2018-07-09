@@ -5,6 +5,8 @@
     margin-top: 40px;
     min-width: 800px;
     height: 660px;
+    filter: grayscale(40%);
+    
     
   }
   .container-fluid {
