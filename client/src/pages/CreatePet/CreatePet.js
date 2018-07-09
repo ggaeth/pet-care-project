@@ -97,19 +97,20 @@ class CreatePet extends Component {
   render() {
     return (
       <div className="background">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-md-12 text-center">
-              <Jumbotron>
-                <div className="create"><i className="fas fa-paw"></i> Create New Pet</div>
-              </Jumbotron>
-            </div>
+      <div className="container fluid">
+        <div className="row">
+          <div className="col text-center">
+          <Jumbotron>
+           <div className="caregiver"><i className="fas fa-paw"></i> Create New Pet</div>
+          
+          </Jumbotron>
+           
           </div>
         </div>
 
         <div className="row">
           <div className="col">
-            <div className="card">
+            <div className="card ">
               <CardHead> <div className="create2"><i className="fas fa-paw"></i>Create New Pet</div></CardHead>
               <div className="background">
                 <CardBody>
@@ -140,56 +141,48 @@ class CreatePet extends Component {
                           name="breed"
                           title="Breed:"
                           forattribute="petBreed"
-                          collabel="col-md-4"
-                          coldiv="col-md-8"
+                          collabel="col-md-2"
+                          coldiv="col-md-10"
                         />
                       </div>
-                      <div className="col-md-3">
-                        <InputRow
-                          value={this.state.gender}
-                          onChange={this.handleInputChange}
-                          name="gender"
-                          title="Gender:"
-                          forattribute="petGender"
-                          collabel="col-md-4"
-                          coldiv="col-md-8"
-                        />
+                      {/* <div className="row"> */}
+                      <div className="col-md-4">
+                        <label className="form-check-label col-md-4" htmlFor="gender-radio">Gender:</label>
+                        <div className="form-check form-check-inline" id="create-radio">
+                          <input className="form-check-input" type="radio" name="gender" id="inlineRadio1" value="M" checked={this.state.crate === "true"} onChange={this.handleInputChange} />
+                          <label className="form-check-label" htmlFor="inlineRadio1">M</label>
+                        </div>
+                        <div className="form-check form-check-inline" id="gender-radio">
+                          <input className="form-check-input" type="radio" name="gender" id="inlineRadio2" value="F" checked={this.state.crate === "false"} onChange={this.handleInputChange} />
+                          <label className="form-check-label" htmlFor="inlineRadio2">F</label>
+                        </div>
                       </div>
+                    
                     </div>
                     <div className="row">
                       <div className="col-md-6">
-                        {/* <Radio
-                                  value={this.state.crate}
-                                  onChange={this.handleInputChange}
-                                  name="crate"
-                                  title="Crate Trained:"
-                                  forattribute="petCrate"
-                                  collabel="col-md-4"
-                                  coldiv="col-md-3"
-                                />
-                            */}
-                        <label className="form-check-label col-md-4" htmlFor="crate-radio">Crate:</label>
+                        <label className="form-check-label col-md-4" htmlFor="crate-radio">Use Crate:</label>
                         <div className="form-check form-check-inline" id="create-radio">
-                          <input className="form-check-input" type="radio" name="crate" id="inlineRadio1" value="true" checked={this.state.crate === "true"} onChange={this.handleInputChange} />
+                          <input className="form-check-input" type="radio" name="crate" id="inlineRadio1" value="yes" checked={this.state.crate === "true"} onChange={this.handleInputChange} />
                           <label className="form-check-label" htmlFor="inlineRadio1">Yes</label>
                         </div>
                         <div className="form-check form-check-inline" id="create-radio">
-                          <input className="form-check-input" type="radio" name="crate" id="inlineRadio2" value="false" checked={this.state.crate === "false"} onChange={this.handleInputChange} />
+                          <input className="form-check-input" type="radio" name="crate" id="inlineRadio2" value="no" checked={this.state.crate === "false"} onChange={this.handleInputChange} />
                           <label className="form-check-label" htmlFor="inlineRadio2">No</label>
                         </div>
                       </div>
                     </div>
                     <div className="row">
-                      <div className="col-md-6 mt-2">
-                        <InputRow
-                          value={this.state.care_location}
-                          onChange={this.handleInputChange}
-                          name="care_location"
-                          title="Location for care:"
-                          forattribute="careLocation"
-                          collabel="col-md-4"
-                          coldiv="col-md-8"
-                        />
+                      <div className="col-md-6">
+                        <label className="form-check-label col-md-4" htmlFor="location-radio">Location for Care:</label>
+                        <div className="form-check form-check-inline" id="location-radio">
+                          <input className="form-check-input" type="radio" name="location" id="inlineRadio1" value="in home" checked={this.state.location === "true"} onChange={this.handleInputChange} />
+                          <label className="form-check-label" htmlFor="inlineRadio1"> In Home</label>
+                        </div>
+                        <div className="form-check form-check-inline" id="location-radio">
+                          <input className="form-check-input" type="radio" name="location" id="inlineRadio2" value="boarding" checked={this.state.location === "false"} onChange={this.handleInputChange} />
+                          <label className="form-check-label" htmlFor="inlineRadio2">Boarding</label>
+                        </div>
                       </div>
                     </div>
                     <div className="row">
@@ -219,15 +212,15 @@ class CreatePet extends Component {
                       </div>
                     </div>
                     <div className="row">
-                      <div className="col">
+                      <div className="col-md-6">
                         <InputRow
                           value={this.state.vet_address}
                           onChange={this.handleInputChange}
                           name="vet_address"
                           title="Vet Address:"
                           forattribute="petVetAdd"
-                          collabel="col-md-2"
-                          coldiv="col-md-10"
+                          collabel="col-md-4"
+                          coldiv="col-md-8"
                         />
                       </div>
                     </div>
@@ -297,7 +290,7 @@ class CreatePet extends Component {
                       </div>
                     </div>
                     <div className="row">
-                      <div className="col">
+                      <div className="col-sm-12">
                         <TextArea
                           value={this.state.pet_medications}
                           onChange={this.handleInputChange}
@@ -308,7 +301,7 @@ class CreatePet extends Component {
                       </div>
                     </div>
                     <div className="row">
-                      <div className="col">
+                      <div className="col-md-12">
                         <TextArea
                           value={this.state.pet_restrictions}
                           onChange={this.handleInputChange}
@@ -327,6 +320,7 @@ class CreatePet extends Component {
             </div>
           </div>
         </div>
+      </div>
       </div>
         );
      }

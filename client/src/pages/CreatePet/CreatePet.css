@@ -25,11 +25,18 @@
 
 .create2{
     width: 100%;
+    
 }
 
 .create3{
     border-style: solid;
   border-color: #00303F;
   border-width: 0px 6px 6px 6px;
+  
+}
+
+.create-pet{
+   margin-left:100px;
+   
 }
 
