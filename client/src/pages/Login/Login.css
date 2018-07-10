@@ -17,12 +17,12 @@ h4{
     font-size: 70px;
     color: white;
     margin-top: 100px;
-    margin-right: 380px;
+    margin-right: 360px;
 }
 
 .paw{
     font-size: 60px;
-    margin-right: 355px;
+    margin-right: 345px;
 }
 
 .CareLoginBtn{
@@ -37,4 +37,8 @@ h4{
     color: black;
     margin-left: 20px;
     margin-top: 10px;
+}
+
+.space{
+    margin-bottom: 100px;
 }

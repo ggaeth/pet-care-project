@@ -1,9 +1,9 @@
-infoTitle {
+.infoTitle {
   text-align: left;
   font-size: 6rem;
-  padding-top: 4rem;
+  /* padding-top: 4rem; */
   color: white;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   margin-left: 80px;
 }
 

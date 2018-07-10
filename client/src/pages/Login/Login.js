@@ -105,12 +105,14 @@ class Login extends Component {
               </Jumbotron2>
             </div>
           </div>
+          
           <div className="row">
             <div className="col-md-6">
               <div className="card">
-                <CardHead
-                  value="Pet Owner Login"
-                />
+                <CardHead>
+                  <div className="login"><i className="fas fa-paw"></i>Pet Owner Login</div>
+                </CardHead>
+                 <div className="background">
                 <CardBody>
                   <form>
                     <Input
@@ -135,13 +137,15 @@ class Login extends Component {
                     </OwnerLoginBtn>
                   </form>
                 </CardBody>
+                </div>
               </div>
             </div>
             <div className="col-md-6">
               <div className="card">
-                <CardHead
-                  value="Care Giver Login"
-                />
+              <CardHead>
+                  <div className="login"><i className="fas fa-paw"></i>Care Giver Login</div>
+                </CardHead>
+                <div className="background">
                 <CardBody>
                   <form>
                     <Input
@@ -166,10 +170,11 @@ class Login extends Component {
                   </CareLoginBtn>
                   </form>
                 </CardBody>
+                </div>
               </div>
             </div>
           </div>
-
+          <div className="space"></div>
         </div>
         <Footer />
       </div>
