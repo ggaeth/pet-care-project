@@ -20,3 +20,12 @@
     color: white;
     margin-top: 73px;
 }
+
+.required {
+  font-size: 60%;
+  float: right;
+}
+
+.error-msg {
+  color: red;
+}

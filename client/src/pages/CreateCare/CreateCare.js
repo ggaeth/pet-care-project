@@ -10,16 +10,39 @@ import { CardHead, CardBody } from "../../components/Card";
 import firebase from "firebase";
 import FileUploader from "react-firebase-file-uploader";
 import Image from "react-image-resizer";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Card, CardTitle, CardFooter, CardImg, CardSubtitle, CardText } from "reactstrap";
 import "./CreateCare.css";
 
 class CreateCare extends Component {
-  state = {
-    careGiver: {},
-    image: "",
-    isUploading: false,
-    progress: 0,
-    imageURL: ""
-  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      modal7: false,
+      careGiver: {},
+      image: "",
+      isUploading: false,
+      progress: 0,
+      imageURL: "",
+      errorMsg: ""
+    };
+
+    this.toggle7 = this.toggle7.bind(this);
+  }
+
+  toggle7() {
+    this.setState({
+      modal7: !this.state.modal7
+    });
+  }
+
+  // state = {
+  //   careGiver: {},
+  //   image: "",
+  //   isUploading: false,
+  //   progress: 0,
+  //   imageURL: ""
+  // };
 
   //componentDidMount() {
   //  console.log("in mount ", this.props.location.state);
@@ -87,7 +110,53 @@ class CreateCare extends Component {
 
   userFormSubmit = event => {
     event.preventDefault();
+    let allRequired = false;
 
+    if (!this.state.careUsername) {
+      allRequired = false;
+      this.setState({
+        errorMsg: "User Name"
+      })
+    } else if (!this.state.carePassword) {
+      allRequired = false;
+      this.setState({
+        errorMsg: "Password"
+      })
+    } else if (!this.state.careName) {
+      allRequired = false;
+      this.setState({
+        errorMsg: "Name"
+      })
+      } else if (!this.state.careAddress) {
+        allRequired = false;
+        this.setState({
+          errorMsg: "Address"
+        })
+      } else if (!this.state.careCity) {
+        allRequired = false;
+        this.setState({
+          errorMsg: "City"
+        })
+      } else if (!this.state.careState) {
+        allRequired = false;
+        this.setState({
+          errorMsg: "State"
+        })
+      } else if (!this.state.careZipcode) {
+        allRequired = false;
+        this.setState({
+          errorMsg: "Zip Code"
+        })
+      } else if (!this.state.carePhone) {
+        allRequired = false;
+        this.setState({
+          errorMsg: "Phone"
+        })
+      } else {
+        allRequired = true;
+      }
+
+    if (allRequired){
     if (this.state.careUsername && this.state.carePassword) {
 
       const careLogObj = {
@@ -104,8 +173,11 @@ class CreateCare extends Component {
           //        console.log(res)
         )
         .catch(err => console.log(err));
-    }
-  
+    }  
+    } else {
+      this.toggle7();
+      console.log("error array", this.state.errorMsg);
+  }
   };
 
   render() {
@@ -124,7 +196,7 @@ class CreateCare extends Component {
           <div className="row">
             <div className="col">
               <div className="card">
-                <CardHead> <div className="create2"><i className="fas fa-paw"></i> Create Caregiver Account</div></CardHead>
+                <CardHead> <div className="create2"><i className="fas fa-paw"></i> Create Caregiver Account <span className="required">* = required field</span></div></CardHead>
                 <div className="background">
                   <CardBody>
                     <form>
@@ -132,7 +204,7 @@ class CreateCare extends Component {
                         value={this.state.careUsername}
                         onChange={this.handleInputChange}
                         name="careUsername"
-                        title="User Name:"
+                        title="User Name: *"
                         forattribute="careId"
                         collabel="col-md-2"
                         coldiv="col-md-10"
@@ -141,7 +213,7 @@ class CreateCare extends Component {
                         value={this.state.carePassword}
                         onChange={this.handleInputChange}
                         name="carePassword"
-                        title="Password:"
+                        title="Password: *"
                         forattribute="carePsswrd"
                         collabel="col-md-2"
                         coldiv="col-md-10"
@@ -150,7 +222,7 @@ class CreateCare extends Component {
                         value={this.state.careName}
                         onChange={this.handleInputChange}
                         name="careName"
-                        title="Name:"
+                        title="Name: *"
                         forattribute="careNm"
                         collabel="col-md-2"
                         coldiv="col-md-10"
@@ -159,7 +231,7 @@ class CreateCare extends Component {
                         value={this.state.careAddress}
                         onChange={this.handleInputChange}
                         name="careAddress"
-                        title="Address:"
+                        title="Address: *"
                         forattribute="careAdd"
                         collabel="col-md-2"
                         coldiv="col-md-10"
@@ -170,7 +242,7 @@ class CreateCare extends Component {
                             value={this.state.careCity}
                             onChange={this.handleInputChange}
                             name="careCity"
-                            title="City:"
+                            title="City: *"
                             forattribute="careCty"
                             collabel="col-md-4"
                             coldiv="col-md-8"
@@ -181,7 +253,7 @@ class CreateCare extends Component {
                             value={this.state.careState}
                             onChange={this.handleInputChange}
                             name="careState"
-                            title="State:"
+                            title="State: *"
                             forattribute="careState"
                             collabel="col-md-4"
                             coldiv="col-md-8"
@@ -192,7 +264,7 @@ class CreateCare extends Component {
                             value={this.state.careZipcode}
                             onChange={this.handleInputChange}
                             name="careZipcode"
-                            title="Zip:"
+                            title="Zip: *"
                             forattribute="careZp"
                             collabel="col-md-3"
                             coldiv="col-md-9"
@@ -205,7 +277,7 @@ class CreateCare extends Component {
                             value={this.state.carePhone}
                             onChange={this.handleInputChange}
                             name="carePhone"
-                            title="Phone:"
+                            title="Phone: *"
                             forattribute="carePh"
                             collabel="col-md-4"
                             coldiv="col-md-8"
@@ -286,6 +358,27 @@ class CreateCare extends Component {
           </div>
         </div>
         <Footer />
+
+        <Modal isOpen={this.state.modal7} toggle={this.toggle7} className={this.props.className} size="lg" backdrop="static" >
+          <ModalHeader toggle={this.toggle7}><div className="account">Error Message</div></ModalHeader>
+          <ModalBody>
+            <div className="card">
+
+              <CardHead
+                value="Error Message"
+              />
+              <CardBody>
+                <div className="row">
+                  <div className="col">
+                    <p className="error-msg">Please enter a valid {this.state.errorMsg}.</p>
+                  </div>
+                </div>
+                <Button className="modal-btn" onClick={this.toggle7}>Close</Button>
+              </CardBody>
+            </div>
+          </ModalBody>
+        </Modal>
+
       </div>
     );
   }
