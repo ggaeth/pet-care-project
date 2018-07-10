@@ -119,28 +119,26 @@ class OwnerView extends Component {
                     
                       <div className="col-4 pet-card2">
               
-                    <Card onClick={() => this.petView(pet.owner_id, pet.pet_id, this.state.owner[0].username)} >
+                    <Card>
                       <div>
                         <CardImg div className="pet-img" top width="100%"
                           src={pet.pet_image}
                           alt="Card image cap"
                           id={pet.pet_id}
                           key={pet.pet_id}
-                          onClick={() => this.petView(pet.owner_id, pet.pet_id)}
+                          onClick={() => this.petView(pet.owner_id, pet.pet_id, this.state.owner[0].username)} 
                         />
-                        <CardBody div className="pet-body" onClick={() => this.petView(pet.owner_id, pet.pet_id)} >
-                          <CardTitle><div className="pet2"><i className="fas fa-paw"></i>
+                        <CardBody div className="pet-body" >
+                          <CardTitle onClick={() => this.petView(pet.owner_id, pet.pet_id, this.state.owner[0].username)}><div className="pet2"><i className="fas fa-paw"></i>
                             {pet.name}
                             </div>
                           </CardTitle>
-                        </CardBody>
-                        <CardFooter> 
-                           <DeleteBtn
+                          <DeleteBtn
                             onClick={this.deletePet}
                             name="pet_id"
                             value={pet.pet_id} >Delete
-                            </DeleteBtn> 
-                         </CardFooter>
+                            </DeleteBtn>
+                        </CardBody>
                       </div>
                     </Card>
                     </div>

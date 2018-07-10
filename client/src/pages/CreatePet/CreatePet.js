@@ -145,10 +145,9 @@ class CreatePet extends Component {
                           coldiv="col-md-10"
                         />
                       </div>
-                      </div>
                       {/* <div className="row"> */}
-                      {/* <div className="col-md-4">
-                           <label className="form-check-label col-md-4" htmlFor="gender-radio">Gender:</label>
+                      <div className="col-md-4">
+                        <label className="form-check-label col-md-4" htmlFor="gender-radio">Gender:</label>
                         <div className="form-check form-check-inline" id="gender-radio">
                           <input className="form-check-input" type="radio" name="gender" id="inlineRadio1" value="M" checked={this.state.gender === "M"} onChange={this.handleInputChange} />
                           <label className="form-check-label" htmlFor="inlineRadio1">M</label>
@@ -164,28 +163,28 @@ class CreatePet extends Component {
                       <div className="crate col-md-6">
                         <label className="form-check-label col-md-4" htmlFor="crate-radio">Use Crate:</label>
                         <div className="form-check form-check-inline" id="create-radio">
-                          <input className="form-check-input" type="radio" name="crate" id="inlineRadio3" value="yes" checked={this.state.crate === "true"} onChange={this.handleInputChange} />
-                          <label className="form-check-label" htmlFor="inlineRadio1">Yes</label>
+                          <input className="form-check-input" type="radio" name="crate" id="inlineRadio3" value="yes" checked={this.state.crate === "yes"} onChange={this.handleInputChange} />
+                          <label className="form-check-label" htmlFor="inlineRadio3">Yes</label>
                         </div>
                         <div className="form-check form-check-inline" id="create-radio">
-                          <input className="form-check-input" type="radio" name="crate" id="inlineRadio2" value="no" checked={this.state.crate === "false"} onChange={this.handleInputChange} />
-                          <label className="form-check-label" htmlFor="inlineRadio2">No</label>
+                          <input className="form-check-input" type="radio" name="crate" id="inlineRadio4" value="no" checked={this.state.crate === "no"} onChange={this.handleInputChange} />
+                          <label className="form-check-label" htmlFor="inlineRadio4">No</label>
                         </div>
                       </div>
                     {/* </div> */}
                     {/* <div className="row"> */}
-                      {/* <div className="col-md-6">
+                      <div className="col-md-6">
                         <label className="form-check-label col-md-6" htmlFor="location-radio">Location for Care:</label>
                         <div className="form-check form-check-inline" id="location-radio">
-                          <input className="form-check-input" type="radio" name="location" id="inlineRadio5" value="in home" checked={this.state.location === "true"} onChange={this.handleInputChange} />
-                          <label className="form-check-label" htmlFor="inlineRadio1"> In Home</label>
+                          <input className="form-check-input" type="radio" name="care_location" id="inlineRadio5" value="in home" checked={this.state.care_location === "in home"} onChange={this.handleInputChange} />
+                          <label className="form-check-label" htmlFor="inlineRadio5"> In Home</label>
                         </div>
                         <div className="form-check form-check-inline" id="location-radio">
-                          <input className="form-check-input" type="radio" name="location" id="inlineRadio2" value="boarding" checked={this.state.location === "false"} onChange={this.handleInputChange} />
-                          <label className="form-check-label" htmlFor="inlineRadio2">Boarding</label>
+                          <input className="form-check-input" type="radio" name="care_location" id="inlineRadio6" value="boarding" checked={this.state.care_location === "boarding"} onChange={this.handleInputChange} />
+                          <label className="form-check-label" htmlFor="inlineRadio6">Boarding</label>
                         </div>
                       </div>
-                    </div> */} 
+                    </div>
                     <div className="row">
                       <div className="col-md-6">
                         <InputRow

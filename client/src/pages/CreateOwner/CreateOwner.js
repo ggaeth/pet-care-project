@@ -10,17 +10,40 @@ import { CardHead, CardBody } from "../../components/Card";
 import firebase from "firebase";
 import FileUploader from "react-firebase-file-uploader";
 import Image from "react-image-resizer";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Card, CardTitle, CardFooter, CardImg, CardSubtitle, CardText } from "reactstrap";
 import "./CreateOwner.css";
 
 class CreateOwner extends Component {
 
-  state = {
-    petOwner: {},
-    image: "",
-    isUploading: false,
-    progress: 0,
-    imageURL: ""
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      modal6: false,
+      petOwner: {},
+      image: "",
+      isUploading: false,
+      progress: 0,
+      imageURL: "",
+      errorMsg: ""
+    };
+
+    this.toggle6 = this.toggle6.bind(this);
+  }
+
+  toggle6() {
+    this.setState({
+      modal6: !this.state.modal6
+    });
+  }
+
+  // state = {
+  //   petOwner: {},
+  //   image: "",
+  //   isUploading: false,
+  //   progress: 0,
+  //   imageURL: "",
+  //   errorMsg: []
+  // };
 
   handleInputChange = event => {
     // console.log("handleInputChange for " + event.target.name + "  " + event.target.value);
@@ -82,7 +105,53 @@ class CreateOwner extends Component {
 
   userFormSubmit = event => {
     event.preventDefault();
-    
+    let allRequired = false;
+
+    if (!this.state.ownerUsername) {
+      allRequired = false;
+      this.setState({
+        errorMsg: "User Name"
+      })
+    } else if (!this.state.ownerPassword) {
+      allRequired = false;
+      this.setState({
+        errorMsg: "Password"
+      })
+    } else if (!this.state.ownerName) {
+      allRequired = false;
+      this.setState({
+        errorMsg: "Name"
+      })
+      } else if (!this.state.ownerAddress) {
+        allRequired = false;
+        this.setState({
+          errorMsg: "Address"
+        })
+      } else if (!this.state.ownerCity) {
+        allRequired = false;
+        this.setState({
+          errorMsg: "City"
+        })
+      } else if (!this.state.ownerState) {
+        allRequired = false;
+        this.setState({
+          errorMsg: "State"
+        })
+      } else if (!this.state.ownerZipcode) {
+        allRequired = false;
+        this.setState({
+          errorMsg: "Zip Code"
+        })
+      } else if (!this.state.ownerPhone) {
+        allRequired = false;
+        this.setState({
+          errorMsg: "Phone"
+        })
+      } else {
+        allRequired = true;
+      }
+
+    if (allRequired){
     if (this.state.ownerUsername && this.state.ownerPassword) {
 
       const ownLogObj = {
@@ -100,6 +169,10 @@ class CreateOwner extends Component {
         )
         .catch(err => console.log(err));
     }
+  } else {
+    this.toggle6();
+    console.log("error array", this.state.errorMsg);
+  }
   };
 
   careFormSubmit = event => {
@@ -130,7 +203,7 @@ class CreateOwner extends Component {
         <div className="row">
           <div className="col">
             <div className="card">
-            <CardHead> <div className="create2">Create Owner Account</div></CardHead>
+            <CardHead> <div className="create2">Create Owner Account <span className="required">* = required field</span></div></CardHead>
             <div className="background">
               <CardBody>
                 <form>
@@ -138,7 +211,7 @@ class CreateOwner extends Component {
                     value={this.state.ownerUsername}
                     onChange={this.handleInputChange}
                     name="ownerUsername"
-                    title="User Name:"
+                    title="User Name: *"
                     forattribute="ownerId"
                     collabel="col-md-2"
                     coldiv="col-md-10"
@@ -147,7 +220,7 @@ class CreateOwner extends Component {
                     value={this.state.ownerPassword}
                     onChange={this.handleInputChange}
                     name="ownerPassword"
-                    title="Password:"
+                    title="Password: *"
                     forattribute="ownerPsswrd"
                     collabel="col-md-2"
                     coldiv="col-md-10"
@@ -156,7 +229,7 @@ class CreateOwner extends Component {
                     value={this.state.ownerName}
                     onChange={this.handleInputChange}
                     name="ownerName"
-                    title="Name:"
+                    title="Name: *"
                     forattribute="ownerNm"
                     collabel="col-md-2"
                     coldiv="col-md-10"
@@ -165,7 +238,7 @@ class CreateOwner extends Component {
                     value={this.state.ownerAddress}
                     onChange={this.handleInputChange}
                     name="ownerAddress"
-                    title="Address:"
+                    title="Address: *"
                     forattribute="ownerAdd"
                     collabel="col-md-2"
                     coldiv="col-md-10"
@@ -176,7 +249,7 @@ class CreateOwner extends Component {
                         value={this.state.ownerCity}
                         onChange={this.handleInputChange}
                         name="ownerCity"
-                        title="City:"
+                        title="City: *"
                         forattribute="ownerCty"
                         collabel="col-md-4"
                         coldiv="col-md-8"
@@ -187,7 +260,7 @@ class CreateOwner extends Component {
                         value={this.state.ownerState}
                         onChange={this.handleInputChange}
                         name="ownerState"
-                        title="State:"
+                        title="State: *"
                         forattribute="ownerState"
                         collabel="col-md-4"
                         coldiv="col-md-8"
@@ -198,7 +271,7 @@ class CreateOwner extends Component {
                         value={this.state.ownerZipcode}
                         onChange={this.handleInputChange}
                         name="ownerZipcode"
-                        title="Zip:"
+                        title="Zip: *"
                         forattribute="ownerZp"
                         collabel="col-md-3"
                         coldiv="col-md-9"
@@ -211,7 +284,7 @@ class CreateOwner extends Component {
                         value={this.state.ownerPhone}
                         onChange={this.handleInputChange}
                         name="ownerPhone"
-                        title="Phone:"
+                        title="Phone: *"
                         forattribute="ownerPh"
                         collabel="col-md-4"
                         coldiv="col-md-8"
@@ -293,6 +366,27 @@ class CreateOwner extends Component {
         </div>
         </div>
         <Footer />
+
+        <Modal isOpen={this.state.modal6} toggle={this.toggle6} className={this.props.className} size="lg" backdrop="static" >
+          <ModalHeader toggle={this.toggle6}><div className="account">Error Message</div></ModalHeader>
+          <ModalBody>
+            <div className="card">
+
+              <CardHead
+                value="Error Message"
+              />
+              <CardBody>
+                <div className="row">
+                  <div className="col">
+                    <p className="error-msg">Please enter a valid {this.state.errorMsg}.</p>
+                  </div>
+                </div>
+                <Button className="modal-btn" onClick={this.toggle6}>Close</Button>
+              </CardBody>
+            </div>
+          </ModalBody>
+        </Modal>
+
       </div>
 
     );
