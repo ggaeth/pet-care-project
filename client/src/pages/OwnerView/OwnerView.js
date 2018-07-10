@@ -106,12 +106,12 @@ class OwnerView extends Component {
             </Jumbotron>
           <div className="row">
 
-            <div className=" pet-card col-2">
+             {/* <div className=" pet-card col-2"> */}
 
               <CreatePetBtn  onClick={() => this.petPage(this.state.owner[0].owner_id, this.state.owner[0].username)} >
               <div className="pet"><i className=" paw2 fas fa-paw"></i>Create Pet</div> 
               </CreatePetBtn>
-            </div>
+            {/* </div> */}
             {this.state.pets.length ? (
               
               <div className="col-9">

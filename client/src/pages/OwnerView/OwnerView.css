@@ -12,6 +12,7 @@
 
 .pet2{
   font-size: 30px;
+  margin-left: 10px;
   
 }
 
@@ -43,7 +44,7 @@
 
 .DeleteBtn{
   margin-top: 30px;
-  margin-left:50px;
+  margin-left:80px;
 }
 
 .paw2{
@@ -53,21 +54,25 @@
 .createpetbtn{
   background-color: #DCAE1D;
   color: #00303F;
-  margin-top: -60px;
-  margin-left: 490px;
+  margin-top: 20px;
+  margin-left: 510px;
 }
 
 .no-pet{
   font-size: 60px;
-  margin-left: 115px;
-  margin-top: 100px;
+  margin-left: 300px;
+  margin-top: 10px;
 }
 
-/* .pet-img{
+.pet-img{
   height: 200px;
   width: 200px;
-  position: center;
-} */
+  position: relative;
+  border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 100%;
+}
 
 .space1{
   margin-bottom: 200px;
