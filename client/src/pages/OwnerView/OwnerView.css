@@ -53,14 +53,14 @@
 .createpetbtn{
   background-color: #DCAE1D;
   color: #00303F;
-  margin-top: -10px;
-  margin-left: 10px;
+  margin-top: -60px;
+  margin-left: 490px;
 }
 
 .no-pet{
-  font-size: 50px;
-  margin-left: 140px;
-  margin-top: 40px;
+  font-size: 60px;
+  margin-left: 115px;
+  margin-top: 100px;
 }
 
 /* .pet-img{
@@ -68,3 +68,7 @@
   width: 200px;
   position: center;
 } */
+
+.space1{
+  margin-bottom: 200px;
+}

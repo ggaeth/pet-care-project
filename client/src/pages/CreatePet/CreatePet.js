@@ -145,15 +145,16 @@ class CreatePet extends Component {
                           coldiv="col-md-10"
                         />
                       </div>
+                      </div>
                       {/* <div className="row"> */}
-                      <div className="col-md-4">
-                        <label className="form-check-label col-md-4" htmlFor="gender-radio">Gender:</label>
-                        <div className="form-check form-check-inline" id="create-radio">
-                          <input className="form-check-input" type="radio" name="gender" id="inlineRadio1" value="M" checked={this.state.crate === "true"} onChange={this.handleInputChange} />
+                      {/* <div className="col-md-4">
+                           <label className="form-check-label col-md-4" htmlFor="gender-radio">Gender:</label>
+                        <div className="form-check form-check-inline" id="gender-radio">
+                          <input className="form-check-input" type="radio" name="gender" id="inlineRadio1" value="M" checked={this.state.gender === "M"} onChange={this.handleInputChange} />
                           <label className="form-check-label" htmlFor="inlineRadio1">M</label>
                         </div>
                         <div className="form-check form-check-inline" id="gender-radio">
-                          <input className="form-check-input" type="radio" name="gender" id="inlineRadio2" value="F" checked={this.state.crate === "false"} onChange={this.handleInputChange} />
+                          <input className="form-check-input" type="radio" name="gender" id="inlineRadio2" value="F" checked={this.state.gender === "F"} onChange={this.handleInputChange} />
                           <label className="form-check-label" htmlFor="inlineRadio2">F</label>
                         </div>
                       </div>
@@ -173,7 +174,7 @@ class CreatePet extends Component {
                       </div>
                     {/* </div> */}
                     {/* <div className="row"> */}
-                      <div className="col-md-6">
+                      {/* <div className="col-md-6">
                         <label className="form-check-label col-md-6" htmlFor="location-radio">Location for Care:</label>
                         <div className="form-check form-check-inline" id="location-radio">
                           <input className="form-check-input" type="radio" name="location" id="inlineRadio5" value="in home" checked={this.state.location === "true"} onChange={this.handleInputChange} />
@@ -184,7 +185,7 @@ class CreatePet extends Component {
                           <label className="form-check-label" htmlFor="inlineRadio2">Boarding</label>
                         </div>
                       </div>
-                    </div>
+                    </div> */} 
                     <div className="row">
                       <div className="col-md-6">
                         <InputRow

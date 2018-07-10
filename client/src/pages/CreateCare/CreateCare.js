@@ -124,7 +124,7 @@ class CreateCare extends Component {
           <div className="row">
             <div className="col">
               <div className="card">
-                <CardHead> <div className="create2">Create Caregiver Account</div></CardHead>
+                <CardHead> <div className="create2"><i className="fas fa-paw"></i> Create Caregiver Account</div></CardHead>
                 <div className="background">
                   <CardBody>
                     <form>

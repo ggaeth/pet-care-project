@@ -131,21 +131,16 @@ class OwnerView extends Component {
                         <CardBody div className="pet-body" onClick={() => this.petView(pet.owner_id, pet.pet_id)} >
                           <CardTitle><div className="pet2"><i className="fas fa-paw"></i>
                             {pet.name}
-                            <DeleteBtn
-                            onClick={this.deletePet}
-                            name="pet_id"
-                            value={pet.pet_id} >Delete
-                            </DeleteBtn>
                             </div>
                           </CardTitle>
                         </CardBody>
-                        {/* <CardFooter> */}
-                          {/* <DeleteBtn
+                        <CardFooter> 
+                           <DeleteBtn
                             onClick={this.deletePet}
                             name="pet_id"
                             value={pet.pet_id} >Delete
-                            </DeleteBtn> */}
-                        {/* </CardFooter> */}
+                            </DeleteBtn> 
+                         </CardFooter>
                       </div>
                     </Card>
                     </div>
@@ -158,7 +153,7 @@ class OwnerView extends Component {
                 )}
             
           </div>
-          
+          <div className="space1"></div>
         </div>
         <Footer />
       </div>

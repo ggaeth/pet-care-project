@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import Jumbotron from "../../components/Jumbotron";
+import Footer from "../../components/Footer";
 import Nav from "../../components/Nav";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
@@ -78,8 +79,9 @@ class CareGiverView extends Component {
       <div className="background">
         <div className="container fluid">
           <Jumbotron>
-            Caregiver View
+            <div className="cg"><i className="fas fa-paw"></i> Caregiver View</div>
             </Jumbotron>
+            <div className="background">
           <div className="row">
             <div className="col-3">
               {this.state.pets.length ? (
@@ -98,14 +100,22 @@ class CareGiverView extends Component {
                     </div>
                   
                 </Card>
+                
                   ))}
                   </div>
+                  
               ) : (
-                  <h3>No Results to Display</h3>
+
+                <div className="row">
+                  <div className="no-pet2 col-md-12"><i className="fas fa-paw"></i>No Pets</div>
+                  </div>
                 )}
             </div>
-          </div>
-        </div>
+            </div>
+            </div>
+            <div className="space2"></div>
+            </div>
+            <Footer />
       </div>
 
 
