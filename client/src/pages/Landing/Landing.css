@@ -14,8 +14,8 @@ h1{
 h2{
   color: white;
   margin-top: 100px;
-  margin-left: 170px;
-  font-size: 40px;
+  margin-left: 160px;
+  font-size: 48px;
 
 }
 
@@ -24,15 +24,15 @@ h2{
 }
 
 .LoginBtn{
-  margin-top: 150px;
-  margin-left: 205px;
+  margin-top: 120px;
+  margin-left: 210px;
   background-color:#DCAE1D;
   color: black;
   text-align: center;
 }
 
 .CreateAcctBtn{
-  margin-left: 290px;
+  margin-left: 295px;
   background-color:#DCAE1D;
   color: black;
   margin-top: -77px;
@@ -70,10 +70,14 @@ text-align: center;
 
 .ownerbtn{
   background-color:#DCAE1D;
+  margin-left: 50px;
+  margin-top: 10px;
 }
 
 .caregiverbtn{
   background-color: #DCAE1D;
+  margin-left: 40px;
+  margin-top: 10px;
 }
 
 .modal-header {
@@ -83,6 +87,18 @@ text-align: center;
 
 .modal-body{
   background-color: #CAE4DB;
+}
+
+.account1{
+  margin-left: -1px;
+}
+
+.account2{
+  margin-left: 40px;
+}
+
+.account3{
+  margin-left: 15px;
 }
 
 

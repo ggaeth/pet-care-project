@@ -63,9 +63,10 @@ class Landing extends Component {
                 <div className="col-md-6">
                   <div className="card">
                   
-                    <CardHead
-                      value="Create Pet Owner Account"
-                    />
+                    <CardHead>
+                    <div className="account3">Create Owner</div>
+                    <div className="account2">Account</div>
+                    </CardHead>
                     <CardBody>
                       <Link to="/createowner" className="btn-link">
                         <OwnerBtn>
@@ -77,9 +78,10 @@ class Landing extends Component {
                 </div>
                 <div className="col-md-6">
                   <div className="card">
-                    <CardHead
-                      value="Create Care Giver Account"
-                    />
+                    <CardHead>
+                      <div className="account1">Create CareGiver</div>
+                      <div className="account2">Account</div>
+                    </CardHead>
                     <CardBody>
                       <Link to="/createcare" className="btn-link">
                         <CareBtn>

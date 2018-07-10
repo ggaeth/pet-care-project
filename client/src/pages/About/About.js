@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Jumbotron from "../../components/Jumbotron";
-import DogPic from "../../components/DogPic";
+import CatPic from "../../components/CatPic";
 import Footer from "../../components/Footer";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
@@ -18,12 +18,12 @@ class CarePetView extends Component {
      <div className="background">
       <div className="container-fluid">
 
-      <DogPic>
+      <CatPic>
             <div className="col-md-8">
           </div>
             <InfoBox />
             
-            </DogPic>
+            </CatPic>
         
              {/* </div> */}
             </div>
