@@ -53,15 +53,15 @@ module.exports = (sequelize, DataTypes) => {
     },
     vet_city: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     vet_state: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     vet_zip_code: {
       type: DataTypes.INTEGER(5),
-      allowNull: false
+      allowNull: true
     },
     vet_phone: {
       type: DataTypes.STRING,
