@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import Jumbotron from "../../components/Jumbotron";
+import Footer from "../../components/Footer";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { AddBtn, DeleteBtn, TodoBtn, TodoDelBtn, CareBtn, PetViewBtn, OwnPetModalCloseBtn } from "../../components/Buttons";
@@ -353,11 +354,12 @@ class PetView extends Component {
 
   render() {
     return (
+      <div className="background">
       <div className="container fluid">
         <div className="row">
           <Container>
             <Jumbotron>
-              Pet View
+             <div className="petView"><i className=" paw3 fas fa-paw"></i> Pet View</div>
             </Jumbotron>
           </Container>
         </div>
@@ -368,19 +370,19 @@ class PetView extends Component {
                 // <Card onClick={() => this.petView(pet.owner_id, pet.pet_id, this.state.owner[0].username)} >
                 <Card onClick={this.toggle}>
                   <div>
-                    <CardImg top width="100%"
+                    <CardImg div className="pet-img" top width="100%"
                       src={this.state.pet.pet_image}
                       alt="Card image cap"
                       id={this.state.pet.pet_id}
                       key={this.state.pet.pet_id}
                     />
-                    <CardBody>
+                    {/* <CardBody> */}
                       {/* <CardTitle>
                         {this.state.pet.name}
                       </CardTitle> */}
-                    </CardBody>
+                    {/* </CardBody> */}
                     <CardFooter className="cardFooter">
-                      <p>View/Edit Details for {this.state.pet.name}</p>
+                      <p><i className="paw3 fas fa-paw"></i>View & Edit Details for {this.state.pet.name}</p>
                       {/* <p>{this.state.pet.name}</p> */}
                     </CardFooter>
                   </div>
@@ -394,7 +396,7 @@ class PetView extends Component {
               {this.state.caregivers.filter(cg => cg.caregiver_id == this.state.pet.caregiver_id).map(cg => (
                 <Card className="cg-card" onClick={this.toggle5}>
                   <div>
-                    <CardImg top width="100%"
+                    <CardImg div className="pet-img" top width="100%"
                       src={cg.caregiver_image}
                       alt="Card image cap"
                       id={cg.caregiver_id}
@@ -418,7 +420,7 @@ class PetView extends Component {
                 coldiv="col-md-4"
                 type="submit"
                 onClick={() => this.ownerPage(this.state.pet.owner_id, this.props.location.state.username)}
-              >Back to Owner Overview
+              >Back
               </PetViewBtn>
 
               {/* <button className="btn btn-lg" onClick={() => this.ownerPage(this.state.pet.owner_id, this.props.location.state.username)} >
@@ -427,16 +429,18 @@ class PetView extends Component {
 
             </Container>
           </div>
-
+           
           {/* <div className="row"> */}
           <div className="col-8">
           <div className="row">
               <div className="col-md-12">
-                <Card>
+                <Card div className="todo-body">
                   <CardHead>
-                    <h5>Add a To-Do Item</h5>
+                    <h5><i className=" paw3 fas fa-paw"></i>Add a To-Do Item</h5>
                   </CardHead>
-                  <CardBody>
+                  <div className="background"> 
+                  <CardBody >
+                  
                     <form>
                       <div className="row">
                         {/* <div className="col-md-2">
@@ -494,16 +498,19 @@ class PetView extends Component {
                         >Add To-Do
                     </TodoBtn>
                     </form>
+                    
                   </CardBody>
+                  </div>
                 </Card>
               </div>
             </div>
             <div className="row todo-row">
               <div className="col-md-12 no-padding">
-                      <Card>
+                      <Card div className="todo-body">
                       <CardHead>
-                        <h5>To-Do Item(s)</h5>
+                        <h5><i className=" paw3 fas fa-paw"></i>To-Do Item(s)</h5>
                       </CardHead>
+                      <div className="background">
                       <CardBody>
                           {/* <button className="btn btn-lg mr-3 mb-5 float-left"
                             onClick={this.updateTodoCompleted}
@@ -547,20 +554,23 @@ class PetView extends Component {
                       )}
                       </div>
                       </CardBody>
+                      </div>
                       </Card>
                   </div>
             </div>
           </div>
         </div>
+      
 
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} size="lg" backdrop="static" >
-          <ModalHeader toggle={this.toggle}><div className="account">Update Pet Details</div></ModalHeader>
+          <ModalHeader toggle={this.toggle}><div className="account"><i className=" paw3 fas fa-paw"></i>Update Pet Details</div></ModalHeader>
           <ModalBody>
-            <div className="card">
+            <div className="card todo-body">
 
-              <CardHead
-                value="Pet Details"
-              />
+              <CardHead>
+              <div className="Details"><i className=" paw3 fas fa-paw"></i>Pet Details</div>
+              </CardHead>
+              <div className="background">
               <CardBody>
                 <div className="row">
                   <div className="col-6">
@@ -766,18 +776,20 @@ class PetView extends Component {
                 <Button className="modal-close" onClick={this.toggle}>Close</Button>
                 </div>
               </CardBody>
+              </div>
             </div>
           </ModalBody>
         </Modal>
 
         <Modal isOpen={this.state.modal2} toggle={this.toggle2} className={this.props.className} size="lg" backdrop="static" >
-          <ModalHeader toggle={this.toggle2}><div className="account">Choose a Care Giver</div></ModalHeader>
+          <ModalHeader toggle={this.toggle2}><div className="account"><i className=" paw3 fas fa-paw"></i>Choose a Care Giver</div></ModalHeader>
           <ModalBody>
-            <div className="card">
+          <div className="card todo-body">
 
-              <CardHead
-                value="Care Givers"
-              />
+              <CardHead>
+               <div className="Details"><i className=" paw3 fas fa-paw"></i>Care Givers</div> 
+              </CardHead>
+              {/* <div className="background"> */}
               <CardBody>
                 <div className="row">
                   <table class="table table-bordered">
@@ -810,6 +822,7 @@ class PetView extends Component {
                   <Button className="modal-close-2" onClick={this.toggle2}>Close</Button>
                 </div>
               </CardBody>
+               {/* </div> */}
             </div>
           </ModalBody>
         </Modal>
@@ -869,6 +882,9 @@ class PetView extends Component {
             </div>
           </ModalBody>
         </Modal>
+        <div className="space3"></div>
+      </div>
+      <Footer />
       </div>
 
     );
