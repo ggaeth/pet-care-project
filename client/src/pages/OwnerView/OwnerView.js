@@ -22,10 +22,10 @@ class OwnerView extends Component {
 
     this.getOwner(this.props.location.state.username);
 
-    if (this.props.location.state.fromPage === "CreatePet") {
-      console.log("location fromPage CreatePet");
-      this.getPets(this.props.location.state.ownerid);
-    }
+    // if (this.props.location.state.fromPage === "CreatePet") {
+    //   console.log("location fromPage CreatePet");
+    //   this.getPets(this.props.location.state.ownerid);
+    // }
     if (this.props.location.state.pathName === "/petview/") {
       console.log("location pathName petview");
       this.getPets(this.props.location.state.ownerId);
@@ -86,7 +86,13 @@ class OwnerView extends Component {
       console.log("hasPets");
       this.getPets(this.props.location.state.ownerid);
     }
+    else if (this.props.location.state.fromPage === "LoginOwner") {
+      console.log("hasPets from login");
+      console.log("hasPets login this.state ", this.state);
+      this.getPets(this.state.owner[0].owner_id);
+    }
   }
+
   petPage = (id, username) => {
     this.props.history.push("/createpet/", { id: id, username: username })
   };
