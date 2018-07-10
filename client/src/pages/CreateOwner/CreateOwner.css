@@ -17,3 +17,12 @@
    background-color: #00303F;
    filter: grayscale(0%);
 }
+
+.required {
+  font-size: 60%;
+  float: right;
+}
+
+.error-msg {
+  color: red;
+}
