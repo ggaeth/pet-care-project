@@ -10,20 +10,45 @@ import { CardHead, CardBody } from "../../components/Card";
 import firebase from "firebase";
 import FileUploader from "react-firebase-file-uploader";
 import Image from "react-image-resizer";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Card, CardTitle, CardFooter, CardImg, CardSubtitle, CardText } from "reactstrap";
 import "./CreatePet.css";
 
 class CreatePet extends Component {
 
-  state = {
-    passedOwnerId: "",
-    ownerUsername: "",
-    petOwner: {},
-    pets: [],
-    image: "",
-    isUploading: false,
-    progress: 0,
-    imageURL: ""
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      modal8: false,
+      passedOwnerId: "",
+      ownerUsername: "",
+      petOwner: {},
+      pets: [],
+      image: "",
+      isUploading: false,
+      progress: 0,
+      imageURL: "",
+      errorMsg: ""
+    };
+
+    this.toggle8 = this.toggle8.bind(this);
+  }
+
+  toggle8() {
+    this.setState({
+      modal8: !this.state.modal8
+    });
+  }
+
+  // state = {
+  //   passedOwnerId: "",
+  //   ownerUsername: "",
+  //   petOwner: {},
+  //   pets: [],
+  //   image: "",
+  //   isUploading: false,
+  //   progress: 0,
+  //   imageURL: ""
+  // };
 
   componentDidMount() {
     console.log("in mount CreatePet state ", this.props.location.state);
@@ -65,6 +90,48 @@ class CreatePet extends Component {
 
   createPet = event => {
     event.preventDefault();
+    let allRequired = false;
+
+    if (!this.state.name) {
+      allRequired = false;
+      this.setState({
+        errorMsg: "Name"
+      })
+      } else if (!this.state.age) {
+        allRequired = false;
+        this.setState({
+          errorMsg: "Age"
+        })
+      } else if (isNaN(this.state.age)) {
+        allRequired = false;
+        this.setState({
+          errorMsg: "number for the Age"
+        })
+      } else if (!this.state.breed) {
+        allRequired = false;
+        this.setState({
+          errorMsg: "Breed"
+        })
+      } else if (!this.state.gender) {
+        allRequired = false;
+        this.setState({
+          errorMsg: "Gender"
+        })
+      } else if (!this.state.crate) {
+        allRequired = false;
+        this.setState({
+          errorMsg: "Crate"
+        })
+      } else if (!this.state.care_location) {
+        allRequired = false;
+        this.setState({
+          errorMsg: "Location for Care"
+        })
+      } else {
+        allRequired = true;
+      }
+
+    if (allRequired){
 
     const newPet = {
       "owner_id": this.state.passedOwnerId,
@@ -92,6 +159,10 @@ class CreatePet extends Component {
       .then(res => console.log("res ", res), this.props.history.push("/ownerview/", { username: this.state.ownerUsername, ownerid: this.state.passedOwnerId, fromPage: "CreatePet" }))
       // .then(res => console.log("res ", res))
       .catch(err => console.log(err));
+   } else {
+        this.toggle8();
+        console.log("error array", this.state.errorMsg);
+      }
   };
 
   render() {
@@ -111,7 +182,7 @@ class CreatePet extends Component {
         <div className="row">
           <div className="col">
             <div className="card ">
-              <CardHead> <div className="create2"><i className="fas fa-paw"></i>Create New Pet</div></CardHead>
+              <CardHead> <div className="create2"><i className="fas fa-paw"></i>Create New Pet  <span className="required">* = required field</span></div></CardHead>
               <div className="background">
                 <CardBody>
                   <form>
@@ -119,7 +190,7 @@ class CreatePet extends Component {
                       value={this.state.name}
                       onChange={this.handleInputChange}
                       name="name"
-                      title="Name:"
+                      title="Name: *"
                       forattribute="petNm"
                       collable="col-md-2"
                       coldiv="col-md-6"
@@ -128,7 +199,7 @@ class CreatePet extends Component {
                       value={this.state.age}
                       onChange={this.handleInputChange}
                       name="age"
-                      title="Age:"
+                      title="Age: *"
                       forattribute="petAge"
                       collabel="col-md-2"
                       coldiv="col-md-2"
@@ -139,7 +210,7 @@ class CreatePet extends Component {
                           value={this.state.breed}
                           onChange={this.handleInputChange}
                           name="breed"
-                          title="Breed:"
+                          title="Breed: *"
                           forattribute="petBreed"
                           collabel="col-md-2"
                           coldiv="col-md-10"
@@ -147,7 +218,7 @@ class CreatePet extends Component {
                       </div>
                       {/* <div className="row"> */}
                       <div className="col-md-4">
-                        <label className="form-check-label col-md-4" htmlFor="gender-radio">Gender:</label>
+                        <label className="form-check-label col-md-4" htmlFor="gender-radio">Gender: *</label>
                         <div className="form-check form-check-inline" id="gender-radio">
                           <input className="form-check-input" type="radio" name="gender" id="inlineRadio1" value="M" checked={this.state.gender === "M"} onChange={this.handleInputChange} />
                           <label className="form-check-label" htmlFor="inlineRadio1">M</label>
@@ -161,7 +232,7 @@ class CreatePet extends Component {
                     </div>
                     <div className="row">
                       <div className="crate col-md-6">
-                        <label className="form-check-label col-md-4" htmlFor="crate-radio">Use Crate:</label>
+                        <label className="form-check-label col-md-4" htmlFor="crate-radio">Use Crate: *</label>
                         <div className="form-check form-check-inline" id="create-radio">
                           <input className="form-check-input" type="radio" name="crate" id="inlineRadio3" value="yes" checked={this.state.crate === "yes"} onChange={this.handleInputChange} />
                           <label className="form-check-label" htmlFor="inlineRadio3">Yes</label>
@@ -174,7 +245,7 @@ class CreatePet extends Component {
                     {/* </div> */}
                     {/* <div className="row"> */}
                       <div className="col-md-6">
-                        <label className="form-check-label col-md-6" htmlFor="location-radio">Location for Care:</label>
+                        <label className="form-check-label col-md-6" htmlFor="location-radio">Location for Care: *</label>
                         <div className="form-check form-check-inline" id="location-radio">
                           <input className="form-check-input" type="radio" name="care_location" id="inlineRadio5" value="in home" checked={this.state.care_location === "in home"} onChange={this.handleInputChange} />
                           <label className="form-check-label" htmlFor="inlineRadio5"> In Home</label>
@@ -324,6 +395,27 @@ class CreatePet extends Component {
         </div>
       </div>
       <Footer />
+
+      <Modal isOpen={this.state.modal8} toggle={this.toggle8} className={this.props.className} size="lg" backdrop="static" >
+          <ModalHeader toggle={this.toggle8}><div className="account">Error Message</div></ModalHeader>
+          <ModalBody>
+            <div className="card">
+
+              <CardHead
+                value="Error Message"
+              />
+              <CardBody>
+                <div className="row">
+                  <div className="col">
+                    <p className="error-msg">Please enter a valid {this.state.errorMsg}.</p>
+                  </div>
+                </div>
+                <Button className="modal-btn" onClick={this.toggle8}>Close</Button>
+              </CardBody>
+            </div>
+          </ModalBody>
+        </Modal>
+
       </div>
         );
      }

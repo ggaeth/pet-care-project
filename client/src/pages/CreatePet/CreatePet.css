@@ -68,3 +68,12 @@
 #inlineRadio3{
     margin-left:-30px;
 }
+
+.required {
+  font-size: 60%;
+  float: right;
+}
+
+.error-msg {
+  color: red;
+}
