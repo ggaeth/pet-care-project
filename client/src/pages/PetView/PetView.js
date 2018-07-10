@@ -830,11 +830,12 @@ class PetView extends Component {
         <Modal isOpen={this.state.modal5} toggle={this.toggle5} className={this.props.className} size="lg" backdrop="static" >
           <ModalHeader toggle={this.toggle5}><div className="account">View Care Giver Details</div></ModalHeader>
           <ModalBody>
-            <div className="card">
+          <div className="card todo-body">
 
-              <CardHead
-                value="Care Giver Details"
-              />
+              <CardHead>
+              <div className="Details"><i className=" paw3 fas fa-paw"></i>Care Giver Details</div> 
+              </CardHead>
+              <div className="background">
               {this.state.caregivers.filter(cg => cg.caregiver_id == this.state.pet.caregiver_id).map(cg => (
               <CardBody>
                 <div className="row">
@@ -879,6 +880,7 @@ class PetView extends Component {
                 <Button className="modal-btn" onClick={this.toggle5}>Close</Button>
               </CardBody>
               ))}
+            </div>
             </div>
           </ModalBody>
         </Modal>
