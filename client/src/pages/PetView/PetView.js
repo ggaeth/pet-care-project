@@ -9,6 +9,9 @@ import { Input, InputBox, InputRow, TextArea } from "../../components/Form";
 import { CardHead } from "../../components/Card";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Card, CardTitle, CardBody, CardFooter, CardImg, CardSubtitle, CardText } from "reactstrap";
 import { Container } from "../../components/Grid";
+import firebase from "firebase";
+import FileUploader from "react-firebase-file-uploader";
+import Image from "react-image-resizer";
 import "./PetView.css";
 
 class PetView extends Component {
@@ -18,6 +21,10 @@ class PetView extends Component {
       modal: false,
       modal2: false,
       overdue: false,
+      image: "",
+      isUploading: false,
+      progress: 0,
+      imageURL: "",
       pet: {},
       petTodos: [],
       caregivers: []
@@ -81,6 +88,27 @@ class PetView extends Component {
     });
     console.log("this.state is");
     console.log(JSON.stringify(this.state, null, 2) + "\n");
+  };
+
+  handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
+
+  handleProgress = progress => this.setState({ progress });
+
+  handleUploadError = error => {
+    this.setState({ isUploading: false });
+    console.error(error);
+  };
+
+  handleUploadSuccess = filename => {
+    this.setState({ image: filename, progress: 100, isUploading: false });
+    firebase
+      .storage()
+      .ref("owner")
+      .child(filename)
+      .getDownloadURL()
+      .then(url =>
+        this.setState({ imageURL: url })
+      );
   };
 
   loadCareGivers = () => {
@@ -254,8 +282,8 @@ class PetView extends Component {
     if (this.state.pet_restrictions !== "" && this.state.pet.pet_restrictions !== this.state.pet_restrictions) {
       updatedPetObj.pet_restrictions = this.state.pet_restrictions;
     };
-    if (this.state.pet_image !== "" && this.state.pet.pet_image !== this.state.pet_image) {
-      updatedPetObj.pet_image = this.state.pet_image;
+    if (this.state.pet_image !== "" && this.state.pet.pet_image !== this.state.imageURL) {
+      updatedPetObj.pet_image = this.state.imageURL;
     };
 
     API.updatePet({ updatedPetObj })
@@ -279,7 +307,7 @@ class PetView extends Component {
         vet_phone: "",
         pet_medications: "",
         pet_restrictions: "",
-        pet_image: ""
+        imageURL: ""
       }))
       .catch(err => console.log(err))
 
@@ -621,13 +649,13 @@ class PetView extends Component {
                     <p><span className="label">Gender: </span> {this.state.pet.gender}</p>
                   </div>
                   <div className="col-6">
-                    <label className="form-check-label col-md-4" htmlFor="gender">Gender:</label>
+                    <label className="form-check-label col-md-5" htmlFor="gender">Gender:</label>
                     <div className="form-check form-check-inline" id="gender">
-                      <input className="form-check-input" type="radio" name="male" id="male" value="M" checked={this.state.gender === "M"} onChange={this.handleInputChange} />
+                      <input className="form-check-input" type="radio" name="gender" id="male" value="M" checked={this.state.gender === "M"} onChange={this.handleInputChange} />
                       <label className="form-check-label" htmlFor="male">Male</label>
                     </div>
                     <div className="form-check form-check-inline" id="gender">
-                      <input className="form-check-input" type="radio" name="female" id="female" value="F" checked={this.state.gender === "F"} onChange={this.handleInputChange} />
+                      <input className="form-check-input" type="radio" name="gender" id="female" value="F" checked={this.state.gender === "F"} onChange={this.handleInputChange} />
                       <label className="form-check-label" htmlFor="female">Female</label>
                     </div>
                   </div>
@@ -637,7 +665,7 @@ class PetView extends Component {
                     <p><span className="label">Crate: </span> {this.state.pet.crate}</p>
                   </div>
                   <div className="col-6">
-                    <label className="form-check-label col-md-4" htmlFor="crate-radio">Crate:</label>
+                    <label className="form-check-label col-md-5" htmlFor="crate-radio">Crate:</label>
                     <div className="form-check form-check-inline" id="crate-radio">
                       <input className="form-check-input" type="radio" name="crate" id="inlineRadio1" value="yes" checked={this.state.crate === "yes"} onChange={this.handleInputChange} />
                       <label className="form-check-label" htmlFor="inlineRadio1">Yes</label>
@@ -653,11 +681,15 @@ class PetView extends Component {
                     <p><span className="label">Care Location: </span> {this.state.pet.care_location}</p>
                   </div>
                   <div className="col-6">
-                    <InputBox
-                      value={this.state.care_location}
-                      onChange={this.handleInputChange}
-                      name="care_location"
-                    />
+                    <label className="form-check-label col-md-8" htmlFor="location-radio">Care Location:</label>
+                    <div className="form-check form-check-inline" id="location-radio">
+                      <input className="form-check-input" type="radio" name="care_location" id="inlineRadio5" value="in home" checked={this.state.care_location === "in home"} onChange={this.handleInputChange} />
+                      <label className="form-check-label" htmlFor="inlineRadio5"> In Home</label>
+                    </div>
+                    <div className="form-check form-check-inline" id="location-radio">
+                      <input className="form-check-input" type="radio" name="care_location" id="inlineRadio6" value="boarding" checked={this.state.care_location === "boarding"} onChange={this.handleInputChange} />
+                      <label className="form-check-label" htmlFor="inlineRadio6">Boarding</label>
+                    </div>
                   </div>
                 </div>
                 <div className="row">
@@ -758,13 +790,31 @@ class PetView extends Component {
                 </div>
                 <div className="row">
                   <div className="col-6">
-                    <p><span className="label">Pet Image: </span> {this.state.pet.pet_image}</p>
+                    <p><span className="label">Pet Image: </span> 
+                      <Image
+                        src={this.state.pet.pet_image}
+                        width={100}
+                        height={100}
+                      />
+                    </p>
                   </div>
-                  <div className="col-6">
-                    <InputBox
-                      value={this.state.pet_image}
-                      onChange={this.handleInputChange}
-                      name="pet_image"
+                  <div className="col-4">
+                    <FileUploader
+                      accept="image/*"
+                      name="image"
+                      randomizeFilename
+                      storageRef={firebase.storage().ref("owner")}
+                      onUploadStart={this.handleUploadStart}
+                      onProgress={this.handleProgress}
+                      onUploadError={this.handleUploadError}
+                      onUploadSuccess={this.handleUploadSuccess}
+                    />
+                  </div>
+                  <div className="col-2">
+                    <Image
+                      src={this.state.imageURL}
+                      width={100}
+                      height={100}
                     />
                   </div>
                 </div>
