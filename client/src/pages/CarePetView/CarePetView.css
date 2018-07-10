@@ -6,3 +6,30 @@
 .owner-card {
   margin-top: 20px;
 }
+
+.pet-img{
+  height: 200px;
+  width: 200px;
+  position: relative;
+  border: solid white;
+    border-radius: 4px;
+    padding: 5px;
+    width: 100%;
+}
+
+.cardFooter {
+  font-weight: bold;
+  font-size: 25px;
+  background-color: #00303F;
+  color: white;
+}
+
+.cg-Details{
+  font-size: 25px;
+  margin-left: 20px;
+}
+
+.owner-Details{
+  font-size: 25px;
+  margin-left: 20px;
+}

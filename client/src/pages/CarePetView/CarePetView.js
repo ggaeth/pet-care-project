@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import Jumbotron from "../../components/Jumbotron";
+import Footer from "../../components/Footer";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { AddBtn, DeleteBtn, TodoBtn, TodoDelBtn, CareBtn, PetViewBtn } from "../../components/Buttons";
@@ -145,11 +146,12 @@ class CarePetView extends Component {
 
   render() {
     return (
+      <div className="background">
       <div className="container-fluid">
         <div className="row">
           <Container>
             <Jumbotron>
-              Pet View
+              <div className="petView"><i className=" paw3 fas fa-paw"></i>Pet View</div>
             </Jumbotron>
           </Container>
         </div>
@@ -160,14 +162,14 @@ class CarePetView extends Component {
                 // <Card onClick={() => this.petView(pet.owner_id, pet.pet_id, this.state.owner[0].username)} >
                 <Card onClick={this.toggle3}>
                   <div>
-                    <CardImg top width="100%"
+                    <CardImg div className="pet-img" top width="100%"
                       src={this.state.pet.pet_image}
                       alt="Card image cap"
                       id={this.state.pet.pet_id}
                       key={this.state.pet.pet_id}
                     />
                     <CardFooter className="cardFooter">
-                      <p>View Details for {this.state.pet.name}</p>
+                      <div className="cg-Details"><i className=" paw3 fas fa-paw"></i>View Details for {this.state.pet.name}</div>
                     </CardFooter>
                   </div>
                 </Card>
@@ -184,14 +186,14 @@ class CarePetView extends Component {
                 <Card onClick={this.toggle4}>
                 {this.state.owner.map(owners => (
                   <div>
-                    <CardImg top width="100%"
+                    <CardImg div className="pet-img" top width="100%"
                       src={owners.owner_image}
                       alt="Card image cap"
                       id={owners.owner_id}
                       key={owners.owner_id}
                     />
                     <CardFooter className="cardFooter">
-                      <p>View Details for {owners.name}</p>
+                    <div className="owner-Details"><i className=" paw3 fas fa-paw"></i>View Details for {owners.name}</div>
                     </CardFooter>
                   </div>
                 ))}
@@ -209,7 +211,7 @@ class CarePetView extends Component {
                 coldiv="col-md-4"
                 type="submit"
                 onClick={() => this.cgPage(this.state.pet.owner_id, this.props.location.state.cgUserName)}
-              >Back to Care Giver Overview
+              >Back
               </PetViewBtn>
           </div>
 
@@ -217,10 +219,11 @@ class CarePetView extends Component {
           <div className="col-8">
             <div className="row"> 
             <div className="col-md-12">
-          <Card>
+          <Card div className="todo-body">
             <CardHead>
-              <h5>To-Do Item(s)</h5>
+              <div className="todo-cg"><i className=" paw3 fas fa-paw"></i>To-Do Item(s)</div>
             </CardHead>
+            <div className="background"> 
             <CardBody>
                 {/* <button className="btn btn-lg mr-3 mb-5 float-left"
                   onClick={this.updateTodoCompleted}
@@ -251,7 +254,7 @@ class CarePetView extends Component {
                           onClick={this.updateTodoCompleted}
                           name="pet_todo_id"
                           value={petTodo.pet_todo_id} 
-                          >Completed
+                          ><i className=" paw3 fas fa-paw"></i>Completed
                         </TodoDelBtn>
                       </td>
                     </tr>
@@ -260,10 +263,11 @@ class CarePetView extends Component {
                   </table>
                 // </div>
             ) : (
-              <h5>No To-Do Items found</h5>
+              <div className="no-todo"><i className=" paw3 fas fa-paw"></i>No To-Do Items found</div>
             )}
             </div>
             </CardBody>
+            </div>
             </Card>
             </div>
           </div>
@@ -273,13 +277,14 @@ class CarePetView extends Component {
       </div>
 
       <Modal isOpen={this.state.modal3} toggle={this.toggle3} className={this.props.className} size="lg" backdrop="static" >
-          <ModalHeader toggle={this.toggle3}><div className="account">View Pet Details</div></ModalHeader>
+          <ModalHeader toggle={this.toggle3}><div className="account"><i className=" paw3 fas fa-paw"></i>View Pet Details</div></ModalHeader>
           <ModalBody>
-            <div className="card">
+          <div className="card todo-body">
 
-              <CardHead
-                value="Pet Details"
-              />
+              <CardHead>
+                <div className="cg-pet-details"><i className=" paw3 fas fa-paw"></i>Pet Details</div>
+              </CardHead>
+              <div className="background">
               <CardBody>
                 <div className="row">
                   <div className="col">
@@ -344,17 +349,19 @@ class CarePetView extends Component {
                 <Button className="modal-btn" onClick={this.toggle3}>Close</Button>
               </CardBody>
             </div>
+            </div>
           </ModalBody>
         </Modal>
 
         <Modal isOpen={this.state.modal4} toggle={this.toggle4} className={this.props.className} size="lg" backdrop="static" >
-          <ModalHeader toggle={this.toggle4}><div className="account">View Pet Owner Details</div></ModalHeader>
+          <ModalHeader toggle={this.toggle4}><div className="account"><i className=" paw3 fas fa-paw"></i>View Pet Owner Details</div></ModalHeader>
           <ModalBody>
-            <div className="card">
+          <div className="card todo-body">
 
-              <CardHead
-                value="Pet Owner Details"
-              />
+              <CardHead>
+                <div className="pet-owner-details"><i className=" paw3 fas fa-paw"></i>Pet Owner Details</div>
+              </CardHead>
+              <div className="background">
               {this.state.owner.map(ownerModal => (
               <CardBody>
                 <div className="row">
@@ -400,8 +407,12 @@ class CarePetView extends Component {
               </CardBody>
               ))}
             </div>
+            </div>
           </ModalBody>
         </Modal>
+      
+        </div>
+        <Footer />
       </div>
     );
   }

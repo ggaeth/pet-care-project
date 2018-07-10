@@ -90,11 +90,11 @@ class CareGiverView extends Component {
                 <Card onClick={() => this.careGiverPetView(pet.owner_id, pet.pet_id,pet.caregiver_id, this.state.caregiver.username)} >
                   
                     <div>
-                      <CardImg top width="100%" src={pet.pet_image} alt="Card image cap" id={pet.pet_id} />
+                      <CardImg div className="pet-img" top width="100%" src={pet.pet_image} alt="Card image cap" id={pet.pet_id} />
 
-                      <CardBody>
+                      <CardBody div className="card-cg">
                         <CardTitle>
-                          {pet.name}
+                        <div className="card-title"><i className="paw3 fas fa-paw"></i>  {pet.name}</div>
                         </CardTitle>
                       </CardBody>
                     </div>

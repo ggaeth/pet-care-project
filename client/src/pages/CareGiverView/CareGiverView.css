@@ -16,3 +16,22 @@
 .space2{
     margin-bottom: 300px;
 }
+
+.pet-img{
+    height: 200px;
+    width: 200px;
+    position: relative;
+    border: solid white;
+      border-radius: 4px;
+      padding: 5px;
+      width: 100%;
+  }
+
+  .card-cg{
+      background-color: #00303F;
+  }
+
+  .card-title{
+      color: white;
+      font-size: 30px;
+  }
