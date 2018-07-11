@@ -21,52 +21,30 @@ class CareGiverView extends Component {
   }
   
   componentDidMount() {
-    console.log("in mount CareGiverView.js", this.props.location.state);
-
     this.getCg(this.props.location.state.username);
-
-      console.log("location fromPage caregiverview");
-      console.log(this.props.location);
-      console.log("Caregiver state is");
-      console.log(this.state.caregiver);
-
-      //const CgId = this.state.caregiver.caregiver_id;
-      //this.getPetsCg(CgId);
-    
   };
 
   getCg = userName => {
-    console.log("inside getOwner function of OwnerView Page")
-    console.log(userName);
 
     API.getCg(userName)
       .then(res =>
-        //        console.log(res.data[0])
         this.setState(
-          { caregiver: res.data[0] },
-          () => console.log(this.state)
+          { caregiver: res.data[0] }
         )
       )
-      .then(res => console.log("cg state ", this.state.caregiver))
       .then(res => this.getPetsCg(this.state.caregiver.caregiver_id))
       .catch(err => console.log(err))
   };
 
   
   getPetsCg = CgId => {
-    console.log("inside getPetsCg function of CareGiverView")
-    console.log(CgId);
 
     API.getPetsCg(CgId)
       .then(res =>
-        //        console.log(res.data[0])
         this.setState(
-          { pets: res.data },
-          () => console.log(this.state)
+          { pets: res.data }
         )
       )
-      .then(res => console.log("CG state ", this.state.pets))
-      //.then(res => this.hasPets(this.props.location.state))
       .catch(err => console.log(err))
   };
 

@@ -53,11 +53,9 @@ class PetView extends Component {
     API.getAllCgs()
       .then(res =>
         this.setState(
-          { caregivers: res.data },
-          console.log("caregivers res.data in petview.js ", res)
+          { caregivers: res.data }
         )
       )
-      .then(res => console.log("caregivers state ", this.state.caregivers))
       .catch(err => console.log(err))
 
     this.setState({
@@ -66,28 +64,16 @@ class PetView extends Component {
   };
 
   componentDidMount() {
-    console.log("in mount PetView.js", this.props.location.state);
-    console.log("running getOnePet from componentDidMount");
     this.getOnePet(this.props.location.state.petid);
-
-    //    if (this.props.location.state.fromPage === "CreatePet") {
-    //      console.log("location fromPage CreatePet");
-    //      this.getPets(this.props.location.state.ownerid);
-    //    }
-    console.log("running getTodosByPetId from componentDidMount");
     this.getTodosByPetId(this.props.location.state.petid);
     this.loadCareGivers();
   };
 
   handleInputChange = event => {
-    console.log("handleInputChange for " + event.target.name + "  " + event.target.value);
-    console.log("this.state.pet.breed ", this.state.pet.breed);
     const { name, value } = event.target;
     this.setState({
       [name]: value
     });
-    console.log("this.state is");
-    console.log(JSON.stringify(this.state, null, 2) + "\n");
   };
 
   handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
@@ -115,53 +101,39 @@ class PetView extends Component {
     API.getAllCgs()
       .then(res =>
         this.setState(
-          { caregivers: res.data },
-          console.log("caregivers res.data in petview.js ", res)
+          { caregivers: res.data }
         )
       )
-      .then(res => console.log("caregivers state ", this.state.caregivers))
       .catch(err => console.log(err))
 
   }
 
   getOnePet = petId => {
-    console.log("inside getOnePet function of PetView Page")
-    console.log(petId);
 
     API.getOnePet(petId)
       .then(res =>
-        //        console.log(res)
         this.setState(
-          { pet: res.data },
-          console.log("pet res.data in petview.js ", res)
+          { pet: res.data }
         )
       )
-      .then(res => console.log("pet state ", this.state))
       .catch(err => console.log(err))
   };
 
   getTodosByPetId = petId => {
-    console.log("inside getTodosByPetId function of PetView Page")
-    console.log(petId);
 
     API.getTodosByPetId(petId)
       .then(res =>
-        //          console.log(res)
         this.setState(
-          { petTodos: res.data },
-          console.log("petTodos state", this.state)
+          { petTodos: res.data }
         )
       )
-      //     .then(res => console.log("petTodos state ", this.state))
       .catch(err => console.log(err))
   };
 
   createTodoItem = event => {
     event.preventDefault();
-    console.log("inside createTodoItem function in PetView.js");
 
     const petId = this.state.pet.pet_id;
-    console.log("petOd is " + petId);
 
     const newTodo = {
       "pet_id": this.state.pet.pet_id,
@@ -169,27 +141,14 @@ class PetView extends Component {
       "todo_date": this.state.todoDate,
       "todo_time": this.state.todoTime,
       "todo_item": this.state.todoItem,
-      // "todo_completed": this.state.todoCompleted,
       "todo_completed": "N",
       "fk_pet_id": this.state.pet.pet_id
     };
-    console.log("newToDo object that will be sent to server: ");
-    console.log(JSON.stringify(newTodo, null, 2) + "\n");
 
     API.createTodo({ newTodo })
-      .then(res =>
-        //        console.log(res)
-        //        let newPetTodosArr = this.state.PetTodos.slice()
-        //        newPetTodosArr.push(res)
-        //        this.setState({petTodos: newPetTodosArr})
-        //         this.setState(
-        //          { petTodos: res.data },
-        //          console.log("petTodos res.data in petview.js ", res)
-        //        )
+      .then(res => {
         this.getTodosByPetId(this.state.pet.pet_id)
-      )
-      
-      //      this.props.history.push("/owner/", this.state.ownerUsername))
+      })
       .then(this.setState({
         todoDate: "",
         todoTime: "",
@@ -201,26 +160,20 @@ class PetView extends Component {
 
   deleteTodo = event => {
     event.preventDefault();
-    console.log("inside deleteTodo function of PetView Page")
-
-    console.log("event.target.value is" + event.target.value);
 
     const petTodoId = event.target.value;
-    console.log("petTodoId is " + petTodoId);
 
     API.deleteTodo(petTodoId)
-      .then(res =>
+      .then(res => {
         this.getTodosByPetId(this.state.pet.pet_id)
-      )
+      })
       .catch(err => console.log(err))
   };
 
   updatePet = (event) => {
     event.preventDefault();
-    console.log("inside updatePet function of PetView Page");
 
     const petId = this.state.pet.pet_id;
-    console.log("petId is " + petId);
 
     const updatedPetObj = {
       "pet_id": this.state.pet.pet_id,
@@ -283,18 +236,14 @@ class PetView extends Component {
       updatedPetObj.pet_restrictions = this.state.pet_restrictions;
     };
     if (this.state.imageURL !== "" && this.state.pet_image !== this.state.imageURL) {
-      console.log("this.state.pet_image ", this.state.pet_image)
-      console.log("this.state.pet.pet_image ", this.state.pet.pet_image)
-      console.log("this.state.imageURL ", this.state.imageURL)
       updatedPetObj.pet_image = this.state.imageURL;
     };
 
     API.updatePet({ updatedPetObj })
-      .then(res =>
-        //        console.log(res)
+      .then(res => {
         this.getOnePet(this.state.pet.pet_id),
         this.toggle()
-      )
+      })
       .then(this.setState({
         name: "",
         age: "",
@@ -318,70 +267,43 @@ class PetView extends Component {
 
   updateTodoCompleted = event => {
     event.preventDefault();
-    console.log("inside updateTodoCompleted function of PetView Page")
-
-    console.log("event.target.value is" + event.target.value);
 
     const petTodoId = event.target.value;
-    console.log("petTodoId is " + petTodoId);
 
     API.updateTodoCompleted(petTodoId)
-      .then(res =>
+      .then(res => {
         this.getTodosByPetId(this.state.pet.pet_id)
-      )
+      })
       .catch(err => console.log(err))
 
   };
 
   updPetCg = (event) => {
     event.preventDefault();
-    console.log("inside updPetCg function of PetView Page")
     
     const cgId = event.target.value;
     const cgObj = {
       caregiver_id: cgId
     }
-    console.log("cgObj is");
-    console.log(cgObj);
-    
-
-
 
     API.updPetCg(this.state.pet.pet_id, {cgObj})
-      .then(res =>
-          console.log(res),
+      .then(res => {
           this.toggle2()
-//            this.setState({ 
-//              pet.caregiver_id: cgId },
-//                console.log("pet state", this.state)
- //           )
-      )
-      //     .then(res => console.log("petTodos state ", this.state))
+      })
       .catch(err => console.log(err))
 
     let petObj = {};
     petObj = this.state.pet;
-    console.log("petObj is");
-    console.log(petObj);
     petObj.caregiver_id = cgId;
-    console.log("petObj.caregiver_id is " + petObj.caregiver_id);
     
     this.setState({ 
-      pet: petObj },
-        console.log("pet state", this.state)
+      pet: petObj }
     )
-
   };
 
   ownerPage = (ownerId, username) => {
-    console.log("petview.js ownerPage ownerId ", ownerId)
-    console.log("petview.js ownerPage state pet owner_id ", this.state.pet.owner_id)
     this.props.history.push("/ownerview/", { ownerId: ownerId, pathName: "/petview/", username: username })
   };
-
-  
-// cg() {return this.state.caregivers.filter(cg => cg.caregiver_id === this.state.pet.caregiver_id);}
-
 
   render() {
     return (

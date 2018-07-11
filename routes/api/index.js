@@ -6,8 +6,6 @@ const createPet = require("./createpet");
 const pettodoRoutes = require("./pettodos");
 const userRoutes = require("./users");
 
-console.log("inside routes/api/index.js");
-
 // routes to the database. Note: These routes are prefixed with "api/".  ie "api/owners". 
 router.use("/owners", ownerRoutes);
 router.use("/caregivers", cgRoutes);

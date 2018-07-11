@@ -36,23 +36,6 @@ class CreateCare extends Component {
     });
   }
 
-  // state = {
-  //   careGiver: {},
-  //   image: "",
-  //   isUploading: false,
-  //   progress: 0,
-  //   imageURL: ""
-  // };
-
-  //componentDidMount() {
-  //  console.log("in mount ", this.props.location.state);
-  //  this.getHistory(this.props.location.state);
-  //}
-
-  //getHistory = id => {
-  //  console.log(id);
-  //}
-
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -97,15 +80,10 @@ class CreateCare extends Component {
       "caregiver_info": this.state.careAbout,
       "caregiver_image": this.state.imageURL
     };
-    console.log("newCareGiver object that will be sent to server: ");
-    console.log(JSON.stringify(newCareGiver, null, 2) + "\n");
 
     API.createCaregiver({ newCareGiver })
       .then(res => this.props.history.push("/caregiverview/", { username: this.state.careUsername, fromPage: "CreateCare" }))
       .catch(err => console.log(err));
-
-    //    console.log("newOwner object that will be sent to server: ");
-    //    console.log(JSON.stringify(newOwner, null, 2) + "\n");
   };
 
   userFormSubmit = event => {
@@ -164,13 +142,9 @@ class CreateCare extends Component {
         password: this.state.carePassword,
         role: "caregiver"
       }
-      console.log("careLogObj is ")
-      console.log(JSON.stringify(careLogObj, null, 2) + "\n");
 
       API.createCareLogin({ careLogObj })
         .then(res => this.careFormSubmit(event)
-          //       .then(res =>
-          //        console.log(res)
         )
         .catch(err => console.log(err));
     }  

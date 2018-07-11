@@ -11,7 +11,5 @@ router
 router
   .route("/:userName")
   .get(cgController.getCg)
-//  .put(cgController.update)
-//  .delete(cgController.remove);
 
 module.exports = router;

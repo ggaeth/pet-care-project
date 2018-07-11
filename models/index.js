@@ -33,8 +33,6 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-//defining foreignkeys here because associate method not working in models.  
-
 db.Owner.hasMany(db.Pet, { foreignKey: 'fk_owner_id', sourceKey: 'owner_id', onDelete: 'cascade' });
 db.Pet.belongsTo(db.Owner, { foreignKey: 'fk_owner_id', targetKey: 'owner_id', onDelete: 'cascade'});
 db.Caregiver.hasMany(db.Pet, { foreignKey: 'fk_caregiver_id', sourceKey: 'caregiver_id', onDelete: 'cascade' });

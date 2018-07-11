@@ -39,32 +39,15 @@ class CreatePet extends Component {
     });
   }
 
-  // state = {
-  //   passedOwnerId: "",
-  //   ownerUsername: "",
-  //   petOwner: {},
-  //   pets: [],
-  //   image: "",
-  //   isUploading: false,
-  //   progress: 0,
-  //   imageURL: ""
-  // };
-
   componentDidMount() {
-    console.log("in mount CreatePet state ", this.props.location.state);
-    console.log("in mount CreatePet id ", this.props.location.state.id);
-    console.log("in mount CreatePet username ", this.props.location.state.username);
     this.setState({ passedOwnerId: this.props.location.state.id, ownerUsername: this.props.location.state.username })
   };
 
   handleInputChange = event => {
-    // console.log("handleInputChange for " + event.target.name + "  " + event.target.value);
     const { name, value } = event.target;
     this.setState({
       [name]: value
     });
-    // console.log("this.state is");
-    // console.log(JSON.stringify(this.state, null, 2) + "\n");
   };
 
   handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
@@ -152,12 +135,9 @@ class CreatePet extends Component {
       "pet_image": this.state.imageURL,
       "fk_owner_id": this.state.passedOwnerId
     };
-    console.log("newPet object that will be sent to server: ");
-    console.log(JSON.stringify(newPet, null, 2) + "\n");
 
     API.createPet({ newPet })
-      .then(res => console.log("res ", res), this.props.history.push("/ownerview/", { username: this.state.ownerUsername, ownerid: this.state.passedOwnerId, fromPage: "CreatePet" }))
-      // .then(res => console.log("res ", res))
+      .then(res => this.props.history.push("/ownerview/", { username: this.state.ownerUsername, ownerid: this.state.passedOwnerId, fromPage: "CreatePet" }))
       .catch(err => console.log(err));
    } else {
         this.toggle8();

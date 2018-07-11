@@ -18,65 +18,44 @@ class OwnerView extends Component {
   }
 
   componentDidMount() {
-    console.log("in mount Owner.js", this.props.location);
 
     this.getOwner(this.props.location.state.username);
 
-    // if (this.props.location.state.fromPage === "CreatePet") {
-    //   console.log("location fromPage CreatePet");
-    //   this.getPets(this.props.location.state.ownerid);
-    // }
     if (this.props.location.state.pathName === "/petview/") {
-      console.log("location pathName petview");
       this.getPets(this.props.location.state.ownerId);
     }
   };
 
   getOwner = userName => {
-    console.log("inside getOwner function of OwnerView Page")
-    console.log(userName);
 
     API.getOwner(userName)
       .then(res =>
-        //        console.log(res.data[0])
         this.setState(
-          { owner: res.data },
-          () => console.log(this.state)
+          { owner: res.data }
         )
       )
-      .then(res => console.log("owner state ", this.state.owner))
       .then(res => this.hasPets(this.props.location.state))
       .catch(err => console.log(err))
   };
 
   getPets = ownerId => {
-    console.log("inside getPets function of OwnerView Page")
-    console.log(ownerId);
 
     API.getPets(ownerId)
       .then(res =>
         this.setState(
-          { pets: res.data },
-          console.log("pets res.data in ownerview.js ", res)
+          { pets: res.data }
         )
       )
-      .then(res => console.log("pets state ", this.state.pets))
       .catch(err => console.log(err))
   };
 
   deletePet = event => {
     event.preventDefault();
-    console.log("inside deletePet function of OwnerView Page")
-
-    console.log("event.target.value is" + event.target.value);
 
     const petId = event.target.value;
-    console.log("petId is " + petId);
 
     API.deletePet(petId)
       .then(res =>
-        console.log("res ", res), 
-        // this.getPets(this.props.location.state.ownerId)
         this.getPets(this.state.owner[0].owner_id)
       )
       .catch(err => console.log(err))
@@ -84,12 +63,9 @@ class OwnerView extends Component {
 
   hasPets() {
     if (this.props.location.state.fromPage === "CreatePet") {
-      console.log("hasPets");
       this.getPets(this.props.location.state.ownerid);
     }
     else if (this.props.location.state.fromPage === "LoginOwner") {
-      console.log("hasPets from login");
-      console.log("hasPets login this.state ", this.state);
       this.getPets(this.state.owner[0].owner_id);
     }
   }

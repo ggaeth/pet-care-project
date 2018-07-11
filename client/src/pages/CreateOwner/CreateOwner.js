@@ -36,23 +36,11 @@ class CreateOwner extends Component {
     });
   }
 
-  // state = {
-  //   petOwner: {},
-  //   image: "",
-  //   isUploading: false,
-  //   progress: 0,
-  //   imageURL: "",
-  //   errorMsg: []
-  // };
-
   handleInputChange = event => {
-    // console.log("handleInputChange for " + event.target.name + "  " + event.target.value);
     const { name, value } = event.target;
     this.setState({
       [name]: value
     });
-    // console.log("this.state is");
-    // console.log(JSON.stringify(this.state, null, 2) + "\n");
   };
 
   handleUploadStart = () => this.setState({ isUploading: true, progress: 0 });
@@ -92,15 +80,10 @@ class CreateOwner extends Component {
       "owner_info": this.state.ownerInfo,
       "owner_image": this.state.imageURL
     };
-    console.log("newOwner object that will be sent to server: ");
-    console.log(JSON.stringify(newOwner, null, 2) + "\n");
 
     API.createOwner({ newOwner })
       .then(res => this.props.history.push("/ownerview/", { username: this.state.ownerUsername, fromPage: "CreateOwner" }))
       .catch(err => console.log(err));
-
-    //    console.log("newOwner object that will be sent to server: ");
-    //    console.log(JSON.stringify(newOwner, null, 2) + "\n");
   };
 
   userFormSubmit = event => {
@@ -159,13 +142,9 @@ class CreateOwner extends Component {
         password: this.state.ownerPassword,
         role: "owner"
       }
-      console.log("ownLogObj is ")
-      console.log(JSON.stringify(ownLogObj, null, 2) + "\n");
 
       API.createOwnLogin({ ownLogObj })
         .then(res => this.handleFormSubmit(event)
- //       .then(res =>
-  //        console.log(res)
         )
         .catch(err => console.log(err));
     }

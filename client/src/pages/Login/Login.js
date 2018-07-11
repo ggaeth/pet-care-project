@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Jumbotron2 from "../../components/Jumbotron2";
-import API from "../../utils/API";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import { OwnerLoginBtn, CareLoginBtn } from "../../components/Buttons";
 import { Input, InputPw } from "../../components/Form";
@@ -15,7 +15,9 @@ class Login extends Component {
     ownerPassword: "",
     careUserName: "",
     carePassword: "",
-    user: {}
+    user: {},
+    ownerAuthError: "N",
+    careAuthError: "N",
   };
 
   handleInputChange = event => {
@@ -30,32 +32,24 @@ class Login extends Component {
 
     if (this.state.ownerUserName && this.state.ownerPassword) {
 
-      const userName = this.state.ownerUserName
-      console.log("userName is " + userName);
+      const ownLogObj = {
+        username: this.state.ownerUserName,
+        password: this.state.ownerPassword,
+      }
 
-      API.getOwnLogin(userName)
-        .then(res =>
-          //        console.log(res.data)
-          this.setState(
-            { user: res.data[0] },
-            () => console.log("user state ", this.state)
-          )
-        )
+      let self = this;
+
+      axios.post("/auth", ownLogObj)
         .then(res => {
-          console.log("user password is " + this.state.user.password)
-          console.log("logon password is " + this.state.ownerPassword)
-
-          if (this.state.user.password === this.state.ownerPassword) {
-            console.log("user password matches login password")
-            this.props.history.push("/ownerview/", { username: this.state.ownerUserName, fromPage: "LoginOwner" })
-          }
-          else {
-            console.log("user password DOES NOT MATCH login password")
+          if (res.status === 200) {
+            self.props.history.push("/ownerview/", { username: self.state.ownerUserName, fromPage: "LoginOwner" })
           }
         })
-//      .then(res => this.hasPets(this.props.location.state))
-        .catch(err => console.log(err)
-      );
+        .catch(err => {          
+          console.log(err)
+          this.setState(
+            { ownerAuthError: "Y" })
+        })
     }
   };
 
@@ -64,32 +58,24 @@ class Login extends Component {
 
     if (this.state.careUserName && this.state.carePassword) {
 
-      const userName = this.state.careUserName
-      console.log("userName is " + userName);
+      const ownLogObj = {
+        username: this.state.careUserName,
+        password: this.state.carePassword,
+      }
 
-      API.getCareLogin(userName)
-        .then(res =>
-          //        console.log(res.data)
-          this.setState(
-            { user: res.data[0] },
-            () => console.log("user state ", this.state)
-          )
-        )
+      let self = this;
+
+      axios.post("/auth", ownLogObj)
         .then(res => {
-          console.log("user password is " + this.state.user.password)
-          console.log("logon password is " + this.state.carePassword)
-
-          if (this.state.user.password === this.state.carePassword) {
-            console.log("user password matches login password")
+          if (res.status === 200) {
             this.props.history.push("/caregiverview/", { username: this.state.careUserName, fromPage: "LoginCaregiver" })
           }
-          else {
-            console.log("user password DOES NOT MATCH login password")
-          }
         })
-//      .then(res => this.hasPets(this.props.location.state))
-        .catch(err => console.log(err)
-      );  
+        .catch(err => {
+          console.log(err)
+          this.setState(
+            { careAuthError: "Y" })
+        })
     }
   };
 
@@ -105,71 +91,83 @@ class Login extends Component {
               </Jumbotron2>
             </div>
           </div>
-          
+
           <div className="row">
             <div className="col-md-6">
               <div className="card">
                 <CardHead>
                   <div className="login"><i className="fas fa-paw"></i>Pet Owner Login</div>
                 </CardHead>
-                 <div className="background">
-                <CardBody>
-                  <form>
-                    <Input
-                      value={this.state.ownerUserName}
-                      onChange={this.handleInputChange}
-                      name="ownerUserName"
-                      title="Owner User Name"
-                      for="ownerId"
-                    />
-                    <InputPw
-                      value={this.state.ownerPassword}
-                      onChange={this.handleInputChange}
-                      name="ownerPassword"
-                      title="Owner Password"
-                      for="ownerPsswrd"
-                    />
-                    <OwnerLoginBtn
-                      disabled={!(this.state.ownerUserName && this.state.ownerPassword)}
-                      onClick={this.ownerFormSubmit}
-                    >
-                      Owner Login
+                <div className="background">
+                  <CardBody>
+                    {this.state.ownerAuthError === "Y" ? (
+                      <p className="text-center font-weight-bold">Invalid user name or password !</p>
+                      ) : (
+                        <p></p>                           
+                      )
+                    }
+                    <form>
+                      <Input
+                        value={this.state.ownerUserName}
+                        onChange={this.handleInputChange}
+                        name="ownerUserName"
+                        title="Owner User Name"
+                        for="ownerId"
+                      />
+                      <InputPw
+                        value={this.state.ownerPassword}
+                        onChange={this.handleInputChange}
+                        name="ownerPassword"
+                        title="Owner Password"
+                        for="ownerPsswrd"
+                      />
+                      <OwnerLoginBtn
+                        disabled={!(this.state.ownerUserName && this.state.ownerPassword)}
+                        onClick={this.ownerFormSubmit}
+                      >
+                        Owner Login
                     </OwnerLoginBtn>
-                  </form>
-                </CardBody>
+                    </form>
+                  </CardBody>
                 </div>
               </div>
             </div>
             <div className="col-md-6">
               <div className="card">
-              <CardHead>
+                <CardHead>
                   <div className="login"><i className="fas fa-paw"></i>Care Giver Login</div>
                 </CardHead>
                 <div className="background">
-                <CardBody>
-                  <form>
-                    <Input
-                      value={this.state.careUserName}
-                      onChange={this.handleInputChange}
-                      name="careUserName"
-                      title="Care Giver User Name"
-                      for="careId"
-                    />
-                    <InputPw
-                      value={this.state.carePassword}
-                      onChange={this.handleInputChange}
-                      name="carePassword"
-                      title="Care Giver Password"
-                      for="carePsswrd"
-                    />
-                    <CareLoginBtn
-                      disabled={!(this.state.careUserName && this.state.carePassword)}
-                      onClick={this.careFormSubmit}
-                    >
-                      Care Giver Login
+                  <CardBody>
+                    {this.state.careAuthError === "Y" ? (
+                      <p className="text-center font-weight-bold">Invalid user name or password !</p>
+                      ) : (
+                        <p></p>
+                      )
+                    }
+                    <form>
+                      <Input
+                        value={this.state.careUserName}
+                        onChange={this.handleInputChange}
+                        name="careUserName"
+                        title="Care Giver User Name"
+                        for="careId"
+                      />
+                      <InputPw
+                        value={this.state.carePassword}
+                        onChange={this.handleInputChange}
+                        name="carePassword"
+                        title="Care Giver Password"
+                        for="carePsswrd"
+                      />
+                      <CareLoginBtn
+                        disabled={!(this.state.careUserName && this.state.carePassword)}
+                        onClick={this.careFormSubmit}
+                      >
+                        Care Giver Login
                   </CareLoginBtn>
-                  </form>
-                </CardBody>
+                    </form>
+                  </CardBody>
                 </div>
               </div>
             </div>
