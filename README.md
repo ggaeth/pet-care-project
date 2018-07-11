@@ -48,7 +48,7 @@ The Pet Purfect application gives pet owners the ability to provide custom careÂ
 
 
 ## Try the App
-*[PetPurfect deployed using Heroku](https://petpurfect.herokuapp.com/)
+[PetPurfect deployed using Heroku](https://petpurfect.herokuapp.com/)
 
 ## Authors
 
