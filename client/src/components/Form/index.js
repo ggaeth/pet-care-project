@@ -3,3 +3,4 @@ export * from "./InputBox";
 export * from "./InputRow";
 export * from "./TextArea";
 export * from "./FormBtn";
+export * from "./InputPw";

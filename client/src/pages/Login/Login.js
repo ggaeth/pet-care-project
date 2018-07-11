@@ -3,7 +3,7 @@ import Jumbotron2 from "../../components/Jumbotron2";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { OwnerLoginBtn, CareLoginBtn } from "../../components/Buttons";
-import { Input } from "../../components/Form";
+import { Input, InputPw } from "../../components/Form";
 import { CardHead, CardBody } from "../../components/Card";
 import Footer from "../../components/Footer";
 import "./Login.css";
@@ -122,7 +122,7 @@ class Login extends Component {
                       title="Owner User Name"
                       for="ownerId"
                     />
-                    <Input
+                    <InputPw
                       value={this.state.ownerPassword}
                       onChange={this.handleInputChange}
                       name="ownerPassword"
@@ -155,7 +155,7 @@ class Login extends Component {
                       title="Care Giver User Name"
                       for="careId"
                     />
-                    <Input
+                    <InputPw
                       value={this.state.carePassword}
                       onChange={this.handleInputChange}
                       name="carePassword"
