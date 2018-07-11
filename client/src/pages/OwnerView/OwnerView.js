@@ -76,7 +76,8 @@ class OwnerView extends Component {
     API.deletePet(petId)
       .then(res =>
         console.log("res ", res), 
-        this.getPets(this.props.location.state.ownerId)
+        // this.getPets(this.props.location.state.ownerId)
+        this.getPets(this.state.owner[0].owner_id)
       )
       .catch(err => console.log(err))
   };

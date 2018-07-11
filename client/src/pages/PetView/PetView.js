@@ -282,7 +282,10 @@ class PetView extends Component {
     if (this.state.pet_restrictions !== "" && this.state.pet.pet_restrictions !== this.state.pet_restrictions) {
       updatedPetObj.pet_restrictions = this.state.pet_restrictions;
     };
-    if (this.state.pet_image !== "" && this.state.pet.pet_image !== this.state.imageURL) {
+    if (this.state.imageURL !== "" && this.state.pet_image !== this.state.imageURL) {
+      console.log("this.state.pet_image ", this.state.pet_image)
+      console.log("this.state.pet.pet_image ", this.state.pet.pet_image)
+      console.log("this.state.imageURL ", this.state.imageURL)
       updatedPetObj.pet_image = this.state.imageURL;
     };
 
