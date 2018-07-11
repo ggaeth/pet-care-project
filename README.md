@@ -4,7 +4,7 @@ The Pet Purfect application gives pet owners the ability to provide custom careÂ
 
  Caregivers can also benefit from this application by having a repository of informationÂ about each pet that is in their care.
 
- (https://i.gyazo.com/df8873edaeed0863fbd02a51b5b228b7.jpg)
+ ![Home](https://i.gyazo.com/df8873edaeed0863fbd02a51b5b228b7.jpg)
 
 ## User Stories
 
