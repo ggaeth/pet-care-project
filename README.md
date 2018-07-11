@@ -26,16 +26,16 @@ The Pet Purfect application gives pet owners the ability to provide custom careÂ
 ![Application Flow Diagram](https://i.gyazo.com/8cadd6fb8d90ffb66dd64ac8ba089448.png)
 
 ## Built with
-React.js frontend UI
-CSS3
-ReactStrap
-BootStrap
+*React.js frontend UI
+*CSS3
+*ReactStrap
+*BootStrap
 
-Node.js
-Express server
-Javascript
-MySQL database 
-Sequelize ORM
+*Node.js
+*Express server
+*Javascript
+*MySQL database 
+*Sequelize ORM
 
 ## New Technologies:
 	* ReactStrap
