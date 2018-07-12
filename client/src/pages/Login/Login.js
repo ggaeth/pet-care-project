@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Jumbotron2 from "../../components/Jumbotron2";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import { OwnerLoginBtn, CareLoginBtn } from "../../components/Buttons";
 import { Input, InputPw } from "../../components/Form";
 import { CardHead, CardBody } from "../../components/Card";
@@ -45,7 +44,7 @@ class Login extends Component {
             self.props.history.push("/ownerview/", { username: self.state.ownerUserName, fromPage: "LoginOwner" })
           }
         })
-        .catch(err => {          
+        .catch(err => {
           console.log(err)
           this.setState(
             { ownerAuthError: "Y" })
@@ -91,7 +90,6 @@ class Login extends Component {
               </Jumbotron2>
             </div>
           </div>
-
           <div className="row">
             <div className="col-md-6">
               <div className="card">
@@ -102,8 +100,8 @@ class Login extends Component {
                   <CardBody>
                     {this.state.ownerAuthError === "Y" ? (
                       <p className="text-center font-weight-bold">Invalid user name or password !</p>
-                      ) : (
-                        <p></p>                           
+                    ) : (
+                        <p></p>
                       )
                     }
                     <form>
@@ -141,7 +139,7 @@ class Login extends Component {
                   <CardBody>
                     {this.state.careAuthError === "Y" ? (
                       <p className="text-center font-weight-bold">Invalid user name or password !</p>
-                      ) : (
+                    ) : (
                         <p></p>
                       )
                     }

@@ -1,16 +1,14 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
-import { Link } from "react-router-dom";
 import { CreateBtn } from "../../components/Buttons";
 import Footer from "../../components/Footer";
-import { Input, InputRow, TextArea } from "../../components/Form";
+import { InputRow, TextArea } from "../../components/Form";
 import { CardHead, CardBody } from "../../components/Card";
 import firebase from "firebase";
 import FileUploader from "react-firebase-file-uploader";
 import Image from "react-image-resizer";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Card, CardTitle, CardFooter, CardImg, CardSubtitle, CardText } from "reactstrap";
+import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 import "./CreateCare.css";
 
 class CreateCare extends Component {
@@ -105,53 +103,52 @@ class CreateCare extends Component {
       this.setState({
         errorMsg: "Name"
       })
-      } else if (!this.state.careAddress) {
-        allRequired = false;
-        this.setState({
-          errorMsg: "Address"
-        })
-      } else if (!this.state.careCity) {
-        allRequired = false;
-        this.setState({
-          errorMsg: "City"
-        })
-      } else if (!this.state.careState) {
-        allRequired = false;
-        this.setState({
-          errorMsg: "State"
-        })
-      } else if (!this.state.careZipcode) {
-        allRequired = false;
-        this.setState({
-          errorMsg: "Zip Code"
-        })
-      } else if (!this.state.carePhone) {
-        allRequired = false;
-        this.setState({
-          errorMsg: "Phone"
-        })
-      } else {
-        allRequired = true;
+    } else if (!this.state.careAddress) {
+      allRequired = false;
+      this.setState({
+        errorMsg: "Address"
+      })
+    } else if (!this.state.careCity) {
+      allRequired = false;
+      this.setState({
+        errorMsg: "City"
+      })
+    } else if (!this.state.careState) {
+      allRequired = false;
+      this.setState({
+        errorMsg: "State"
+      })
+    } else if (!this.state.careZipcode) {
+      allRequired = false;
+      this.setState({
+        errorMsg: "Zip Code"
+      })
+    } else if (!this.state.carePhone) {
+      allRequired = false;
+      this.setState({
+        errorMsg: "Phone"
+      })
+    } else {
+      allRequired = true;
+    }
+
+    if (allRequired) {
+      if (this.state.careUsername && this.state.carePassword) {
+
+        const careLogObj = {
+          username: this.state.careUsername,
+          password: this.state.carePassword,
+          role: "caregiver"
+        }
+
+        API.createCareLogin({ careLogObj })
+          .then(res => this.careFormSubmit(event)
+          )
+          .catch(err => console.log(err));
       }
-
-    if (allRequired){
-    if (this.state.careUsername && this.state.carePassword) {
-
-      const careLogObj = {
-        username: this.state.careUsername,
-        password: this.state.carePassword,
-        role: "caregiver"
-      }
-
-      API.createCareLogin({ careLogObj })
-        .then(res => this.careFormSubmit(event)
-        )
-        .catch(err => console.log(err));
-    }  
     } else {
       this.toggle7();
-      console.log("error array", this.state.errorMsg);
-  }
+    }
   };
 
   render() {
@@ -162,10 +159,8 @@ class CreateCare extends Component {
             <div className="col text-center">
               <Jumbotron>
                 <div className="caregiver"><i className="fas fa-paw"></i> Create Caregiver Account</div>
-
               </Jumbotron>
             </div>
-
           </div>
           <div className="row">
             <div className="col">
@@ -320,7 +315,6 @@ class CreateCare extends Component {
                         forattribute="careAbt"
                       />
                       <CreateBtn
-                        // need to change function to this.careFormSubmit when we use authentication
                         onClick={this.userFormSubmit}
                       >Create Account
                       </CreateBtn>
@@ -337,7 +331,6 @@ class CreateCare extends Component {
           <ModalHeader toggle={this.toggle7}><div className="account">Error Message</div></ModalHeader>
           <ModalBody>
             <div className="card">
-
               <CardHead
                 value="Error Message"
               />

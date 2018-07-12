@@ -1,16 +1,14 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
 import Jumbotron from "../../components/Jumbotron";
-import Footer from "../../components/Footer";
 import API from "../../utils/API";
-import { Link } from "react-router-dom";
-import { OwnerLoginBtn, CareLoginBtn, CreateBtn } from "../../components/Buttons";
-import { Input, InputRow, TextArea } from "../../components/Form";
+import Footer from "../../components/Footer";
+import { CreateBtn } from "../../components/Buttons";
+import { InputRow, TextArea } from "../../components/Form";
 import { CardHead, CardBody } from "../../components/Card";
 import firebase from "firebase";
 import FileUploader from "react-firebase-file-uploader";
 import Image from "react-image-resizer";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Card, CardTitle, CardFooter, CardImg, CardSubtitle, CardText } from "reactstrap";
+import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 import "./CreateOwner.css";
 
 class CreateOwner extends Component {
@@ -105,53 +103,52 @@ class CreateOwner extends Component {
       this.setState({
         errorMsg: "Name"
       })
-      } else if (!this.state.ownerAddress) {
-        allRequired = false;
-        this.setState({
-          errorMsg: "Address"
-        })
-      } else if (!this.state.ownerCity) {
-        allRequired = false;
-        this.setState({
-          errorMsg: "City"
-        })
-      } else if (!this.state.ownerState) {
-        allRequired = false;
-        this.setState({
-          errorMsg: "State"
-        })
-      } else if (!this.state.ownerZipcode) {
-        allRequired = false;
-        this.setState({
-          errorMsg: "Zip Code"
-        })
-      } else if (!this.state.ownerPhone) {
-        allRequired = false;
-        this.setState({
-          errorMsg: "Phone"
-        })
-      } else {
-        allRequired = true;
-      }
-
-    if (allRequired){
-    if (this.state.ownerUsername && this.state.ownerPassword) {
-
-      const ownLogObj = {
-        username: this.state.ownerUsername,
-        password: this.state.ownerPassword,
-        role: "owner"
-      }
-
-      API.createOwnLogin({ ownLogObj })
-        .then(res => this.handleFormSubmit(event)
-        )
-        .catch(err => console.log(err));
+    } else if (!this.state.ownerAddress) {
+      allRequired = false;
+      this.setState({
+        errorMsg: "Address"
+      })
+    } else if (!this.state.ownerCity) {
+      allRequired = false;
+      this.setState({
+        errorMsg: "City"
+      })
+    } else if (!this.state.ownerState) {
+      allRequired = false;
+      this.setState({
+        errorMsg: "State"
+      })
+    } else if (!this.state.ownerZipcode) {
+      allRequired = false;
+      this.setState({
+        errorMsg: "Zip Code"
+      })
+    } else if (!this.state.ownerPhone) {
+      allRequired = false;
+      this.setState({
+        errorMsg: "Phone"
+      })
+    } else {
+      allRequired = true;
     }
-  } else {
-    this.toggle6();
-    console.log("error array", this.state.errorMsg);
-  }
+
+    if (allRequired) {
+      if (this.state.ownerUsername && this.state.ownerPassword) {
+
+        const ownLogObj = {
+          username: this.state.ownerUsername,
+          password: this.state.ownerPassword,
+          role: "owner"
+        }
+
+        API.createOwnLogin({ ownLogObj })
+          .then(res => this.handleFormSubmit(event)
+          )
+          .catch(err => console.log(err));
+      }
+    } else {
+      this.toggle6();
+    }
   };
 
   careFormSubmit = event => {
@@ -169,180 +166,177 @@ class CreateOwner extends Component {
   render() {
     return (
       <div className="background">
-      <div className="container fluid">
-        <div className="row">
-          <div className="col text-center">
-          <Jumbotron>
-           <div className="caregiver"><i className="fas fa-paw"></i> Create Owner Account</div>
-          
-          </Jumbotron>
-           
+        <div className="container fluid">
+          <div className="row">
+            <div className="col text-center">
+              <Jumbotron>
+                <div className="caregiver"><i className="fas fa-paw"></i> Create Owner Account</div>
+              </Jumbotron>
+            </div>
           </div>
-        </div>
-        <div className="row">
-          <div className="col">
-            <div className="card">
-            <CardHead> <div className="create2">Create Owner Account <span className="required">* = required field</span></div></CardHead>
-            <div className="background">
-              <CardBody>
-                <form>
-                  <InputRow
-                    value={this.state.ownerUsername}
-                    onChange={this.handleInputChange}
-                    name="ownerUsername"
-                    title="User Name: *"
-                    forattribute="ownerId"
-                    collabel="col-md-2"
-                    coldiv="col-md-10"
-                  />
-                  <InputRow
-                    value={this.state.ownerPassword}
-                    onChange={this.handleInputChange}
-                    name="ownerPassword"
-                    title="Password: *"
-                    forattribute="ownerPsswrd"
-                    collabel="col-md-2"
-                    coldiv="col-md-10"
-                  />
-                  <InputRow
-                    value={this.state.ownerName}
-                    onChange={this.handleInputChange}
-                    name="ownerName"
-                    title="Name: *"
-                    forattribute="ownerNm"
-                    collabel="col-md-2"
-                    coldiv="col-md-10"
-                  />
-                  <InputRow
-                    value={this.state.ownerAddress}
-                    onChange={this.handleInputChange}
-                    name="ownerAddress"
-                    title="Address: *"
-                    forattribute="ownerAdd"
-                    collabel="col-md-2"
-                    coldiv="col-md-10"
-                  />
-                  <div className="row">
-                    <div className="col-md-6">
+          <div className="row">
+            <div className="col">
+              <div className="card">
+                <CardHead> <div className="create2">Create Owner Account <span className="required">* = required field</span></div></CardHead>
+                <div className="background">
+                  <CardBody>
+                    <form>
                       <InputRow
-                        value={this.state.ownerCity}
+                        value={this.state.ownerUsername}
                         onChange={this.handleInputChange}
-                        name="ownerCity"
-                        title="City: *"
-                        forattribute="ownerCty"
-                        collabel="col-md-4"
-                        coldiv="col-md-8"
+                        name="ownerUsername"
+                        title="User Name: *"
+                        forattribute="ownerId"
+                        collabel="col-md-2"
+                        coldiv="col-md-10"
                       />
-                    </div>
-                    <div className="col-md-3">
                       <InputRow
-                        value={this.state.ownerState}
+                        value={this.state.ownerPassword}
                         onChange={this.handleInputChange}
-                        name="ownerState"
-                        title="State: *"
-                        forattribute="ownerState"
-                        collabel="col-md-4"
-                        coldiv="col-md-8"
+                        name="ownerPassword"
+                        title="Password: *"
+                        forattribute="ownerPsswrd"
+                        collabel="col-md-2"
+                        coldiv="col-md-10"
                       />
-                    </div>
-                    <div className="col-md-3">
                       <InputRow
-                        value={this.state.ownerZipcode}
+                        value={this.state.ownerName}
                         onChange={this.handleInputChange}
-                        name="ownerZipcode"
-                        title="Zip: *"
-                        forattribute="ownerZp"
-                        collabel="col-md-3"
-                        coldiv="col-md-9"
+                        name="ownerName"
+                        title="Name: *"
+                        forattribute="ownerNm"
+                        collabel="col-md-2"
+                        coldiv="col-md-10"
                       />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-6">
                       <InputRow
-                        value={this.state.ownerPhone}
+                        value={this.state.ownerAddress}
                         onChange={this.handleInputChange}
-                        name="ownerPhone"
-                        title="Phone: *"
-                        forattribute="ownerPh"
-                        collabel="col-md-4"
-                        coldiv="col-md-8"
+                        name="ownerAddress"
+                        title="Address: *"
+                        forattribute="ownerAdd"
+                        collabel="col-md-2"
+                        coldiv="col-md-10"
                       />
-                    </div>
-                    <div className="col-md-6">
-                      <InputRow
-                        value={this.state.ownerSecPhone}
-                        onChange={this.handleInputChange}
-                        name="ownerSecPhone"
-                        title="Secondary Phone:"
-                        forattribute="ownerPh2"
-                        collabel="col-md-4"
-                        coldiv="col-md-8"
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-6">
-                      <InputRow
-                        value={this.state.ownerEmail}
-                        onChange={this.handleInputChange}
-                        name="ownerEmail"
-                        title="Email:"
-                        forattribute="ownerEml"
-                        collabel="col-md-4"
-                        coldiv="col-md-8"
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-12">
                       <div className="row">
-                        <div className="col-md-5">
-                          <p>Upload your photo: </p>
-                          <FileUploader
-                            accept="image/*"
-                            name="image"
-                            randomizeFilename
-                            storageRef={firebase.storage().ref("owner")}
-                            onUploadStart={this.handleUploadStart}
-                            onProgress={this.handleProgress}
-                            onUploadError={this.handleUploadError}
-                            onUploadSuccess={this.handleUploadSuccess}
+                        <div className="col-md-6">
+                          <InputRow
+                            value={this.state.ownerCity}
+                            onChange={this.handleInputChange}
+                            name="ownerCity"
+                            title="City: *"
+                            forattribute="ownerCty"
+                            collabel="col-md-4"
+                            coldiv="col-md-8"
                           />
                         </div>
                         <div className="col-md-3">
-                          <p>Upload Progress:</p>
+                          <InputRow
+                            value={this.state.ownerState}
+                            onChange={this.handleInputChange}
+                            name="ownerState"
+                            title="State: *"
+                            forattribute="ownerState"
+                            collabel="col-md-4"
+                            coldiv="col-md-8"
+                          />
                         </div>
-                        <div className="col-md-4">
-                          <progress value={this.state.progress} max="100" id="uploader">0%</progress>
-                          <Image
-                            src={this.state.imageURL}
-                            width={100}
-                            height={100}
+                        <div className="col-md-3">
+                          <InputRow
+                            value={this.state.ownerZipcode}
+                            onChange={this.handleInputChange}
+                            name="ownerZipcode"
+                            title="Zip: *"
+                            forattribute="ownerZp"
+                            collabel="col-md-3"
+                            coldiv="col-md-9"
                           />
                         </div>
                       </div>
-                    </div>
-                  </div>
-                  <TextArea
-                    value={this.state.ownerInfo}
-                    onChange={this.handleInputChange}
-                    name="ownerInfo"
-                    title="About Me"
-                    forattribute="ownerAbt"
-                  />
-                  <CreateBtn
-                    // need to change function to this.userFormSubmit when we use authentication
-                    onClick={this.userFormSubmit}
-                  >
-                    Create Account
+                      <div className="row">
+                        <div className="col-md-6">
+                          <InputRow
+                            value={this.state.ownerPhone}
+                            onChange={this.handleInputChange}
+                            name="ownerPhone"
+                            title="Phone: *"
+                            forattribute="ownerPh"
+                            collabel="col-md-4"
+                            coldiv="col-md-8"
+                          />
+                        </div>
+                        <div className="col-md-6">
+                          <InputRow
+                            value={this.state.ownerSecPhone}
+                            onChange={this.handleInputChange}
+                            name="ownerSecPhone"
+                            title="Secondary Phone:"
+                            forattribute="ownerPh2"
+                            collabel="col-md-4"
+                            coldiv="col-md-8"
+                          />
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-6">
+                          <InputRow
+                            value={this.state.ownerEmail}
+                            onChange={this.handleInputChange}
+                            name="ownerEmail"
+                            title="Email:"
+                            forattribute="ownerEml"
+                            collabel="col-md-4"
+                            coldiv="col-md-8"
+                          />
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-12">
+                          <div className="row">
+                            <div className="col-md-5">
+                              <p>Upload your photo: </p>
+                              <FileUploader
+                                accept="image/*"
+                                name="image"
+                                randomizeFilename
+                                storageRef={firebase.storage().ref("owner")}
+                                onUploadStart={this.handleUploadStart}
+                                onProgress={this.handleProgress}
+                                onUploadError={this.handleUploadError}
+                                onUploadSuccess={this.handleUploadSuccess}
+                              />
+                            </div>
+                            <div className="col-md-3">
+                              <p>Upload Progress:</p>
+                            </div>
+                            <div className="col-md-4">
+                              <progress value={this.state.progress} max="100" id="uploader">0%</progress>
+                              <Image
+                                src={this.state.imageURL}
+                                width={100}
+                                height={100}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <TextArea
+                        value={this.state.ownerInfo}
+                        onChange={this.handleInputChange}
+                        name="ownerInfo"
+                        title="About Me"
+                        forattribute="ownerAbt"
+                      />
+                      <CreateBtn
+                        onClick={this.userFormSubmit}
+                      >
+                        Create Account
                   </CreateBtn>
-                </form>
-              </CardBody>
+                    </form>
+                  </CardBody>
+                </div>
               </div>
             </div>
           </div>
-        </div>
         </div>
         <Footer />
 
@@ -350,7 +344,6 @@ class CreateOwner extends Component {
           <ModalHeader toggle={this.toggle6}><div className="account">Error Message</div></ModalHeader>
           <ModalBody>
             <div className="card">
-
               <CardHead
                 value="Error Message"
               />
