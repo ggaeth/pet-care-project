@@ -35,3 +35,10 @@
       color: white;
       font-size: 30px;
   }
+
+  .pet-card2{
+    margin-top: 60px;
+    margin-bottom: 100px;
+    float:left;
+    font-size: 40px;
+  }

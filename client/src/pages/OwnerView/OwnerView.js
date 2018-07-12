@@ -1,13 +1,9 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
 import Jumbotron from "../../components/Jumbotron";
-import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
 import API from "../../utils/API";
-import { Link } from "react-router-dom";
-import icon from "../../assets/icon.jpg";
 import { DeleteBtn, CreatePetBtn } from "../../components/Buttons";
-import { Card, CardTitle, CardBody, CardFooter, CardImg, CardSubtitle, CardText } from "reactstrap";
+import { Card, CardTitle, CardBody, CardImg } from "reactstrap";
 import "./OwnerView.css";
 
 class OwnerView extends Component {
@@ -78,30 +74,21 @@ class OwnerView extends Component {
     this.props.history.push("/petview/", { ownerid: ownerId, petid: petId, username: username })
   };
 
-  // const OwnerView = (props) => {
   render() {
     return (
       <div className="background">
         <div className="container fluid">
           <Jumbotron>
             <div className="owner"><i className="fas fa-paw"></i>Owner View</div>
-            
             </Jumbotron>
           <div className="row">
-
-             {/* <div className=" pet-card col-2"> */}
-
               <CreatePetBtn  onClick={() => this.petPage(this.state.owner[0].owner_id, this.state.owner[0].username)} >
               <div className="pet"><i className=" paw2 fas fa-paw"></i>Create Pet</div> 
               </CreatePetBtn>
-            {/* </div> */}
             {this.state.pets.length ? (
-              
               <div className="col-9">
                   {this.state.pets.map(pet => (
-                    
                       <div className="col-4 pet-card2">
-              
                     <Card>
                       <div>
                         <CardImg div className="pet-img" top width="100%"
@@ -120,25 +107,21 @@ class OwnerView extends Component {
                             onClick={this.deletePet}
                             name="pet_id"
                             value={pet.pet_id} >Delete
-                            </DeleteBtn>
+                          </DeleteBtn>
                         </CardBody>
                       </div>
                     </Card>
                     </div>
                   ))}
                 </div>
-                
-              ) : (
-                  
+              ) : ( 
                   <div className="no-pet"><i className="fas fa-paw"></i>Please Create a Pet! </div>
                 )}
-            
           </div>
           <div className="space1"></div>
         </div>
         <Footer />
       </div>
-
 
     );
   }

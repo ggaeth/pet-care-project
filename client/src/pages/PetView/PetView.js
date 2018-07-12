@@ -1,13 +1,11 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
 import Jumbotron from "../../components/Jumbotron";
 import Footer from "../../components/Footer";
 import API from "../../utils/API";
-import { Link } from "react-router-dom";
-import { AddBtn, DeleteBtn, TodoBtn, TodoDelBtn, CareBtn, PetViewBtn, OwnPetModalCloseBtn } from "../../components/Buttons";
-import { Input, InputBox, InputRow, TextArea } from "../../components/Form";
+import { TodoBtn, TodoDelBtn, PetViewBtn, OwnPetModalCloseBtn } from "../../components/Buttons";
+import { InputBox, InputRow, TextArea } from "../../components/Form";
 import { CardHead } from "../../components/Card";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Card, CardTitle, CardBody, CardFooter, CardImg, CardSubtitle, CardText } from "reactstrap";
+import { Button, Modal, ModalHeader, ModalBody, Card, CardBody, CardFooter, CardImg } from "reactstrap";
 import { Container } from "../../components/Grid";
 import firebase from "firebase";
 import FileUploader from "react-firebase-file-uploader";
@@ -48,7 +46,6 @@ class PetView extends Component {
   }
 
   toggle2() {
-    console.log("inside toggle2 function of PetView Page")
 
     API.getAllCgs()
       .then(res =>
@@ -320,7 +317,6 @@ class PetView extends Component {
           <div className="col-4">
             <Container>
               {this.state.pet ? (
-                // <Card onClick={() => this.petView(pet.owner_id, pet.pet_id, this.state.owner[0].username)} >
                 <Card onClick={this.toggle}>
                   <div>
                     <CardImg div className="pet-img" top width="100%"
@@ -329,23 +325,15 @@ class PetView extends Component {
                       id={this.state.pet.pet_id}
                       key={this.state.pet.pet_id}
                     />
-                    {/* <CardBody> */}
-                      {/* <CardTitle>
-                        {this.state.pet.name}
-                      </CardTitle> */}
-                    {/* </CardBody> */}
                     <CardFooter className="cardFooter">
                       <p><i className="paw3 fas fa-paw"></i>View & Edit Details for {this.state.pet.name}</p>
-                      {/* <p>{this.state.pet.name}</p> */}
                     </CardFooter>
                   </div>
                 </Card>
-
               ) : (
                   <p>Pet data was not found</p>
                 )
               }
-
               {this.state.caregivers.filter(cg => cg.caregiver_id == this.state.pet.caregiver_id).map(cg => (
                 <Card className="cg-card" onClick={this.toggle5}>
                   <div>
@@ -375,17 +363,10 @@ class PetView extends Component {
                 onClick={() => this.ownerPage(this.state.pet.owner_id, this.props.location.state.username)}
               >Back
               </PetViewBtn>
-
-              {/* <button className="btn btn-lg" onClick={() => this.ownerPage(this.state.pet.owner_id, this.props.location.state.username)} >
-                Go Back to Onwer Overview
-            </button> */}
-
             </Container>
           </div>
-           
-          {/* <div className="row"> */}
           <div className="col-8">
-          <div className="row">
+           <div className="row">
               <div className="col-md-12">
                 <Card div className="todo-body">
                   <CardHead>
@@ -393,19 +374,8 @@ class PetView extends Component {
                   </CardHead>
                   <div className="background"> 
                   <CardBody >
-                  
                     <form>
                       <div className="row">
-                        {/* <div className="col-md-2">
-                          <InputRow
-                            value={this.state.todoCompleted}
-                            onChange={this.handleInputChange}
-                            name="todoCompleted"
-                            placeholder="completed(Y/N)"
-                            forattribute="todoCompleted"
-                            coldiv="col-md-12"
-                          />
-                        </div> */}
                         <div className="col-md-6">
                           <InputRow
                             value={this.state.todoDate}
@@ -445,13 +415,12 @@ class PetView extends Component {
                           />
                         </div>
                       </div>
-                        <TodoBtn
-                          type="submit"
-                          onClick={this.createTodoItem}
+                      <TodoBtn
+                        type="submit"
+                        onClick={this.createTodoItem}
                         >Add To-Do
-                    </TodoBtn>
+                      </TodoBtn>
                     </form>
-                    
                   </CardBody>
                   </div>
                 </Card>
@@ -465,11 +434,6 @@ class PetView extends Component {
                       </CardHead>
                       <div className="background">
                       <CardBody>
-                          {/* <button className="btn btn-lg mr-3 mb-5 float-left"
-                            onClick={this.updateTodoCompleted}
-                            name="pet_todo_id"
-                            value={petTodo.pet_todo_id} >Task Completed
-                          </button> */}
                           <div>
                           {this.state.petTodos.length ? (
                             <table className="table table-bordered">
@@ -484,36 +448,34 @@ class PetView extends Component {
                             </thead>
                             {this.state.petTodos.map(petTodo => (
                               <tbody>
-                              <tr>
-                                <td>{petTodo.todo_completed}</td>
-                                <td>{petTodo.todo_date}</td>
-                                <td>{petTodo.todo_time}</td>
-                                <td>{petTodo.todo_item}</td>
-                                <td>
+                                <tr>
+                                  <td>{petTodo.todo_completed}</td>
+                                  <td>{petTodo.todo_date}</td>
+                                  <td>{petTodo.todo_time}</td>
+                                  <td>{petTodo.todo_item}</td>
+                                  <td>
                                   <TodoDelBtn
                                     onClick={this.deleteTodo}
                                     name="pet_todo_id"
                                     value={petTodo.pet_todo_id} 
                                     >Delete
                                   </TodoDelBtn>
-                                </td>
-                              </tr>
-                            </tbody>
+                                  </td>
+                                </tr>
+                              </tbody>
                             ))}
-                            </table>
-                          // </div>
+                          </table>
                       ) : (
                         <h5>No To-Do Items found</h5>
                       )}
                       </div>
-                      </CardBody>
-                      </div>
-                      </Card>
+                    </CardBody>
                   </div>
+                </Card>
+              </div>
             </div>
           </div>
         </div>
-      
 
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} size="lg" backdrop="static" >
           <ModalHeader toggle={this.toggle}><div className="account"><i className=" paw3 fas fa-paw"></i>Update Pet Details</div></ModalHeader>
@@ -760,11 +722,9 @@ class PetView extends Component {
           <ModalHeader toggle={this.toggle2}><div className="account"><i className=" paw3 fas fa-paw"></i>Choose a Care Giver</div></ModalHeader>
           <ModalBody>
           <div className="card todo-body">
-
               <CardHead>
                <div className="Details"><i className=" paw3 fas fa-paw"></i>Care Givers</div> 
               </CardHead>
-              {/* <div className="background"> */}
               <CardBody>
                 <div className="row">
                   <table class="table table-bordered">
@@ -797,7 +757,6 @@ class PetView extends Component {
                   <Button className="modal-close-2" onClick={this.toggle2}>Close</Button>
                 </div>
               </CardBody>
-               {/* </div> */}
             </div>
           </ModalBody>
         </Modal>
@@ -805,8 +764,7 @@ class PetView extends Component {
         <Modal isOpen={this.state.modal5} toggle={this.toggle5} className={this.props.className} size="lg" backdrop="static" >
           <ModalHeader toggle={this.toggle5}><div className="account">View Care Giver Details</div></ModalHeader>
           <ModalBody>
-          <div className="card todo-body">
-
+            <div className="card todo-body">
               <CardHead>
               <div className="Details"><i className=" paw3 fas fa-paw"></i>Care Giver Details</div> 
               </CardHead>

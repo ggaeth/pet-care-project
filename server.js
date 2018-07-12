@@ -35,8 +35,8 @@ app.get('/logout', application.destroySession);
 
 app.use(routes);  
 
-db.sequelize.sync({ force: true }).then(function () {
+db.sequelize.sync({ force: false }).then(function () {
   app.listen(PORT, function () {
-    console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+    console.log(`?  ==> API Server now listening on PORT ${PORT}!`);
   });
 });

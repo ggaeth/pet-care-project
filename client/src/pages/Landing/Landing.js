@@ -1,16 +1,10 @@
 import React, { Component } from "react";
-import Jumbotron from "../../components/Jumbotron";
-import Nav from "../../components/Nav";
 import DogPic from "../../components/DogPic";
-import CatPic from "../../components/CatPic";
-import InfoBox from "../../components/InfoBox";
-import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import Footer from "../../components/Footer";
-import { LoginBtn, CreateAcctBtn, OwnerBtn, CareBtn } from "../../components/Buttons";
+import { OwnerBtn, CareBtn } from "../../components/Buttons";
 import { CardHead, CardBody } from "../../components/Card";
-// import Create from "../Create";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import "./Landing.css";
 
 class Landing extends Component {
@@ -32,28 +26,22 @@ class Landing extends Component {
   render() {
     return (
       <div className="background">
-      
         <div className="container-fluid">
           <div className="row">
             <div className="col-12">
-           
               <DogPic>
               <div className="layer">
                 <h1 className="title"> Welcome to Pet Purfect</h1>
                 <h2 className="description">All Pets <i className="fas fa-paw"></i> All Care</h2>
-                {/* <h3 className="description">Do you need a Caregiver for your pet?</h3> */}
                 <div>
                   <Link to="/login">
                     <Button className="LoginBtn btn btn-lg">Login</Button>
-                    
                  </Link>
                  </div>
                 <Button className="CreateAcctBtn btn-lg" onClick={this.toggle}>Create Account</Button>
-                {/* dog pic was here */}
                 </div>
               </DogPic>
-         
-          </div>
+           </div>
           </div>
        
           <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
@@ -62,7 +50,6 @@ class Landing extends Component {
               <div className="row">
                 <div className="col-md-6">
                   <div className="card">
-                  
                     <CardHead>
                     <div className="account3">Create Owner</div>
                     <div className="account2">Account</div>
@@ -95,14 +82,12 @@ class Landing extends Component {
             </ModalBody>
           </Modal>
           
-
          </div>
          <Footer />
         </div>
       
     );
   }
-
 }
 
 export default Landing;
